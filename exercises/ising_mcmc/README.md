@@ -47,27 +47,177 @@ Use JSON as the saved-data format.
 
 Do not rely on plots created directly inside the simulation. The simulation should save data, and the analysis should read saved data.
 
-## First Conversation With the AI Agent
+## Step-by-Step Workflow
 
-Before asking for code, ask the AI agent to discuss the numerical design.
+Work through the exercise in order. At each step, ask the AI agent for help, then check the result before moving on.
 
-A good first instruction is:
+The prompts below are starting points. You may edit them, but do not skip the confirmation items.
+
+### Step 1: Design the Calculation Before Coding
+
+Prompt to the AI agent:
 
 ```text
 I want to solve the 2D ferromagnetic Ising model with single-spin Metropolis MCMC.
-Before writing code, help me design the method, saved JSON format, unit tests, and validation checks.
+Before writing code, help me design the method, saved JSON format, minimal unit tests, and validation checks.
 Use Python with uv, keep the project minimal, and separate simulation from analysis.
 ```
 
-The first discussion should cover:
+Confirm before moving on:
 
-- how the Metropolis update works,
-- how to compute the local energy change `Delta E`,
-- what one sweep means,
-- which quantities to measure,
-- what metadata must be saved,
-- which unit tests should be added,
-- how to validate the result.
+- You can explain the Metropolis acceptance rule.
+- You know what one sweep means.
+- You have chosen what to save in JSON.
+- You have a list of minimal unit tests.
+- You have a validation plan beyond just plotting results.
+
+### Step 2: Create the Minimal Python Project
+
+Prompt to the AI agent:
+
+```text
+Create a minimal Python project using uv for this exercise.
+Do not over-engineer the structure.
+Include separate entry points or scripts for simulation, analysis, and tests.
+Do not write the full simulation yet; first set up the project so commands can run from the command line.
+```
+
+Confirm before moving on:
+
+- The project can be run with `uv`.
+- The intended simulation and analysis commands are clear.
+- The project contains no unnecessary framework or large scaffold.
+
+### Step 3: Implement Deterministic Physics Functions First
+
+Prompt to the AI agent:
+
+```text
+Implement the deterministic parts first: spin representation, periodic neighbors, total energy, magnetization, and local Delta E for a proposed spin flip.
+Also create minimal unit tests for these functions before implementing the full Monte Carlo loop.
+```
+
+Confirm before moving on:
+
+- Energy is correct for simple configurations.
+- Magnetization normalization is clear.
+- Periodic boundaries are tested.
+- Local `Delta E` agrees with full energy recomputation.
+- The tests run successfully.
+
+### Step 4: Implement One Metropolis Run
+
+Prompt to the AI agent:
+
+```text
+Implement a single-temperature, single-seed Metropolis simulation.
+Use one sweep = L * L attempted spin updates.
+Save the energy and magnetization time series plus metadata to one JSON file.
+Keep simulation and analysis separate.
+```
+
+Confirm before moving on:
+
+- One command runs the simulation.
+- One JSON file is created.
+- The JSON contains `L`, `T`, sweeps, discarded sweeps, measurement interval, seed, boundary condition, and measured time series.
+- Re-running with the same seed gives the same short trajectory.
+
+### Step 5: Analyze Saved JSON
+
+Prompt to the AI agent:
+
+```text
+Write an analysis script that reads saved JSON files.
+It should not rerun the simulation.
+Plot energy and magnetization time series, discard the requested initial sweeps, and compute post-discard averages.
+```
+
+Confirm before moving on:
+
+- The analysis reads JSON files produced by the simulation.
+- The analysis does not silently run the simulation again.
+- The discarded sweeps are handled consistently.
+- The generated plots and averages can be regenerated from saved data.
+
+### Step 6: Check Low and High Temperatures
+
+Prompt to the AI agent:
+
+```text
+Help me run and analyze one low-temperature case and one high-temperature case.
+Use the saved JSON files to compare energy, magnetization, absolute magnetization, and time-series behavior.
+```
+
+Confirm before moving on:
+
+- Low temperature shows larger absolute magnetization than high temperature.
+- Energy behaves differently at low and high temperature.
+- The early part of the time series is inspected rather than blindly averaged.
+- Any unexpected behavior is investigated before continuing.
+
+### Step 7: Validate With Exact Enumeration
+
+Prompt to the AI agent:
+
+```text
+Add exact enumeration for a very small lattice, such as L = 2.
+Use the same Hamiltonian, boundary convention, energy normalization, and magnetization definition as the MCMC code.
+Compare exact thermal averages with MCMC estimates.
+```
+
+Confirm before moving on:
+
+- The exact enumeration uses the same conventions as the simulation.
+- MCMC estimates are compared with exact values at one or more temperatures.
+- Disagreement is discussed in terms of sampling error, run length, correlations, or possible implementation mistakes.
+
+### Step 8: Compare Independent Seeds
+
+Prompt to the AI agent:
+
+```text
+Run the same parameters with several independent random seeds.
+Analyze the saved JSON files together and compare the qualitative behavior and averaged observables.
+```
+
+Confirm before moving on:
+
+- Different seeds do not produce identical trajectories.
+- Independent seeds give compatible qualitative behavior.
+- Strong disagreement is investigated before making physical claims.
+
+### Step 9: Compare Several Temperatures
+
+Prompt to the AI agent:
+
+```text
+Run a small set of temperatures: one low temperature, one near the expected transition region, and one high temperature.
+Analyze only the saved JSON files and compare the temperature dependence of energy and absolute magnetization.
+```
+
+Confirm before moving on:
+
+- The same saved-data format is used for every temperature.
+- The analysis can compare multiple JSON files.
+- You can explain the observed temperature dependence qualitatively.
+
+### Step 10: Attempt the Binder-Parameter Challenge
+
+Prompt to the AI agent:
+
+```text
+Using the existing JSON-based workflow, help me estimate the transition temperature from Binder-parameter crossings.
+Run several lattice sizes and temperatures, compute U_L(T) = 1 - <m^4> / (3 <m^2>^2), and plot Binder curves from saved JSON files.
+```
+
+Confirm before making a transition-temperature claim:
+
+- Each Markov chain has plausibly forgotten its initial condition.
+- Correlations are considered when quoting Binder estimates.
+- Independent seeds give compatible Binder curves.
+- Binder crossing estimates become more stable as larger lattice sizes are included.
+- The temperature grid is fine enough near the crossing region.
 
 ## Method Design
 
@@ -196,21 +346,20 @@ Run the same parameter set with multiple random seeds.
 
 The time series should not be identical across seeds, but the qualitative temperature dependence should be compatible. If independent seeds disagree strongly, investigate run length, discarded sweeps, correlations, and possible implementation errors.
 
-## Common Failure Modes
+## Points to Audit
 
-Ask the AI agent what could go wrong, then check the dangerous parts.
+Modern AI agents often produce plausible implementations. The harder problem is checking whether the conventions, statistics, and claims are consistent.
 
-Common mistakes include:
+Audit points include:
 
-- wrong sign in `Delta E`,
-- incorrect periodic boundary conditions,
-- double-counting or under-counting bonds in the energy,
-- mixing up `T` and `1 / T`,
-- treating magnetization and absolute magnetization as the same quantity,
-- including discarded sweeps in final averages,
-- treating strongly correlated samples as independent,
-- saving too little metadata to reproduce the run,
-- computing Binder quantities from averaged magnetization rather than from the magnetization time series.
+- whether energy and magnetization normalization are the same in simulation, analysis, tests, and exact enumeration,
+- whether the periodic-boundary bond convention is defined clearly, especially for very small lattices,
+- whether discarded sweeps are excluded in analysis, not just recorded in metadata,
+- whether magnetization `m` and absolute magnetization `|m|` are used for different purposes deliberately,
+- whether correlated MCMC samples are treated with appropriate caution,
+- whether different temperatures, seeds, or lattice sizes are compared using compatible run lengths and measurement intervals,
+- whether Binder quantities are computed from the magnetization time series, not from already averaged magnetization,
+- whether the final claim is about finite-size numerical evidence rather than the thermodynamic limit itself.
 
 ## Optional Work Record
 
