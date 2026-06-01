@@ -443,6 +443,18 @@ Checks before claiming a transition temperature:
 - Is the temperature grid fine enough near the crossing region?
 - Are all Binder curves computed from saved JSON files rather than rerunning simulations during analysis?
 
+## Follow-up Questions
+
+After completing the standard exercise, discuss the following questions with the AI agent.
+
+- A fixed sequential sweep over spins generally does not satisfy detailed balance as a full-sweep transition kernel, even if each single-site update satisfies detailed balance. Why? Does the fixed sequential sweep still preserve the Boltzmann distribution? Explain the distinction between detailed balance and stationarity or invariance.
+- In a finite zero-field Ising system, the exact equilibrium expectation value of the signed magnetization is `<m> = 0` because of spin-flip symmetry. In a low-temperature single-spin Metropolis simulation, however, the measured time average may remain positive or negative for a very long run. Explain this in terms of extremely long correlation or tunneling times, and distinguish formal ergodicity from practical sampling.
+- As a possible remedy for slow low-temperature sampling, study replica exchange Monte Carlo, also called exchange Monte Carlo or parallel tempering. How does exchanging configurations between temperatures help low-temperature replicas escape long-lived states? What acceptance probability should be used for swapping two replicas?
+
+Reference for exchange Monte Carlo:
+
+- K. Hukushima and K. Nemoto, "Exchange Monte Carlo Method and Application to Spin Glass Simulations," *Journal of the Physical Society of Japan* **65**, 1604-1608, 1996. DOI: [10.1143/JPSJ.65.1604](https://doi.org/10.1143/JPSJ.65.1604)
+
 ## Extension: Speed Up With Rust or Julia
 
 After completing the Python version, you may ask the AI agent to help speed up the simulation using Rust or Julia.
