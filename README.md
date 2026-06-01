@@ -66,7 +66,7 @@ Add minimal unit tests for deterministic implementation details.
 
 ## Data Policy
 
-The first exercise uses JSON as the standard saved-data format.
+The exercises use JSON as the standard saved-data format.
 
 Simulation output should include both measured time series and metadata such as model parameters, random seed, lattice size, temperature, number of sweeps, discarded sweeps, measurement interval, and boundary condition.
 
@@ -76,6 +76,9 @@ Analysis should read saved JSON files. It should not silently rerun the simulati
 
 - [Ising MCMC](exercises/ising_mcmc/)  
   Simulate the two-dimensional Ising model with single-spin Metropolis updates, save results as JSON, validate against qualitative limits and exact enumeration, and attempt a Binder-parameter estimate of the transition temperature.
+
+- [Tight-Binding Density of States](exercises/tight_binding_dos/)  
+  Compute the DOS of 1D, 2D, and 3D nearest-neighbor tight-binding models with dense k-mesh histograms, validate normalization and the 1D analytic DOS, and investigate the 2D Van Hove singularity.
 
 ## What This Repository Does Not Provide
 
