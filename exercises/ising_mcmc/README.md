@@ -35,6 +35,35 @@ For the standard exercise, use:
 
 One sweep should mean `L * L` attempted single-spin updates.
 
+## Temperature Scale
+
+For the infinite square-lattice Ising model at zero magnetic field, the critical temperature is:
+
+```text
+T_c = 2J / (k_B log(1 + sqrt(2)))
+```
+
+With `J = 1` and `k_B = 1`,
+
+```text
+T_c = 2.269185314...
+```
+
+Use this value as a reference scale, not as an answer to be copied. For initial checks, reasonable choices are:
+
+- low temperature: `T = 1.5`
+- near the transition region: `T = 2.2` to `2.4`
+- high temperature: `T = 3.5`
+
+This critical point was identified from Kramers-Wannier duality and appears in Onsager's exact solution of the zero-field square-lattice Ising model.
+
+Finite-size simulations will not show a sharp thermodynamic singularity. The challenge is to see how finite-size evidence approaches the known reference value.
+
+References:
+
+- H. A. Kramers and G. H. Wannier, "Statistics of the Two-Dimensional Ferromagnet. Part I," *Physical Review* **60**, 252-262, 1941. DOI: [10.1103/PhysRev.60.252](https://doi.org/10.1103/PhysRev.60.252)
+- L. Onsager, "Crystal Statistics. I. A Two-Dimensional Model with an Order-Disorder Transition," *Physical Review* **65**, 117-149, 1944. DOI: [10.1103/PhysRev.65.117](https://doi.org/10.1103/PhysRev.65.117)
+
 ## Standard Route
 
 Use Python as the standard implementation language.
@@ -145,7 +174,7 @@ Confirm before moving on:
 Prompt to the AI agent:
 
 ```text
-Help me run and analyze one low-temperature case and one high-temperature case.
+Help me run and analyze one low-temperature case, such as T = 1.5, and one high-temperature case, such as T = 3.5.
 Use the saved JSON files to compare energy, magnetization, absolute magnetization, and time-series behavior.
 ```
 
@@ -192,7 +221,7 @@ Confirm before moving on:
 Prompt to the AI agent:
 
 ```text
-Run a small set of temperatures: one low temperature, one near the expected transition region, and one high temperature.
+Run a small set of temperatures: one low temperature such as T = 1.5, one near the expected transition region such as T = 2.3, and one high temperature such as T = 3.5.
 Analyze only the saved JSON files and compare the temperature dependence of energy and absolute magnetization.
 ```
 
