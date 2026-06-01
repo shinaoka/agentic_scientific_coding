@@ -49,7 +49,7 @@ The exercise README is the teaching material. It describes the problem, the requ
 
 ## Standard Workflow
 
-The first exercise uses Python as the standard route. Students should ask their AI agent to create a minimal Python project using `uv`.
+The current exercises use Python as the standard route. Students should ask their AI agent to create a minimal Python project using `uv`.
 
 The repository intentionally does not provide a fixed `pyproject.toml`, lockfile, or source tree. Creating the project structure is part of the agentic-coding workflow.
 
@@ -59,7 +59,7 @@ Typical instructions to the AI agent may include:
 Use Python and uv to create a minimal reproducible project.
 Keep the structure simple.
 Separate simulation from analysis.
-Save simulation results as JSON.
+Save numerical results as JSON.
 Use matplotlib for the standard plots.
 Add minimal unit tests for deterministic implementation details.
 ```
@@ -68,9 +68,9 @@ Add minimal unit tests for deterministic implementation details.
 
 The exercises use JSON as the standard saved-data format.
 
-Simulation output should include both measured time series and metadata such as model parameters, random seed, lattice size, temperature, number of sweeps, discarded sweeps, measurement interval, and boundary condition.
+Saved output should include numerical results plus enough metadata to inspect the calculation, such as model parameters, discretization or sampling settings, random seeds when relevant, and normalization conventions.
 
-Analysis should read saved JSON files. It should not silently rerun the simulation to regenerate plots.
+Analysis should read saved JSON files. It should not silently rerun the numerical calculation to regenerate plots.
 
 ## Current Exercises
 
