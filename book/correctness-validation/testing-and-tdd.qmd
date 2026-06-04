@@ -6,7 +6,7 @@ title: "6.1 Testing and TDD"
 
 A test checks expected behavior. Test-driven development means stating the expected behavior before writing or changing the implementation. The important habit is not the ritual, but the discipline of making expectations explicit.
 
-For small exercises, put tests immediately after the function. This makes the specification visible next to the implementation.
+In this page, the tests are shown immediately after the function. This is a teaching layout: it makes the specification visible next to the implementation while the example is small.
 
 ```julia
 using Test
@@ -31,7 +31,11 @@ end
 end
 ```
 
-The tests are part of the specification. They say what the function should do for normal inputs, one-element inputs, negative values, and empty input. When an AI agent writes or changes code, ask it to keep the tests close to the function while the example is small.
+The tests are part of the specification. They say what the function should do for normal inputs, one-element inputs, negative values, and empty input.
+
+Do not treat this layout as the recommended structure for real project code. In a real project, separate test code from runtime code, for example by using the project's test directory or test suite. Normal program execution should not run the full test suite, because that can make ordinary calculations unnecessarily slow. Project organization is discussed in [9.2 Project structure, environment, and reproducibility](../reproducible-workflow/project-structure-and-reproducibility.qmd).
+
+When an AI agent writes or changes code, ask it to update the appropriate test files and tell you which command runs the tests.
 
 For floating-point results that are not exactly representable, use approximate comparison:
 
@@ -54,7 +58,7 @@ A bad test copies the implementation. A good test checks behavior that you can j
 
 ## Exercise
 
-Write a Julia function `mean_value(xs)` and place a `@testset` immediately after it. Include at least five tests. For each test, write one sentence explaining what property it checks.
+Write a Julia function `mean_value(xs)`. For this teaching exercise, place a `@testset` immediately after it so that the function and specification can be read together. Include at least five tests. For each test, write one sentence explaining what property it checks.
 
 ## Notes for the exercise
 
@@ -65,7 +69,7 @@ Write a Julia function `mean_value(xs)` and place a `@testset` immediately after
 - Include a case whose answer is known by hand.
 - Use `isapprox` when exact floating-point equality is not appropriate.
 - Tests should check the specification, not copy the implementation.
-- In small exercise files, keep the tests close to the function they check.
+- In real project files, separate tests from runtime code and run them through the project test command.
 
 ## Optional coding check
 

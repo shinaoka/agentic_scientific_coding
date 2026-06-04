@@ -14,6 +14,7 @@ project/
   Project.toml
   Manifest.toml
   src/
+  test/
   scripts/
   data/
   results/
@@ -21,6 +22,8 @@ project/
 ```
 
 The exact structure can change, but input data, source code, generated output, and notes should not be mixed without reason.
+
+Test code should also be separated from runtime code. In Julia projects, tests are commonly placed under `test/`. Other languages use different conventions, but the idea is the same: normal execution should run the calculation, and a separate test command should run the tests.
 
 In Julia, `Project.toml` describes the project environment, including direct dependencies. `Manifest.toml` records the resolved package versions. Together, these files help separate the dependencies of one project from another project.
 
@@ -33,6 +36,7 @@ Do not confuse a project environment with an editor. VS Code, Cursor, or another
 - Project structure
 - README
 - Source code
+- Test suite
 - Results directory
 - Work log
 - Dependency
@@ -46,6 +50,7 @@ Do not confuse a project environment with an editor. VS Code, Cursor, or another
 Design a project structure with at least:
 
 - `src/`
+- `test/`
 - `data/`
 - `results/`
 - `scripts/`
@@ -59,6 +64,7 @@ Then list what information is needed to reproduce one result, including the depe
 ## Notes for the exercise
 
 - Do not mix input data, source code, and generated output.
+- Keep test code separate from runtime code.
 - State what should be saved and what can be regenerated.
 - Make the README the entry point.
 - Connect each result file to its input parameters and code version.
