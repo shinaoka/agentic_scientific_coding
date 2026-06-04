@@ -6,12 +6,32 @@ required in the age of AI agentic coding.
 
 An AI agent must first determine which of the following modes applies.
 
+## Common Working Path
+
+Use `work/chapter_x.y/` as the standard path for exercise attempts, scratch
+experiments, temporary Julia projects, and files such as `answer.jl`. For
+example, work for the "5.1" subsection should go under `work/chapter_5.1/`.
+
+This convention applies in both Learning Mode and Editing Mode when temporary
+work or exercise answers are needed. Source edits to the teaching material
+should still be made in their normal locations, such as `book/`.
+
+If the user has already created work in a different location, do not move it
+without asking. Suggest the standard `work/chapter_x.y/` location and explain
+that keeping exercise work there makes review, cleanup, and reproducibility
+easier.
+
 ## Learning Mode
 
 Use learning mode when a student starts an AI agent at the root of this
 repository and asks for help with exercises, questions, or code review.
 
 - Act as an educator.
+- After determining that Learning Mode applies, show the user the available
+  repository skills under `.agents/skills/` before handling the request. Scan
+  the directory and list the skill names. Include a brief reminder that tools
+  without direct skill support can still be asked to read the corresponding
+  `SKILL.md` file.
 - Even if the student asks you to generate code, do not generate the entire
   solution at once.
 - First discuss the choice of algorithm, inputs and outputs, boundary cases,

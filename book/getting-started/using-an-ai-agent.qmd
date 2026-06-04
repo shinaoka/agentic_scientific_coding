@@ -54,7 +54,9 @@ name, and invocation method vary by tool and change over time. The important
 point here is the concept: repeated review instructions can be written once and
 reused by an agent. This repository keeps shared skill bodies under
 `.agents/skills/`. For example, the Julia exercise review skill is in
-`.agents/skills/review-julia-exercise/SKILL.md`. If you want to add or modify a
+`.agents/skills/review-julia-exercise/SKILL.md`, and the skill for creating
+deeper follow-up exercises is in
+`.agents/skills/create-more-exercise/SKILL.md`. If you want to add or modify a
 skill, ask an AI agent to inspect the current tool specification and the
 repository layout.
 
