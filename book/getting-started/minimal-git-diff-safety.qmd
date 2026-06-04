@@ -38,12 +38,17 @@ Git is explained more fully later in [10.1 Git basics for scientific workflow](.
 
 - Git status
 - Git diff
+- Git init
+- Git add
 - Git restore
+- Git log
 - Commit
 - Checkpoint
 - Working tree
 
 ## Exercise
+
+Exercise 1:
 
 Ask an AI agent to inspect the course folder without editing files. Then write down:
 
@@ -53,9 +58,15 @@ Ask an AI agent to inspect the course folder without editing files. Then write d
 - why `git restore` must be used carefully,
 - what a commit checkpoint means.
 
+Exercise 2:
+
+In a separate practice folder, ask an AI agent to create a new Git repository with `git init`. Ask it to create one new text file and commit it. Then ask it to change that file and commit the change. Before each commit, run `git status` and `git diff` yourself. After each commit, run `git status` and `git log --oneline`, and write down what changed.
+
 ## Notes for the exercise
 
 - Do not run a command that discards changes unless you know what it will discard.
 - Do not accept a large AI-agent edit without reading the diff.
 - Keep early edits small.
+- For Exercise 2, use a separate practice folder, not the course repository or another important project.
+- Read the diff before each commit.
 - If you are using the ZIP download and not Git, make a backup copy before a large edit.
