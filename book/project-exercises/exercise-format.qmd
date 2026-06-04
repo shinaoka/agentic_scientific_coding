@@ -4,7 +4,7 @@ title: "11.2 Project exercise catalog"
 
 ## Explanation
 
-The directories under `exercises/` contain practical project exercises. The HTML page gives the overview. The detailed step-by-step instructions are in each project directory.
+The directories under `exercises/` contain practical project exercises. The HTML page gives the overview. The detailed step-by-step instructions are in each project directory in the [GitHub repository](https://github.com/shinaoka/agentic_scientific_coding), especially under [`exercises/`](https://github.com/shinaoka/agentic_scientific_coding/tree/main/exercises).
 
 ## `exercises/ising_mcmc/`
 
