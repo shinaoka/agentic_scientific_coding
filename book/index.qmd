@@ -2,21 +2,41 @@
 title: "Introduction"
 ---
 
-This site contains teaching material for students who are beginning to use programming and AI agents for scientific computing.
+This site contains teaching material for students who are beginning to use
+programming and AI agents for scientific computing.
 
-It is intended for science and engineering students who can follow elementary mathematics and want to learn computational work with AI agents. Prior programming experience is helpful but not required. The material is not a complete Julia or Rust textbook; it teaches the minimum concepts needed to inspect, test, and validate scientific code.
+It is intended for science and engineering students who can follow elementary
+mathematics and want to learn computational work with AI agents. Prior
+programming experience is helpful but not required. The material is not a
+complete Julia or Rust textbook; it teaches the minimum concepts needed to
+inspect, test, and validate scientific code.
 
-The goal is not to copy code produced by an AI agent. The goal is to learn how to describe a computational problem, inspect code, design tests, validate numerical results, and keep calculations reproducible.
+The goal is not to copy code produced by an AI agent. The goal is to learn how
+to describe a computational problem, inspect code, design tests, validate
+numerical results, and keep calculations reproducible.
 
-After learning basic computer concepts and programming concepts, students should be able to work with an AI agent through a loop of brainstorming, planning, code generation, review, and feedback. They should be able to use this loop to write and verify Rust code for scientific computing tasks.
+After learning basic computer concepts and programming concepts, students should
+be able to work with an AI agent through a loop of brainstorming, planning, code
+generation, review, and feedback. They should be able to use this loop to write
+and verify Rust code for scientific computing tasks.
 
-Julia is used first as a microscope for concepts: arrays, numeric types, functions, tests, and abstraction are easy to inspect. Rust appears later as an engineering target for larger or more structured code.
+Julia is used first as a microscope for concepts: arrays, numeric types,
+functions, tests, and abstraction are easy to inspect. Rust appears later as an
+engineering target for larger or more structured code.
 
 ![](figures/ai-agent-loop.svg){fig-alt="AI-agent scientific coding loop: brainstorm, plan, code generation, and review. Forward arrows are solid; feedback arrows return to earlier steps."}
 
-Non-goal: this is not a course where students write every line of Rust code by hand without AI assistance. In the Rust part, code generation and editing are done together with an AI agent. The student's responsibility is to understand the generated code, review the changes, design checks, run tests, judge whether the result is scientifically correct, give feedback, and if needed improve the code with the AI agent.
+Non-goal: this is not a course where students write every line of Rust code by
+hand without AI assistance. In the Rust part, code generation and editing are
+done together with an AI agent. The student's responsibility is to understand
+the generated code, review the changes, design checks, run tests, judge whether
+the result is scientifically correct, give feedback, and if needed improve the
+code with the AI agent.
 
-This material is not self-contained, and it is not a comprehensive textbook. It covers a wide range of ideas, so it is meant to serve as a conceptual roadmap: a guide to the concepts, tools, checks, and workflows that students should learn to recognize and investigate further. Each subsection gives:
+This material is not self-contained, and it is not a comprehensive textbook. It
+covers a wide range of ideas, so it is meant to serve as a conceptual roadmap:
+a guide to the concepts, tools, checks, and workflows that students should learn
+to recognize and investigate further. Each subsection gives:
 
 - a short explanation,
 - concrete syntax or examples when the concept is programming-related,
@@ -24,11 +44,15 @@ This material is not self-contained, and it is not a comprehensive textbook. It 
 - an exercise,
 - notes for the exercise.
 
-Small examples use Julia by default. In this material Julia is treated roughly as an open-source MATLAB: a convenient language for arrays, functions, linear algebra, and numerical experiments. Large practical code may use Rust, C/C++, Python, Julia, or another appropriate language.
+Small examples use Julia by default. In this material Julia is treated roughly
+as an open-source MATLAB: a convenient language for arrays, functions, linear
+algebra, and numerical experiments. Large practical code may use Rust, C/C++,
+Python, Julia, or another appropriate language.
 
 ## How to read this site
 
-Start with [1.1 Download the material](getting-started/download-the-material.qmd). Then move through the pages in order.
+Start with [Download the material](getting-started/download-the-material.qmd).
+Then move through the pages in order.
 
 The basic workflow is:
 
@@ -39,7 +63,9 @@ The basic workflow is:
 5. Use Julia only when a small coding check helps.
 6. If an AI agent edits files, read the diff and run checks.
 
-For each "Things to look up" list, do not only memorize definitions. Look up the term, then write one sentence in your own words and one example related to scientific computing.
+For each "Things to look up" list, do not only memorize definitions. Look up
+the term, then write one sentence in your own words and one example related to
+scientific computing.
 
 ## Chapters
 

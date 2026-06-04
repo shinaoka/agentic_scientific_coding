@@ -4,7 +4,9 @@ title: "9.3 Linear algebra computations"
 
 ## Explanation
 
-Linear algebra code must track shapes. Matrix-vector products, matrix-matrix products, transposes, and factorizations all have shape requirements. Large matrix operations also have important complexity costs.
+Linear algebra code must track shapes. Matrix-vector products, matrix-matrix
+products, transposes, and factorizations all have shape requirements. Large
+matrix operations also have important complexity costs.
 
 ```julia
 A = [1.0 2.0; 3.0 4.0]  # 2 x 2 matrix
@@ -14,7 +16,10 @@ b = A * x               # length-2 vector
 C = A * A               # 2 x 2 matrix
 ```
 
-The syntax is compact, but you must still know the shapes. A shape mismatch is not a small detail; it usually means the mathematical expression is not well-defined. The algorithmic cost of matrix multiplication is discussed in [8.3 Matrix multiplication as a performance model](../algorithmic-thinking/matrix-multiplication-performance.qmd).
+The syntax is compact, but you must still know the shapes. A shape mismatch is
+not a small detail; it usually means the mathematical expression is not
+well-defined. The algorithmic cost of matrix multiplication is discussed in
+[Matrix multiplication as a performance model](../algorithmic-thinking/matrix-multiplication-performance.qmd).
 
 ## Things to look up
 
@@ -26,7 +31,9 @@ The syntax is compact, but you must still know the shapes. A shape mismatch is n
 
 ## Exercise
 
-Write pseudocode for matrix-vector multiplication and matrix-matrix multiplication. State the input shapes and estimate the complexity for square matrices of size `N`.
+Write pseudocode for matrix-vector multiplication and matrix-matrix
+multiplication. State the input shapes and estimate the complexity for square
+matrices of size `N`.
 
 ## Notes for the exercise
 
@@ -37,4 +44,5 @@ Write pseudocode for matrix-vector multiplication and matrix-matrix multiplicati
 
 ## Optional coding check
 
-Use Julia to multiply small matrices and vectors. Then intentionally try an incompatible shape and inspect the error message.
+Use Julia to multiply small matrices and vectors. Then intentionally try an
+incompatible shape and inspect the error message.

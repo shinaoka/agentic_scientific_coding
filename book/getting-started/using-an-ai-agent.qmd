@@ -4,33 +4,111 @@ title: "1.2 Using an AI agent"
 
 ## Explanation
 
-If you use an AI agent, start it from the top-level course folder. This lets the agent read the teaching material, exercise files, work logs, and project structure as one workspace.
+In this course, use an AI coding agent rather than only a chat-style AI tool.
+A chat tool is useful for explanations, but an agent can inspect files, run
+commands, edit files, and show diffs inside a workspace.
+
+The available tools and prices change quickly. Examples to compare include
+[Gemini Code Assist](https://developers.google.com/gemini-code-assist/docs/overview),
+[Codex](https://help.openai.com/en/articles/11369540),
+[Claude Code](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan),
+[Cursor](https://cursor.com/pricing), and
+[OpenCode Go](https://opencode.ai/go). Some tools have free individual access,
+many paid individual plans are around USD 20/month, and cheaper or
+open-weight-model-based options may appear. Before choosing a tool, ask an AI
+agent to search the official pages and summarize the current options.
+
+After cloning the repository, open the cloned repository folder in VS Code or
+another editor. The folder you open should be the folder that contains
+`AGENTS.md`. This lets the agent read the teaching material, exercise files,
+work logs, project structure, and course-specific instructions as one workspace.
 
 ```bash
 cd agentic_scientific_coding
+code .
+```
+
+Then start the AI agent from that editor workspace. For a terminal-based tool,
+use the editor's terminal:
+
+```bash
 codex
 ```
 
-The exact command depends on the AI agent you use. The important point is that the workspace should be the course folder. Minimal Git safety is introduced in the next subsection, [1.3 Minimal Git and diff safety](minimal-git-diff-safety.qmd), and repository workflow is discussed in detail later in [10.1 Git basics for scientific workflow](../reproducible-workflow/git-basics-for-scientific-workflow.qmd). Before asking the agent to edit files, read that safety page.
+The exact way to start the AI agent depends on the tool. You may start a
+terminal-based agent from the editor's terminal, or use an editor extension such
+as Gemini Code Assist or Codex. The important point is not the interface; the
+important point is that the agent is launched with the cloned repository folder
+as its workspace.
+
+Many coding agents read instruction files near the folder where they are
+launched. For example, Codex reads `AGENTS.md`, while Claude Code reads
+`CLAUDE.md`. In this repository, `CLAUDE.md` imports `AGENTS.md`, so both point
+to the course instructions. If your tool does not clearly load these files, ask
+it to read `AGENTS.md` before starting the exercise. These files tell the agent
+how to behave when the material is used for teaching. They are guidance for the
+AI agent, not a replacement for your own judgment.
+
+A skill is a reusable instruction set for an AI agent. The exact file layout,
+name, and invocation method vary by tool and change over time. The important
+point here is the concept: repeated review instructions can be written once and
+reused by an agent. This repository keeps shared skill bodies under
+`.agents/skills/`. For example, the Julia exercise review skill is in
+`.agents/skills/review-julia-exercise/SKILL.md`. If you want to add or modify a
+skill, ask an AI agent to inspect the current tool specification and the
+repository layout.
+
+Minimal Git safety is introduced in the next subsection,
+[Minimal Git and diff safety](minimal-git-diff-safety.qmd), and repository
+workflow is discussed in detail later in
+[Git basics for scientific workflow](../reproducible-workflow/git-basics-for-scientific-workflow.qmd).
+Before asking the agent to edit files, read that safety page.
+
+If you want to save your own changes in a GitHub repository under your own
+account, fork `git@github.com:shinaoka/agentic_scientific_coding.git` to your
+GitHub account first. Then connect your local cloned repository to your fork so
+that you can push changes there. The exact commands depend on how you cloned the
+repository and how your GitHub authentication is set up, so ask an AI agent to
+look up the current GitHub instructions and guide you through the operation.
 
 ## Things to look up
 
 - AI coding agent
+- Agent mode
+- Chat interface
 - Workspace
-- AGENTS.md
+- `AGENTS.md`
+- `CLAUDE.md`
+- Skill
+- `SKILL.md`
+- Official pricing page
+- Open-weight model
+- GitHub fork
+- Git remote
 - Project folder
 
 ## Exercise
 
-Write three prompts you could give an AI agent before asking it to write code. Each prompt must ask about one of the following:
+1. Ask an AI agent to search official pages for current AI coding-agent
+   options. Include at least one free option, one editor-based option, one
+   terminal-based option, and one lower-cost or open-weight-model-based option.
+   Write a short comparison of access, cost, interface, and what official
+   source you used.
 
-- inputs and outputs,
-- boundary cases,
-- tests or validation,
-- possible failure modes.
+2. Write three prompts you could give an AI agent before asking it to write
+   code. Each prompt must ask about one of the following:
+
+   - inputs and outputs,
+   - boundary cases,
+   - tests or validation,
+   - possible failure modes.
 
 ## Notes for the exercise
 
+- Tool names, prices, usage limits, and model names change quickly.
+- Use official pages first. Do not rely only on old blog posts, social media,
+  or the AI agent's memory.
+- Instruction-file names differ by tool.
 - Do not ask only "Is this correct?"
 - Ask for specific checks.
 - Ask the agent to explain assumptions.

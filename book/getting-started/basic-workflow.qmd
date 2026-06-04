@@ -11,12 +11,52 @@ Use this workflow for most subsections:
 3. Look up unfamiliar terms.
 4. Solve the exercise by hand.
 5. Use Julia only when a small coding check helps.
-6. If you ask an AI agent to generate an answer, treat it as a worked example, not as something to copy.
-7. Understand the generated answer in detail: every line of code, every formula, every assumption, and every conclusion.
-8. If anything is unclear, ask the AI agent follow-up questions until you can explain it in your own words.
+6. If you ask an AI agent to generate an answer, treat it as a worked example,
+   not as something to copy.
+7. Understand the generated answer in detail: every line of code, every formula,
+   every assumption, and every conclusion.
+8. If anything is unclear, ask the AI agent follow-up questions until you can
+   explain it in your own words.
 9. If the AI agent edits files, review its reasoning and any diff it creates.
 
-For each item in "Things to look up", write one sentence in your own words and one example related to scientific computing. The goal is not to collect definitions; the goal is to connect the word to a calculation, code fragment, data file, or validation check.
+For each item in "Things to look up", write one sentence in your own words and
+one example related to scientific computing. The goal is not to collect
+definitions; the goal is to connect the word to a calculation, code fragment,
+data file, or validation check.
+
+For a small Julia exercise, keep the code you want an AI agent to review in one
+clear file. For example, when working on
+[Variables and state](../julia-syntax-basics/variables-and-state.qmd), you
+can use the following pattern:
+
+```bash
+mkdir -p work/chapter_5.1
+cd work/chapter_5.1
+julia --project=@.
+```
+
+Inside the Julia REPL, create a local project environment if needed:
+
+```julia
+import Pkg
+Pkg.activate(".")
+# If the exercise needs an external package, add it here.
+# Pkg.add("BenchmarkTools")
+Pkg.instantiate()
+```
+
+Write the answer you want reviewed in `answer.jl`. Before asking for review,
+confirm that the file runs from the command line:
+
+```bash
+julia --project=@. answer.jl
+```
+
+Then ask the AI agent to review the path, for example
+`work/chapter_5.1/answer.jl`, and to report issues before editing the file. A
+useful review should check the algorithm, inputs and outputs, boundary cases,
+tests or validation, use of functions or structured units, and unnecessary
+global state.
 
 ## Things to look up
 
@@ -27,21 +67,35 @@ For each item in "Things to look up", write one sentence in your own words and o
 - Reproducibility
 - Worked example
 - Submission artifact
+- Julia project environment
+- `answer.jl`
 
 ## Exercise
 
-For one subsection, write a short study plan that includes reading, searching, a hand-written answer, optional AI help, and an optional Julia check.
+For one subsection, write a short study plan that includes reading, searching,
+a hand-written answer, optional AI help, and an optional Julia check.
 
-If your plan uses AI-generated answers, also write how you will check that you understand the answer in detail.
+If your plan uses AI-generated answers, also write how you will check that you
+understand the answer in detail.
 
-Also state the expected output of your work, such as a hand-written note, Markdown note, Julia file, test file, saved result file, or work log.
+Also state the expected output of your work, such as a hand-written note,
+Markdown note, Julia file, test file, saved result file, or work log.
+
+For [Variables and state](../julia-syntax-basics/variables-and-state.qmd),
+create `work/chapter_5.1/answer.jl`, run it with
+`julia --project=@. answer.jl`, and write down what you would ask an AI agent
+to review.
 
 ## Notes for the exercise
 
 - Do not skip the hand-written step.
 - Do not start by asking an AI agent for the final answer.
 - If you later ask an AI agent for an answer, inspect it line by line.
-- Ask follow-up questions about every unclear term, formula, code line, or assumption.
-- Do not submit or accept an answer that you cannot explain without looking at the AI output.
+- Ask follow-up questions about every unclear term, formula, code line, or
+  assumption.
+- Do not submit or accept an answer that you cannot explain without looking at
+  the AI output.
 - Make the validation step explicit.
 - Make the submission artifact explicit when an exercise does not specify one.
+- If you give an AI agent a file path, also tell it whether it may edit the file
+  or should only review it.
