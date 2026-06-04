@@ -1,0 +1,162 @@
+---
+title: "Program Structure"
+---
+
+## Abstraction and interface
+
+### Explanation
+
+An abstraction hides details behind a small set of operations. An interface is what other code is allowed to rely on. This matters in scientific computing because the same concept, such as a vector, matrix, lattice, mesh, or model, can have many implementations.
+
+For example, a two-dimensional vector can be represented as a plain array:
+
+```julia
+v = [3.0, 4.0]
+norm_v = sqrt(v[1]^2 + v[2]^2)
+```
+
+This is simple, but every user must remember that the first element is `x` and the second element is `y`.
+
+You can also define a small type:
+
+```julia
+struct Vector2D
+    x::Float64
+    y::Float64
+end
+
+norm2(v::Vector2D) = sqrt(v.x^2 + v.y^2)
+
+v = Vector2D(3.0, 4.0)
+norm2(v)
+```
+
+The type makes the intended structure visible. The interface is the set of operations users should rely on, such as constructing `Vector2D` and calling `norm2`.
+
+### Things to look up
+
+- Abstraction
+- Interface
+- Implementation detail
+- Public API
+- Julia `struct`
+
+### Exercise
+
+Compare representing a two-dimensional vector as a plain two-element array and as a `Vector2D` type. Write what users of each design need to know.
+
+### Notes for the exercise
+
+- Separate what the user sees from how the data is stored.
+- State what operations are guaranteed.
+- State what changes would break user code.
+- Do not add an abstraction unless it clarifies responsibility.
+
+## Julia type hierarchy and subtyping
+
+### Explanation
+
+Julia has a type hierarchy. This is related to inheritance, but it is not the same as class inheritance in languages such as Java or C++.
+
+Every value has a type:
+
+```julia
+typeof(1)       # Int64
+typeof(1.0)     # Float64
+typeof([1, 2])  # Vector{Int64}
+```
+
+Types are arranged in a hierarchy:
+
+```julia
+Int64 <: Integer
+Integer <: Real
+Real <: Number
+Number <: Any
+```
+
+Here `<:` means "is a subtype of". `Any` is the top of the hierarchy.
+
+Arrays also fit into a hierarchy:
+
+```julia
+Vector{Float64} <: AbstractVector{Float64}
+Matrix{Float64} <: AbstractMatrix{Float64}
+Matrix{Float64} <: AbstractArray{Float64, 2}
+```
+
+The important design idea is that a function can accept an abstract type when it does not need a specific implementation:
+
+```julia
+function average(xs::AbstractVector{<:Real})
+    total = zero(eltype(xs))
+    for x in xs
+        total += x
+    end
+    return total / length(xs)
+end
+```
+
+This function works for many vector-like inputs, not only one concrete array type.
+
+### Things to look up
+
+- Julia type hierarchy
+- Abstract type
+- Concrete type
+- Subtype
+- `AbstractArray`
+
+### Exercise
+
+Draw a small type hierarchy containing `Any`, `Number`, `Real`, `Integer`, `Int64`, `AbstractArray`, `AbstractVector`, and `Vector{Float64}`. Then explain why a function might accept `AbstractVector` instead of `Vector`.
+
+### Notes for the exercise
+
+- Do not describe Julia types as ordinary class inheritance without qualification.
+- Concrete types in Julia do not inherit fields from other concrete types.
+- Abstract types are useful for interfaces and dispatch.
+- A more general argument type can make a function easier to reuse.
+
+## Multiple dispatch as an interface
+
+### Explanation
+
+Julia often expresses interfaces through functions and multiple dispatch. The same function name can have different methods for different input types.
+
+```julia
+abstract type AbstractModel end
+
+struct HarmonicOscillator <: AbstractModel
+    k::Float64
+end
+
+struct FreeParticle <: AbstractModel
+end
+
+energy(model::HarmonicOscillator, x, v) = 0.5 * model.k * x^2 + 0.5 * v^2
+energy(model::FreeParticle, x, v) = 0.5 * v^2
+```
+
+The interface is the operation `energy(model, x, v)`. Different model types provide different methods.
+
+This is useful in scientific code because it lets you separate the mathematical model from the algorithm that uses it.
+
+### Things to look up
+
+- Multiple dispatch
+- Method
+- Generic function
+- Abstract type
+- Model interface
+
+### Exercise
+
+Design a tiny interface for a numerical model. It should include at least one abstract type and one function that different model types could implement.
+
+### Notes for the exercise
+
+- Name the operation, not only the data fields.
+- State what inputs the operation expects.
+- State what the operation returns.
+- Do not hide a global variable inside the method.

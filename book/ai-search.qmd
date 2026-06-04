@@ -1,0 +1,107 @@
+---
+title: "Learning with AI and Web Search"
+---
+
+## Asking useful questions
+
+### Explanation
+
+Useful questions are specific. Instead of asking whether something is correct, ask about inputs, outputs, assumptions, edge cases, complexity, and validation.
+
+Weak:
+
+```text
+Is this function correct?
+```
+
+Better:
+
+```text
+For this function, list the expected input type, output type,
+edge cases, and tests that would catch a wrong implementation.
+```
+
+### Things to look up
+
+- How to ask coding questions
+- Input and output
+- Edge case
+- Failure mode
+- Prompting for code review
+
+### Exercise
+
+You are given an unknown function that computes a numerical quantity from an array. Write five questions you would ask an AI agent to understand the function.
+
+### Notes for the exercise
+
+- Include at least one question about input.
+- Include at least one question about output.
+- Include at least one question about boundary cases.
+- Include at least one question about validation.
+- Avoid the phrase "Is it correct?" unless you also specify a criterion.
+
+## Reading documentation and examples
+
+### Explanation
+
+Documentation and examples are not the same. Documentation describes intended behavior. Examples show common usage. You need both, and you should prefer official documentation when learning core tools.
+
+For Julia, a useful workflow is:
+
+```text
+1. Find the official documentation page.
+2. Read the short description.
+3. Try a small example in the REPL.
+4. Ask what can go wrong for your use case.
+```
+
+### Things to look up
+
+- Official documentation
+- API reference
+- Example code
+- Minimal working example
+- Julia documentation
+
+### Exercise
+
+Choose one Julia function related to arrays or mathematics. Find its official documentation and one example. Write down what the function does, what inputs it expects, and one possible mistake when using it.
+
+### Notes for the exercise
+
+- Use an official source when possible.
+- Do not copy a long documentation passage.
+- Explain the function in your own words.
+- Include one concrete input example.
+
+## Checking AI explanations
+
+### Explanation
+
+AI explanations can be useful and still incomplete. Check whether the explanation states assumptions, handles boundary cases, and gives a way to verify the claim.
+
+For example, if an AI agent explains an algorithm for the maximum of an array, check whether it mentions:
+
+- what happens for empty input,
+- what initial value is used,
+- how repeated maximum values are handled,
+- whether the output is the value, the index, or both.
+
+### Things to look up
+
+- Hallucination
+- Verification
+- Assumption
+- Counterexample
+- Sanity check
+
+### Exercise
+
+Ask an AI agent to explain a simple algorithm, such as computing the maximum of an array. Then write three checks you would apply to the explanation.
+
+### Notes for the exercise
+
+- Check whether empty input is discussed.
+- Check whether the algorithm updates the correct state.
+- Check whether the explanation distinguishes the algorithm from its implementation.

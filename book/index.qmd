@@ -1,0 +1,42 @@
+---
+title: "Introduction"
+---
+
+This site contains teaching material for B4/M1 students who are beginning to use programming and AI agents for scientific computing.
+
+The goal is not to copy code produced by an AI agent. The goal is to learn how to describe a computational problem, inspect code, design tests, validate numerical results, and keep calculations reproducible.
+
+This material is not a comprehensive textbook. Each subsection gives:
+
+- a short explanation,
+- concrete syntax or examples when the concept is programming-related,
+- things to look up,
+- an exercise,
+- notes for the exercise.
+
+Small examples use Julia by default. In this material Julia is treated roughly as an open-source MATLAB: a convenient language for arrays, functions, linear algebra, and numerical experiments. Large practical code may use Rust, C/C++, Python, Julia, or another appropriate language.
+
+## How to read this site
+
+Start with [How to Use This Material](getting-started.qmd). Then move through the chapters in order.
+
+The basic workflow is:
+
+1. Read the short explanation.
+2. Inspect the concrete syntax or example.
+3. Look up unfamiliar terms.
+4. Solve the exercise by hand.
+5. Use Julia only when a small coding check helps.
+6. If an AI agent edits files, read the diff and run checks.
+
+## Chapters
+
+- [How to Use This Material](getting-started.qmd)
+- [Learning with AI and Web Search](ai-search.qmd)
+- [Programming Fundamentals with Julia](julia-fundamentals.qmd)
+- [Program Structure](program-structure.qmd)
+- [Correctness and Validation](correctness-validation.qmd)
+- [Algorithmic Thinking](algorithmic-thinking.qmd)
+- [Scientific Computing Basics with Julia](scientific-computing.qmd)
+- [Reproducible Scientific Workflow](reproducible-workflow.qmd)
+- [Practical Project Exercises](project-exercises.qmd)

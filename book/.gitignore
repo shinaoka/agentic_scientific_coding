@@ -1,0 +1,4 @@
+/.quarto/
+/dist/
+
+**/*.quarto_ipynb

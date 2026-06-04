@@ -1,0 +1,264 @@
+---
+title: "Programming Fundamentals with Julia"
+---
+
+## Variables and state
+
+### Explanation
+
+A variable name refers to a value. Assignment updates what a name refers to. In programming, `x = x + 1` is a state update, not a mathematical equation.
+
+```julia
+x = 2
+y = x + 3
+x = x + 1
+z = x * y
+```
+
+After the third line, `x` refers to `3`. The old value `2` was used to compute the new value.
+
+Julia also has mutable objects. If two names refer to the same mutable object, changing the object through one name affects what the other name sees.
+
+```julia
+xs = [1, 2, 3]
+ys = xs
+push!(ys, 4)
+
+xs  # [1, 2, 3, 4]
+```
+
+The `!` in `push!` is a Julia convention indicating that the function mutates one of its arguments.
+
+### Things to look up
+
+- Variable
+- Assignment
+- State
+- Mutation
+- Julia naming convention for mutating functions
+
+### Exercise
+
+For the first code block above, make a table showing the value of each variable after every line. Then explain why `x = x + 1` is not a mathematical equality.
+
+### Notes for the exercise
+
+- Track the order of updates.
+- Separate variable names from values.
+- Do not skip intermediate states.
+- For the mutation example, distinguish changing a name from changing an object.
+
+### Optional coding check
+
+Run both examples in the Julia REPL and compare the result with your table.
+
+## Conditionals
+
+### Explanation
+
+A conditional chooses a branch based on a condition. Scientific code often uses conditionals for boundary cases, stopping criteria, and special mathematical cases.
+
+```julia
+function sign_label(x)
+    if x > 0
+        return "positive"
+    elseif x < 0
+        return "negative"
+    else
+        return "zero"
+    end
+end
+```
+
+The boundary value `x = 0` is handled explicitly. Without the `else` branch, the behavior would be incomplete.
+
+### Things to look up
+
+- Conditional statement
+- Boolean expression
+- `if`, `elseif`, `else` in Julia
+- Boundary value
+- Piecewise function
+
+### Exercise
+
+Write pseudocode for an absolute-value function and a sign function. For each function, explicitly state what happens when `x = 0`.
+
+### Notes for the exercise
+
+- Conditions should not overlap in a confusing way.
+- There should be no missing case.
+- Boundary values must be handled explicitly.
+
+### Optional coding check
+
+Implement the pseudocode in Julia and test `x = -1`, `x = 0`, and `x = 1`.
+
+## Loops
+
+### Explanation
+
+A loop repeats a block of operations. Many loops use an accumulator, such as a running sum, count, maximum, or error estimate.
+
+```julia
+xs = [2.0, 4.0, 6.0]
+
+total = 0.0
+for x in xs
+    total = total + x
+end
+
+mean_value = total / length(xs)
+```
+
+Here `total` is the accumulator. It starts at `0.0` and changes once for each element.
+
+An index-based loop is also possible:
+
+```julia
+for i in eachindex(xs)
+    println(i, " -> ", xs[i])
+end
+```
+
+Julia arrays are 1-indexed: the first element is `xs[1]`, not `xs[0]`.
+
+### Things to look up
+
+- For loop
+- Accumulator
+- `eachindex`
+- Loop invariant
+- Off-by-one error
+
+### Exercise
+
+Write pseudocode to compute the sum, maximum, and average of an array. For each algorithm, state the initial value and what changes during each loop iteration.
+
+### Notes for the exercise
+
+- The empty-array case must be discussed.
+- The one-element case must be discussed.
+- For the maximum, the initial value must be justified.
+- For the average, explain when division occurs.
+- Remember that Julia arrays are 1-indexed.
+
+### Optional coding check
+
+Run your algorithm on arrays of length 0, 1, and 3. If empty input is invalid, make that explicit.
+
+## Functions
+
+### Explanation
+
+A function should have a clear responsibility. To understand a function, identify its inputs, output, and side effects. A side effect is a change outside the returned value, such as modifying an input array, writing a file, or printing.
+
+```julia
+function mean_value(xs)
+    total = 0.0
+    for x in xs
+        total += x
+    end
+    return total / length(xs)
+end
+```
+
+This function returns a value and does not modify `xs`. A mutating function looks different:
+
+```julia
+function normalize!(xs)
+    s = sum(xs)
+    for i in eachindex(xs)
+        xs[i] = xs[i] / s
+    end
+    return xs
+end
+```
+
+The `normalize!` function changes its input array. That side effect must be part of the specification.
+
+### Things to look up
+
+- Function
+- Argument
+- Return value
+- Side effect
+- Pure function
+
+### Exercise
+
+Write a specification for a function that computes the mean and variance of a list of numbers. Include inputs, outputs, and exceptional cases.
+
+### Notes for the exercise
+
+- State whether the function changes its input.
+- State what happens for empty input.
+- State which variance convention is used if relevant.
+- Do not combine unrelated responsibilities in one function.
+
+### Optional coding check
+
+Implement the function in Julia and test it on simple arrays where the answer can be computed by hand.
+
+## Arrays and data structures
+
+### Explanation
+
+Arrays are central in Julia. A one-dimensional array is often called a `Vector`; a two-dimensional array is often called a `Matrix`.
+
+```julia
+xs = [1, 2, 3]              # Vector{Int}
+A = [1.0 2.0; 3.0 4.0]     # 2 x 2 Matrix{Float64}
+
+xs[1]       # first element: 1
+A[2, 1]     # row 2, column 1: 3.0
+length(xs)  # 3
+size(A)     # (2, 2)
+```
+
+The type names reveal the abstraction:
+
+```julia
+typeof(xs)  # Vector{Int64}, an alias for Array{Int64, 1}
+typeof(A)   # Matrix{Float64}, an alias for Array{Float64, 2}
+```
+
+`Array{T,N}` means an array whose element type is `T` and whose dimension is `N`.
+
+Other common data structures are dictionaries and sets:
+
+```julia
+scores = Dict("Alice" => 91, "Bob" => 84)
+scores["Alice"]  # 91
+
+names = Set(["Alice", "Bob", "Alice"])
+length(names)    # 2
+```
+
+Choose the data structure that matches the question: order, lookup, duplicates, shape, and mutation all matter.
+
+### Things to look up
+
+- Julia `Array`
+- `Vector` and `Matrix`
+- `Array{T,N}`
+- `Dict`
+- `Set`
+
+### Exercise
+
+You need to store student names and scores. Describe at least two possible data structures and explain which one you would choose for:
+
+- preserving input order,
+- finding a score by name,
+- removing duplicate names.
+
+Then explain what `Array{Float64,2}` means.
+
+### Notes for the exercise
+
+- State whether order matters.
+- State whether duplicates are allowed.
+- State which operation should be fast.
+- Distinguish a one-dimensional array from a two-dimensional array.
+- Do not choose a data structure only because it is familiar.

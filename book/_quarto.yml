@@ -1,0 +1,40 @@
+project:
+  type: book
+  output-dir: dist
+  render:
+    - index.qmd
+    - getting-started.qmd
+    - ai-search.qmd
+    - julia-fundamentals.qmd
+    - program-structure.qmd
+    - correctness-validation.qmd
+    - algorithmic-thinking.qmd
+    - scientific-computing.qmd
+    - reproducible-workflow.qmd
+    - project-exercises.qmd
+
+book:
+  title: "Agentic Scientific Coding"
+  author: "Hiroshi Shinaoka"
+  navbar:
+    search: true
+  chapters:
+    - index.qmd
+    - getting-started.qmd
+    - ai-search.qmd
+    - julia-fundamentals.qmd
+    - program-structure.qmd
+    - correctness-validation.qmd
+    - algorithmic-thinking.qmd
+    - scientific-computing.qmd
+    - reproducible-workflow.qmd
+    - project-exercises.qmd
+
+format:
+  html:
+    theme: cosmo
+    lang: en
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    css: custom.css

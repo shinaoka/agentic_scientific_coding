@@ -1,0 +1,125 @@
+---
+title: "Correctness and Validation"
+---
+
+## Testing and TDD
+
+### Explanation
+
+A test checks expected behavior. Test-driven development means stating the expected behavior before writing or changing the implementation. The important habit is not the ritual, but the discipline of making expectations explicit.
+
+Julia has a standard testing library:
+
+```julia
+using Test
+
+@test 1 + 1 == 2
+@test isapprox(sqrt(2)^2, 2.0)
+```
+
+A test for a mean function should be based on the specification, not on copying the implementation.
+
+```julia
+@test mean_value([2.0, 4.0, 6.0]) == 4.0
+@test mean_value([5.0]) == 5.0
+```
+
+### Things to look up
+
+- Unit test
+- Regression test
+- Test-driven development
+- Reference implementation
+- Julia `Test` standard library
+
+### Exercise
+
+Design five tests for a function that returns the mean of an array. For each test, write what property it checks.
+
+### Notes for the exercise
+
+- Include empty input or explain why it is invalid.
+- Include a one-element input.
+- Include repeated values.
+- Include negative values.
+- Include a case whose answer is known by hand.
+- Tests should check the specification, not copy the implementation.
+
+### Optional coding check
+
+Use Julia's `Test` standard library to write one of your tests. Use official documentation or an AI agent to find the minimal syntax.
+
+## Edge cases and failure modes
+
+### Explanation
+
+An edge case is an input near a boundary of the specification. A failure mode is a way the code or method can give a wrong, misleading, or unusable result.
+
+For example, an average function might fail for:
+
+- an empty array,
+- integer overflow in a low-level language,
+- missing values,
+- a user expecting weighted average instead of ordinary average.
+
+Some failures are programming failures. Others are scientific failures: the code runs, but the result does not support the claim.
+
+### Things to look up
+
+- Edge case
+- Failure mode
+- Boundary condition
+- Invalid input
+- Defensive programming
+
+### Exercise
+
+For each task, list at least three edge cases and two failure modes:
+
+- computing an average,
+- finding a root of a function,
+- running a Monte Carlo simulation.
+
+### Notes for the exercise
+
+- Include both programming failures and scientific failures.
+- Do not list only syntax errors.
+- Include cases where the code runs but the result is misleading.
+
+## Reproducibility as validation
+
+### Explanation
+
+A result is more trustworthy when someone can reproduce how it was obtained. Reproducibility requires keeping the input, code version, parameters, random seed when relevant, and output together in an inspectable form.
+
+A minimal saved result might contain:
+
+```julia
+result = Dict(
+    "method" => "trapezoidal_rule",
+    "n_intervals" => 100,
+    "value" => 0.33335,
+    "code_version" => "git commit hash here",
+)
+```
+
+The exact format depends on the project. The important point is to save more than the final number.
+
+### Things to look up
+
+- Reproducibility
+- Random seed
+- Metadata
+- Version information
+- Saved output
+
+### Exercise
+
+Suppose a script computes a numerical estimate and writes a result file. List the information that should be saved with the result so another student can inspect the calculation.
+
+### Notes for the exercise
+
+- Include parameters.
+- Include software or code version information.
+- Include the random seed if randomness is used.
+- Include enough information to connect the output to the run that produced it.

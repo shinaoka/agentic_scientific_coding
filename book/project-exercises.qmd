@@ -1,0 +1,51 @@
+---
+title: "Practical Project Exercises"
+---
+
+The directories under `exercises/` contain larger agentic-coding exercises in the repository. They may use Python or another language when that is appropriate for the project.
+
+- `exercises/ising_mcmc/`
+- `exercises/tight_binding_dos/`
+
+These exercises are not meant to replace the basic chapters. They are larger practice tasks for applying the workflow:
+
+1. design before coding,
+2. implement in small pieces,
+3. save inspectable data,
+4. test deterministic parts,
+5. validate numerical results,
+6. review AI-agent diffs.
+
+## Exercise format
+
+### Explanation
+
+A practical exercise is larger than a single subsection. It asks you to use an AI agent as a collaborator while keeping responsibility for the method, checks, and interpretation.
+
+The language may differ from the basic chapters. For example, a project may use Python because the surrounding scientific ecosystem is convenient, or Rust because reliability and explicit data flow are important.
+
+### Things to look up
+
+- Project README
+- Scientific validation
+- Saved metadata
+- Independent test
+- Work log
+
+### Exercise
+
+Choose one practical exercise directory. Before asking an AI agent to implement anything, write a one-page plan covering:
+
+- the model or numerical problem,
+- the input parameters,
+- the output data,
+- deterministic tests,
+- validation checks,
+- what metadata should be saved.
+
+### Notes for the exercise
+
+- Do not begin by asking the agent for a full solution.
+- Keep simulation and analysis separate when relevant.
+- Save enough metadata to inspect the run.
+- Connect numerical claims to validation evidence.
