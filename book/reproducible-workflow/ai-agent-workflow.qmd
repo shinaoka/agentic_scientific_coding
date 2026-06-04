@@ -1,10 +1,14 @@
 ---
-title: "8.3 AI-agent workflow"
+title: "9.4 AI-agent workflow"
 ---
 
 ## Explanation
 
-An AI agent can write code, tests, explanations, and logs. That does not remove the need for human review. The core workflow is: define the task, ask for a plan, inspect the change, run checks, and record what was done.
+An AI agent can write code, tests, explanations, and logs. That does not remove the need for human review. The core workflow is a loop: brainstorm, plan, generate code, review, and give feedback.
+
+![](../figures/ai-agent-loop.svg){fig-alt="AI-agent scientific coding loop: brainstorm, plan, code generation, and review and feedback. Forward arrows are solid; backtracking arrows are dotted."}
+
+Do not start from code generation. First clarify the scientific problem, assumptions, inputs, outputs, edge cases, tests, and acceptance criteria. After the agent changes code, review tests first, then review the diff. Feedback should be specific and evidence-based: point to failed tests, missing validation, unclear assumptions, or code that is too complex to test.
 
 A useful review prompt is specific:
 

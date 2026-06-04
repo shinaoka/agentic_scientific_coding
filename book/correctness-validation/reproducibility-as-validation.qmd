@@ -1,5 +1,5 @@
 ---
-title: "5.3 Reproducibility as validation"
+title: "6.3 Reproducibility as validation"
 ---
 
 ## Explanation

@@ -2,9 +2,15 @@
 title: "Introduction"
 ---
 
-This site contains teaching material for B4/M1 students who are beginning to use programming and AI agents for scientific computing.
+This site contains teaching material for students who are beginning to use programming and AI agents for scientific computing.
 
 The goal is not to copy code produced by an AI agent. The goal is to learn how to describe a computational problem, inspect code, design tests, validate numerical results, and keep calculations reproducible.
+
+After learning basic computer concepts and programming concepts, students should be able to work with an AI agent through a loop of brainstorming, planning, code generation, review, and feedback. They should be able to use this loop to write and verify Rust code for scientific computing tasks. The concepts are introduced with Julia because Julia makes arrays, numeric types, functions, and abstraction easy to inspect. Rust appears later as a practical implementation language for larger or more structured code.
+
+![](figures/ai-agent-loop.svg){fig-alt="AI-agent scientific coding loop: brainstorm, plan, code generation, and review and feedback. Forward arrows are solid; backtracking arrows are dotted."}
+
+Non-goal: this is not a course where students write every line of Rust code by hand without AI assistance. In the Rust part, code generation and editing are done together with an AI agent. The student's responsibility is to understand the generated code, review the changes, design checks, run tests, judge whether the result is scientifically correct, give feedback, and if needed improve the code with the AI agent.
 
 This material is not a comprehensive textbook. Each subsection gives:
 
@@ -33,10 +39,12 @@ The basic workflow is:
 
 - Section 1: How to Use This Material
 - Section 2: Learning with AI and Web Search
-- Section 3: Julia Syntax Basics
-- Section 4: Types, Abstraction, and Interfaces
-- Section 5: Correctness and Validation
-- Section 6: Algorithmic Thinking
-- Section 7: Scientific Computing Basics with Julia
-- Section 8: Reproducible Scientific Workflow
-- Section 9: Practical Project Exercises
+- Section 3: Computer Basics for Scientific Computing
+- Section 4: Julia Syntax Basics
+- Section 5: Types, Abstraction, and Interfaces
+- Section 6: Correctness and Validation
+- Section 7: Algorithmic Thinking
+- Section 8: Scientific Computing Basics with Julia
+- Section 9: Reproducible Scientific Workflow
+- Section 10: Practical Project Exercises
+- Section 11: Rust Practice with AI Agents

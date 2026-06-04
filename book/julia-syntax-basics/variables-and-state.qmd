@@ -1,5 +1,5 @@
 ---
-title: "3.1 Variables and state"
+title: "4.1 Variables and state"
 ---
 
 ## Explanation
@@ -29,6 +29,21 @@ xs  # [1, 2, 3, 4]
 
 The `!` in `push!` is a Julia convention indicating that the function mutates one of its arguments.
 
+Use `copy` when you need a separate array object:
+
+```julia
+xs = [1, 2, 3]
+ys = copy(xs)
+push!(ys, 4)
+
+xs  # [1, 2, 3]
+ys  # [1, 2, 3, 4]
+```
+
+Julia uses garbage collection. When an object can no longer be reached from running code, it can be freed later by the garbage collector. Do not rely on the exact timing.
+
+Rust is different: Rust does not have a garbage collector. This will matter later when Rust is used as a practical implementation language.
+
 ## Things to look up
 
 - Variable
@@ -36,6 +51,9 @@ The `!` in `push!` is a Julia convention indicating that the function mutates on
 - State
 - Mutation
 - Julia naming convention for mutating functions
+- `copy`
+- Garbage collection
+- Rust ownership
 
 ## Exercise
 
@@ -47,6 +65,8 @@ For the first code block above, make a table showing the value of each variable 
 - Separate variable names from values.
 - Do not skip intermediate states.
 - For the mutation example, distinguish changing a name from changing an object.
+- Explain when `copy(xs)` is needed.
+- Do not assume garbage collection happens immediately.
 
 ## Optional coding check
 

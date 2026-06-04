@@ -1,5 +1,5 @@
 ---
-title: "5.2 Edge cases and failure modes"
+title: "6.2 Edge cases and failure modes"
 ---
 
 ## Explanation

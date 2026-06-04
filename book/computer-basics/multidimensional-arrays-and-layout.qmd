@@ -1,0 +1,36 @@
+---
+title: "3.6 Multidimensional arrays and memory layout"
+---
+
+## Explanation
+
+A multidimensional array has a shape, such as `2 x 3`. The same mathematical shape must still be stored in one-dimensional computer memory. The order used for storage is called memory layout.
+
+![](../figures/array-layout.svg){fig-alt="A 2 by 3 matrix has different linear memory order in row-major and column-major layouts."}
+
+Julia, MATLAB, and Fortran use column-major layout. C and many C-style arrays use row-major layout. Shape and memory layout are different concepts.
+
+This matters for performance because memory access order affects cache locality.
+
+## Things to look up
+
+- Shape
+- Row-major layout
+- Column-major layout
+- Cache locality
+- Loop order
+
+## Exercise
+
+For a `2 x 3` matrix with entries `a11, a12, a13` on the first row and `a21, a22, a23` on the second row:
+
+1. Write the row-major memory order.
+2. Write the column-major memory order.
+3. State which convention Julia uses.
+
+## Notes for the exercise
+
+- Do not confuse mathematical matrix notation with memory layout.
+- State the shape separately from the storage order.
+- Remember that Julia is column-major.
+- Explain why access order can affect performance.

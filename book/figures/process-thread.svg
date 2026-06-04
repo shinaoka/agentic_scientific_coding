@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 350" role="img" aria-labelledby="title desc">
+  <title id="title">Processes and threads</title>
+  <desc id="desc">Different processes have separated memory. Threads inside one process share memory.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+  </defs>
+  <rect x="35" y="45" width="350" height="245" rx="8" fill="#eef4ff" stroke="#3b6ea8" stroke-width="2"/>
+  <text x="210" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700">Process A</text>
+  <rect x="70" y="110" width="130" height="55" rx="5" fill="#fff" stroke="#7fa1cf"/>
+  <text x="135" y="142" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Thread 1</text>
+  <rect x="220" y="110" width="130" height="55" rx="5" fill="#fff" stroke="#7fa1cf"/>
+  <text x="285" y="142" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Thread 2</text>
+  <rect x="93" y="205" width="255" height="46" rx="5" fill="#dfefff" stroke="#7fa1cf"/>
+  <text x="220" y="234" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">shared memory inside Process A</text>
+
+  <line x1="135" y1="165" x2="170" y2="202" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="285" y1="165" x2="250" y2="202" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="475" y="45" width="300" height="245" rx="8" fill="#fff3e6" stroke="#b87332" stroke-width="2"/>
+  <text x="625" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700">Process B</text>
+  <rect x="530" y="120" width="190" height="60" rx="5" fill="#fff" stroke="#d49a5d"/>
+  <text x="625" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">separate memory</text>
+  <line x1="386" y1="170" x2="473" y2="170" stroke="#777" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="430" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">no default sharing</text>
+
+  <text x="410" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Threads share memory; processes are separated unless data are explicitly exchanged.</text>
+</svg>

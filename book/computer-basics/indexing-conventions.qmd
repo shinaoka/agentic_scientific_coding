@@ -1,0 +1,40 @@
+---
+title: "3.5 Indexing conventions: 0-based and 1-based"
+---
+
+## Explanation
+
+An index specifies the position of an element. Different languages use different conventions. Julia, MATLAB, and Fortran use 1-based indexing. C, C++, Python, and Rust commonly use 0-based indexing.
+
+![](../figures/indexing-conventions.svg){fig-alt="The values a, b, c, d have indices 1, 2, 3, 4 in 1-based indexing and 0, 1, 2, 3 in 0-based indexing."}
+
+This is a common source of off-by-one errors. If an AI agent gives a Python example, you must check index conventions before translating it to Julia.
+
+```julia
+xs = [10, 20, 30]
+xs[1]  # 10 in Julia
+```
+
+## Things to look up
+
+- 0-based indexing
+- 1-based indexing
+- Off-by-one error
+- Array slicing
+- Julia array indexing
+
+## Exercise
+
+For the values `[10, 20, 30, 40, 50]`, answer:
+
+1. In 1-based indexing, what are the indices of `20` and `50`?
+2. In 0-based indexing, what are the indices of `20` and `50`?
+3. In Julia, how would you refer to the first element?
+4. Why can copying loop bounds from Python to Julia be wrong?
+
+## Notes for the exercise
+
+- Distinguish the value from the index.
+- Check the first index used by the language.
+- Watch both start and end points of ranges.
+- If AI translates code between languages, inspect every index and loop bound.

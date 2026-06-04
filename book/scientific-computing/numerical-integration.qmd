@@ -1,5 +1,5 @@
 ---
-title: "7.1 Numerical integration"
+title: "8.1 Numerical integration"
 ---
 
 ## Explanation

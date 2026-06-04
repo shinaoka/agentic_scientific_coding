@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" role="img" aria-labelledby="title desc">
+  <title id="title">Memory hierarchy and cost model</title>
+  <desc id="desc">Registers and cache are small and fast. RAM and storage are larger and slower.</desc>
+  <polygon points="380,35 165,330 595,330" fill="#f7f7f7" stroke="#444" stroke-width="2"/>
+  <line x1="270" y1="185" x2="490" y2="185" stroke="#777"/>
+  <line x1="230" y1="240" x2="530" y2="240" stroke="#777"/>
+  <line x1="200" y1="285" x2="560" y2="285" stroke="#777"/>
+  <text x="380" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700">Registers</text>
+  <text x="380" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700">Cache</text>
+  <text x="380" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700">RAM</text>
+  <text x="380" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700">SSD / HDD</text>
+
+  <text x="95" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="13">smaller</text>
+  <text x="95" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="13">faster</text>
+  <text x="95" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="13">larger</text>
+  <text x="95" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="13">slower</text>
+  <line x1="95" y1="125" x2="95" y2="270" stroke="#333" stroke-width="2"/>
+  <path d="M95 120 L88 132 L102 132 Z" fill="#333"/>
+  <path d="M95 275 L88 263 L102 263 Z" fill="#333"/>
+
+  <text x="640" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="13">low latency</text>
+  <text x="640" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="13">bandwidth matters</text>
+  <text x="640" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="13">I/O bottleneck</text>
+
+  <text x="380" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Fast FLOPS do not help much if data arrive too slowly.</text>
+</svg>

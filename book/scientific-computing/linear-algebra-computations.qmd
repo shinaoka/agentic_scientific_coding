@@ -1,5 +1,5 @@
 ---
-title: "7.3 Linear algebra computations"
+title: "8.3 Linear algebra computations"
 ---
 
 ## Explanation

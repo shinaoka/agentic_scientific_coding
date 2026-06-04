@@ -1,5 +1,5 @@
 ---
-title: "6.2 Search and sort"
+title: "7.2 Search and sort"
 ---
 
 ## Explanation

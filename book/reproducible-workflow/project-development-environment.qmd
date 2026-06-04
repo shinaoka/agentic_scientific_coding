@@ -1,0 +1,50 @@
+---
+title: "9.3 Project development environment"
+---
+
+## Explanation
+
+Modern programming languages usually provide a way to manage a project development environment. The main idea is to keep dependencies explicit and separated between projects.
+
+A dependency is another package or library that your code needs. Dependency resolution means choosing versions of those packages that work together. Project isolation means that one project's dependencies should not accidentally change another project's behavior.
+
+Common examples are:
+
+| Language | Project files |
+| --- | --- |
+| Julia | `Project.toml`, `Manifest.toml` |
+| Rust | `Cargo.toml`, `Cargo.lock` |
+| Python | `pyproject.toml`, `requirements.txt`, lock files such as `uv.lock` |
+
+These files are part of reproducibility. They help another person, a future version of yourself, or an AI agent understand how the project should be built, tested, and run.
+
+Do not confuse a project environment with an editor. VS Code, Cursor, or another editor can be useful, but the project environment should be described by files and commands that can be used outside one editor.
+
+## Things to look up
+
+- Dependency
+- Dependency resolution
+- Project environment
+- Lock file
+- Julia `Project.toml`
+- Rust `Cargo.toml`
+- Python `pyproject.toml`
+
+## Exercise
+
+Choose one small project and identify its development environment. Write down:
+
+- the project root,
+- the programming language,
+- the dependency or project files,
+- the command to run the program,
+- the command to run tests,
+- which files an AI agent should read before editing code.
+
+## Notes for the exercise
+
+- Do not say only "it works on my computer".
+- Distinguish editor settings from project environment files.
+- State whether dependency versions are locked.
+- State how tests can be run from a fresh checkout or download.
+- If an AI agent edits the project, tell it the test command and the relevant project files.

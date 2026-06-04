@@ -1,26 +1,45 @@
 ---
-title: "5.1 Testing and TDD"
+title: "6.1 Testing and TDD"
 ---
 
 ## Explanation
 
 A test checks expected behavior. Test-driven development means stating the expected behavior before writing or changing the implementation. The important habit is not the ritual, but the discipline of making expectations explicit.
 
-Julia has a standard testing library:
+For small exercises, put tests immediately after the function. This makes the specification visible next to the implementation.
 
 ```julia
 using Test
 
-@test 1 + 1 == 2
+function mean_value(xs)
+    if isempty(xs)
+        error("mean_value is undefined for empty input")
+    end
+
+    total = 0.0
+    for x in xs
+        total += x
+    end
+    return total / length(xs)
+end
+
+@testset "mean_value" begin
+    @test mean_value([2.0, 4.0, 6.0]) == 4.0
+    @test mean_value([5.0]) == 5.0
+    @test mean_value([-1.0, 1.0]) == 0.0
+    @test_throws ErrorException mean_value(Float64[])
+end
+```
+
+The tests are part of the specification. They say what the function should do for normal inputs, one-element inputs, negative values, and empty input. When an AI agent writes or changes code, ask it to keep the tests close to the function while the example is small.
+
+For floating-point results that are not exactly representable, use approximate comparison:
+
+```julia
 @test isapprox(sqrt(2)^2, 2.0)
 ```
 
-A test for a mean function should be based on the specification, not on copying the implementation.
-
-```julia
-@test mean_value([2.0, 4.0, 6.0]) == 4.0
-@test mean_value([5.0]) == 5.0
-```
+A bad test copies the implementation. A good test checks behavior that you can justify independently, for example by hand calculation or a known result.
 
 ## Things to look up
 
@@ -29,10 +48,13 @@ A test for a mean function should be based on the specification, not on copying 
 - Test-driven development
 - Reference implementation
 - Julia `Test` standard library
+- `@testset`
+- `@test_throws`
+- `isapprox`
 
 ## Exercise
 
-Design five tests for a function that returns the mean of an array. For each test, write what property it checks.
+Write a Julia function `mean_value(xs)` and place a `@testset` immediately after it. Include at least five tests. For each test, write one sentence explaining what property it checks.
 
 ## Notes for the exercise
 
@@ -41,8 +63,10 @@ Design five tests for a function that returns the mean of an array. For each tes
 - Include repeated values.
 - Include negative values.
 - Include a case whose answer is known by hand.
+- Use `isapprox` when exact floating-point equality is not appropriate.
 - Tests should check the specification, not copy the implementation.
+- In small exercise files, keep the tests close to the function they check.
 
 ## Optional coding check
 
-Use Julia's `Test` standard library to write one of your tests. Use official documentation or an AI agent to find the minimal syntax.
+Run the file with Julia. If a test fails, read the failure message before changing either the function or the test.

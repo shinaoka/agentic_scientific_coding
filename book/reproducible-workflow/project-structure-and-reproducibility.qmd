@@ -1,5 +1,5 @@
 ---
-title: "8.2 Project structure and reproducibility"
+title: "9.2 Project structure and reproducibility"
 ---
 
 ## Explanation
