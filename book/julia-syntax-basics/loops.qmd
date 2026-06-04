@@ -29,6 +29,8 @@ end
 
 Julia arrays are 1-indexed: the first element is `xs[1]`, not `xs[0]`.
 
+For nested loops over multidimensional arrays, the loop order that follows contiguous memory depends on the language and array library.
+
 ## Things to look up
 
 - For loop

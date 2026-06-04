@@ -12,7 +12,7 @@ A copy creates a new data object. A view refers to existing data with a differen
 
 The exact behavior depends on the language and operation, so always check whether an operation copies data or shares data.
 
-The row-major or column-major convention also matters: the same buffer can give a different reshaped view depending on how linear memory is mapped to array indices.
+The row-major or column-major convention also matters: the same buffer can give a different reshaped view depending on how linear memory is mapped to array indices. Which convention applies depends on the language and array library.
 
 For N-dimensional arrays, use the fastest-varying index rule from memory layout: column-major order changes the leftmost index fastest, while row-major order changes the rightmost index fastest.
 
@@ -42,6 +42,5 @@ Suppose the data buffer is `[1, 2, 3, 4, 5, 6]`.
 - State whether data are copied or shared if you know the operation.
 - Do not assume a new array is always allocated.
 - Do not confuse shape change with element reordering.
-- When reworking Julia code in Rust, explicitly state how a flat buffer is mapped to multidimensional indices; a Rust `Vec` alone does not define row-major or column-major layout.
-- For N-dimensional data, write down which index changes fastest before asking an AI agent to translate or optimize array code.
+- For N-dimensional data, write down which index changes fastest before translating or optimizing array code.
 - In Julia, connect this topic to `reshape`, `copy`, and views when you later inspect code.
