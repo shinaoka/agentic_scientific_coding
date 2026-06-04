@@ -1,5 +1,5 @@
 ---
-title: "11.1 Why Rust after Julia"
+title: "12.1 Why Rust after Julia"
 ---
 
 ## Explanation

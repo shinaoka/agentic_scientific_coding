@@ -1,5 +1,5 @@
 ---
-title: "10.2 Project exercise catalog"
+title: "11.2 Project exercise catalog"
 ---
 
 ## Explanation

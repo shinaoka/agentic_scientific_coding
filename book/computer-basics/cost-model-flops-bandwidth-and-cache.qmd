@@ -1,8 +1,10 @@
 ---
-title: "3.4 Cost model: FLOPS, bandwidth, and cache"
+title: "4.3 Cost model: FLOPS, bandwidth, and cache"
 ---
 
 ## Explanation
+
+This page belongs to the performance and systems model. On a first pass, you may read Section 3 and then continue to Section 5, returning here when speed and memory traffic become important.
 
 Performance is not determined only by the number of arithmetic operations. A processor may be able to perform many floating-point operations per second, but the calculation can still be slow if data arrive from memory too slowly. On modern computers, many scientific programs are limited by memory bandwidth before they reach peak FLOPS.
 

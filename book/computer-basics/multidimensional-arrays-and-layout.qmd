@@ -1,5 +1,5 @@
 ---
-title: "3.6 Multidimensional arrays and memory layout"
+title: "3.3 Multidimensional arrays and memory layout"
 ---
 
 ## Explanation

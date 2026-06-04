@@ -1,8 +1,10 @@
 ---
-title: "3.3 Processes and threads"
+title: "4.2 Processes and threads"
 ---
 
 ## Explanation
+
+This page belongs to the performance and systems model. On a first pass, you may read Section 3 and then continue to Section 5, returning here when parallel execution becomes important.
 
 A process is a running program with its own memory space. A thread is an execution path inside a process. Threads in the same process usually share memory, while different processes usually do not share memory unless data are explicitly exchanged.
 

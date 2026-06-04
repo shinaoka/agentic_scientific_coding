@@ -5,6 +5,7 @@ project:
     - index.qmd
     - getting-started/download-the-material.qmd
     - getting-started/using-an-ai-agent.qmd
+    - getting-started/minimal-git-diff-safety.qmd
     - getting-started/default-language-julia.qmd
     - getting-started/installing-julia.qmd
     - getting-started/running-julia.qmd
@@ -14,24 +15,24 @@ project:
     - ai-search/reading-documentation-and-examples.qmd
     - ai-search/checking-ai-explanations.qmd
     - computer-basics/memory-storage-and-files.qmd
-    - computer-basics/stack-heap-and-references.qmd
-    - computer-basics/processes-and-threads.qmd
-    - computer-basics/cost-model-flops-bandwidth-and-cache.qmd
     - computer-basics/indexing-conventions.qmd
     - computer-basics/multidimensional-arrays-and-layout.qmd
     - computer-basics/reshape-view-copy-and-transpose.qmd
+    - computer-basics/stack-heap-and-references.qmd
+    - computer-basics/processes-and-threads.qmd
+    - computer-basics/cost-model-flops-bandwidth-and-cache.qmd
     - julia-syntax-basics/variables-and-state.qmd
     - julia-syntax-basics/types-and-numeric-values.qmd
     - julia-syntax-basics/conditionals.qmd
     - julia-syntax-basics/loops.qmd
     - julia-syntax-basics/functions.qmd
     - julia-syntax-basics/arrays-and-data-structures.qmd
-    - types-abstraction-interfaces/abstraction-and-interface.qmd
-    - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
-    - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
     - correctness-validation/testing-and-tdd.qmd
     - correctness-validation/edge-cases-and-failure-modes.qmd
     - correctness-validation/reproducibility-as-validation.qmd
+    - types-abstraction-interfaces/abstraction-and-interface.qmd
+    - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
+    - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
     - algorithmic-thinking/complexity.qmd
     - algorithmic-thinking/search-and-sort.qmd
     - algorithmic-thinking/matrix-multiplication-performance.qmd
@@ -55,10 +56,11 @@ book:
     search: true
   chapters:
     - index.qmd
-    - part: "Section 1: How to Use This Material"
+    - part: "Section 1: Safe Workflow Before Coding"
       chapters:
         - getting-started/download-the-material.qmd
         - getting-started/using-an-ai-agent.qmd
+        - getting-started/minimal-git-diff-safety.qmd
         - getting-started/default-language-julia.qmd
         - getting-started/installing-julia.qmd
         - getting-started/running-julia.qmd
@@ -69,16 +71,18 @@ book:
         - ai-search/asking-useful-questions.qmd
         - ai-search/reading-documentation-and-examples.qmd
         - ai-search/checking-ai-explanations.qmd
-    - part: "Section 3: Computer Basics for Scientific Computing"
+    - part: "Section 3: Essential Computer Model"
       chapters:
         - computer-basics/memory-storage-and-files.qmd
-        - computer-basics/stack-heap-and-references.qmd
-        - computer-basics/processes-and-threads.qmd
-        - computer-basics/cost-model-flops-bandwidth-and-cache.qmd
         - computer-basics/indexing-conventions.qmd
         - computer-basics/multidimensional-arrays-and-layout.qmd
         - computer-basics/reshape-view-copy-and-transpose.qmd
-    - part: "Section 4: Julia Syntax Basics"
+    - part: "Section 4: Performance and Systems Model (Optional First Pass)"
+      chapters:
+        - computer-basics/stack-heap-and-references.qmd
+        - computer-basics/processes-and-threads.qmd
+        - computer-basics/cost-model-flops-bandwidth-and-cache.qmd
+    - part: "Section 5: Julia Syntax Basics"
       chapters:
         - julia-syntax-basics/variables-and-state.qmd
         - julia-syntax-basics/types-and-numeric-values.qmd
@@ -86,37 +90,37 @@ book:
         - julia-syntax-basics/loops.qmd
         - julia-syntax-basics/functions.qmd
         - julia-syntax-basics/arrays-and-data-structures.qmd
-    - part: "Section 5: Types, Abstraction, and Interfaces"
-      chapters:
-        - types-abstraction-interfaces/abstraction-and-interface.qmd
-        - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
-        - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
     - part: "Section 6: Correctness and Validation"
       chapters:
         - correctness-validation/testing-and-tdd.qmd
         - correctness-validation/edge-cases-and-failure-modes.qmd
         - correctness-validation/reproducibility-as-validation.qmd
-    - part: "Section 7: Algorithmic Thinking"
+    - part: "Section 7: Types, Abstraction, and Interfaces"
+      chapters:
+        - types-abstraction-interfaces/abstraction-and-interface.qmd
+        - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
+        - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
+    - part: "Section 8: Algorithmic Thinking"
       chapters:
         - algorithmic-thinking/complexity.qmd
         - algorithmic-thinking/search-and-sort.qmd
         - algorithmic-thinking/matrix-multiplication-performance.qmd
-    - part: "Section 8: Scientific Computing Basics with Julia"
+    - part: "Section 9: Scientific Computing Basics with Julia"
       chapters:
         - scientific-computing/numerical-integration.qmd
         - scientific-computing/root-finding.qmd
         - scientific-computing/linear-algebra-computations.qmd
         - scientific-computing/monte-carlo-and-randomness.qmd
-    - part: "Section 9: Reproducible Scientific Workflow"
+    - part: "Section 10: Reproducible Scientific Workflow"
       chapters:
         - reproducible-workflow/git-basics-for-scientific-workflow.qmd
         - reproducible-workflow/project-structure-and-reproducibility.qmd
         - reproducible-workflow/ai-agent-workflow.qmd
-    - part: "Section 10: Practical Project Exercises"
+    - part: "Section 11: Practical Project Exercises"
       chapters:
         - project-exercises/overview.qmd
         - project-exercises/exercise-format.qmd
-    - part: "Section 11: Rust Practice with AI Agents"
+    - part: "Section 12: Rust Practice with AI Agents"
       chapters:
         - rust-practice/why-rust-after-julia.qmd
         - rust-practice/ai-assisted-rust-workflow.qmd

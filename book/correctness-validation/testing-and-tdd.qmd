@@ -33,7 +33,7 @@ end
 
 The tests are part of the specification. They say what the function should do for normal inputs, one-element inputs, negative values, and empty input.
 
-Do not treat this layout as the recommended structure for real project code. In a real project, separate test code from runtime code, for example by using the project's test directory or test suite. Normal program execution should not run the full test suite, because that can make ordinary calculations unnecessarily slow. Project organization is discussed in [9.2 Project structure, environment, and reproducibility](../reproducible-workflow/project-structure-and-reproducibility.qmd).
+Do not treat this layout as the recommended structure for real project code. In a real project, separate test code from runtime code, for example by using the project's test directory or test suite. Normal program execution should not run the full test suite, because that can make ordinary calculations unnecessarily slow. Project organization is discussed in [10.2 Project structure, environment, and reproducibility](../reproducible-workflow/project-structure-and-reproducibility.qmd).
 
 When an AI agent writes or changes code, ask it to update the appropriate test files and tell you which command runs the tests.
 

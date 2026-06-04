@@ -1,5 +1,5 @@
 ---
-title: "9.2 Project structure, environment, and reproducibility"
+title: "10.2 Project structure, environment, and reproducibility"
 ---
 
 ## Explanation

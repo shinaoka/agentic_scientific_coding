@@ -4,9 +4,13 @@ title: "Introduction"
 
 This site contains teaching material for students who are beginning to use programming and AI agents for scientific computing.
 
+It is intended for science and engineering students who can follow elementary mathematics and want to learn computational work with AI agents. Prior programming experience is helpful but not required. The material is not a complete Julia or Rust textbook; it teaches the minimum concepts needed to inspect, test, and validate scientific code.
+
 The goal is not to copy code produced by an AI agent. The goal is to learn how to describe a computational problem, inspect code, design tests, validate numerical results, and keep calculations reproducible.
 
-After learning basic computer concepts and programming concepts, students should be able to work with an AI agent through a loop of brainstorming, planning, code generation, review, and feedback. They should be able to use this loop to write and verify Rust code for scientific computing tasks. The concepts are introduced with Julia because Julia makes arrays, numeric types, functions, and abstraction easy to inspect. Rust appears later as a practical implementation language for larger or more structured code.
+After learning basic computer concepts and programming concepts, students should be able to work with an AI agent through a loop of brainstorming, planning, code generation, review, and feedback. They should be able to use this loop to write and verify Rust code for scientific computing tasks.
+
+Julia is used first as a microscope for concepts: arrays, numeric types, functions, tests, and abstraction are easy to inspect. Rust appears later as an engineering target for larger or more structured code.
 
 ![](figures/ai-agent-loop.svg){fig-alt="AI-agent scientific coding loop: brainstorm, plan, code generation, and review. Forward arrows are solid; feedback arrows return to earlier steps."}
 
@@ -35,16 +39,19 @@ The basic workflow is:
 5. Use Julia only when a small coding check helps.
 6. If an AI agent edits files, read the diff and run checks.
 
+For each "Things to look up" list, do not only memorize definitions. Look up the term, then write one sentence in your own words and one example related to scientific computing.
+
 ## Chapters
 
-- Section 1: How to Use This Material
+- Section 1: Safe Workflow Before Coding
 - Section 2: Learning with AI and Web Search
-- Section 3: Computer Basics for Scientific Computing
-- Section 4: Julia Syntax Basics
-- Section 5: Types, Abstraction, and Interfaces
+- Section 3: Essential Computer Model
+- Section 4: Performance and Systems Model (optional first pass)
+- Section 5: Julia Syntax Basics
 - Section 6: Correctness and Validation
-- Section 7: Algorithmic Thinking
-- Section 8: Scientific Computing Basics with Julia
-- Section 9: Reproducible Scientific Workflow
-- Section 10: Practical Project Exercises
-- Section 11: Rust Practice with AI Agents
+- Section 7: Types, Abstraction, and Interfaces
+- Section 8: Algorithmic Thinking
+- Section 9: Scientific Computing Basics with Julia
+- Section 10: Reproducible Scientific Workflow
+- Section 11: Practical Project Exercises
+- Section 12: Rust Practice with AI Agents

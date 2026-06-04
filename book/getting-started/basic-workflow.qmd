@@ -1,5 +1,5 @@
 ---
-title: "1.6 Basic workflow"
+title: "1.7 Basic workflow"
 ---
 
 ## Explanation
@@ -16,6 +16,8 @@ Use this workflow for most subsections:
 8. If anything is unclear, ask the AI agent follow-up questions until you can explain it in your own words.
 9. If the AI agent edits files, review its reasoning and any diff it creates.
 
+For each item in "Things to look up", write one sentence in your own words and one example related to scientific computing. The goal is not to collect definitions; the goal is to connect the word to a calculation, code fragment, data file, or validation check.
+
 ## Things to look up
 
 - Hand-written exercise
@@ -24,12 +26,15 @@ Use this workflow for most subsections:
 - Validation
 - Reproducibility
 - Worked example
+- Submission artifact
 
 ## Exercise
 
 For one subsection, write a short study plan that includes reading, searching, a hand-written answer, optional AI help, and an optional Julia check.
 
 If your plan uses AI-generated answers, also write how you will check that you understand the answer in detail.
+
+Also state the expected output of your work, such as a hand-written note, Markdown note, Julia file, test file, saved result file, or work log.
 
 ## Notes for the exercise
 
@@ -39,3 +44,4 @@ If your plan uses AI-generated answers, also write how you will check that you u
 - Ask follow-up questions about every unclear term, formula, code line, or assumption.
 - Do not submit or accept an answer that you cannot explain without looking at the AI output.
 - Make the validation step explicit.
+- Make the submission artifact explicit when an exercise does not specify one.

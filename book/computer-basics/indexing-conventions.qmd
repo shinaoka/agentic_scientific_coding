@@ -1,5 +1,5 @@
 ---
-title: "3.5 Indexing conventions: 0-based and 1-based"
+title: "3.2 Indexing conventions: 0-based and 1-based"
 ---
 
 ## Explanation

@@ -1,8 +1,10 @@
 ---
-title: "3.2 Stack, heap, and references"
+title: "4.1 Stack, heap, and references"
 ---
 
 ## Explanation
+
+This page belongs to the performance and systems model. On a first pass, you may read Section 3 and then continue to Section 5, returning here when aliasing or memory behavior becomes important.
 
 Stack and heap are simplified words for different kinds of memory use. You do not need to memorize implementation details here. The important idea is that small local bindings and call frames are different from large or dynamically created objects such as arrays.
 

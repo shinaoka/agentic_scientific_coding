@@ -1,5 +1,5 @@
 ---
-title: "8.3 Linear algebra computations"
+title: "9.3 Linear algebra computations"
 ---
 
 ## Explanation
@@ -14,7 +14,7 @@ b = A * x               # length-2 vector
 C = A * A               # 2 x 2 matrix
 ```
 
-The syntax is compact, but you must still know the shapes. A shape mismatch is not a small detail; it usually means the mathematical expression is not well-defined. The algorithmic cost of matrix multiplication is discussed in [7.3 Matrix multiplication as a performance model](../algorithmic-thinking/matrix-multiplication-performance.qmd).
+The syntax is compact, but you must still know the shapes. A shape mismatch is not a small detail; it usually means the mathematical expression is not well-defined. The algorithmic cost of matrix multiplication is discussed in [8.3 Matrix multiplication as a performance model](../algorithmic-thinking/matrix-multiplication-performance.qmd).
 
 ## Things to look up
 

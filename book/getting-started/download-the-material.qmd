@@ -12,7 +12,7 @@ The repository page is:
 
 - [https://github.com/shinaoka/agentic_scientific_coding](https://github.com/shinaoka/agentic_scientific_coding)
 
-Unpack the ZIP file and work inside the top-level folder. You do not need to understand Git or repository management at the beginning. Git and repository-based workflow are discussed later in [Reproducible Scientific Workflow](../reproducible-workflow/git-basics-for-scientific-workflow.qmd).
+Unpack the ZIP file and work inside the top-level folder. You do not need to understand Git or repository management at the beginning. Minimal diff safety is introduced in [1.3 Minimal Git and diff safety](minimal-git-diff-safety.qmd), and Git as a scientific workflow tool is discussed later in [10.1 Git basics for scientific workflow](../reproducible-workflow/git-basics-for-scientific-workflow.qmd).
 
 If you already know Git, cloning is also fine:
 

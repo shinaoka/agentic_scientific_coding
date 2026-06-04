@@ -1,5 +1,5 @@
 ---
-title: "4.6 Arrays and data structures"
+title: "5.6 Arrays and data structures"
 ---
 
 ## Explanation
@@ -23,9 +23,9 @@ typeof(xs)  # Vector{Int64}, an alias for Array{Int64, 1}
 typeof(A)   # Matrix{Float64}, an alias for Array{Float64, 2}
 ```
 
-For this section, focus on how to create, index, and update arrays. The meaning of type parameters such as `Array{Float64, 2}` is discussed later in [5.2 Julia type hierarchy and subtyping](../types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd).
+For this section, focus on how to create, index, and update arrays. The meaning of type parameters such as `Array{Float64, 2}` is discussed later in [7.2 Julia type hierarchy and subtyping](../types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd).
 
-The indexing and layout conventions were introduced in [3.5 Indexing conventions: 0-based and 1-based](../computer-basics/indexing-conventions.qmd) and [3.6 Multidimensional arrays and memory layout](../computer-basics/multidimensional-arrays-and-layout.qmd). Julia arrays are 1-based and column-major.
+The indexing and layout conventions were introduced in [3.2 Indexing conventions: 0-based and 1-based](../computer-basics/indexing-conventions.qmd) and [3.3 Multidimensional arrays and memory layout](../computer-basics/multidimensional-arrays-and-layout.qmd). Julia arrays are 1-based and column-major.
 
 Other common data structures are dictionaries and sets:
 

@@ -1,5 +1,5 @@
 ---
-title: "8.2 Root finding"
+title: "9.2 Root finding"
 ---
 
 ## Explanation

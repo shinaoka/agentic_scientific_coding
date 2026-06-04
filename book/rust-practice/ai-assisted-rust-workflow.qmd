@@ -1,14 +1,14 @@
 ---
-title: "11.2 Reworking a project in Rust"
+title: "12.2 Reworking a project in Rust"
 ---
 
 ## Explanation
 
-After completing a Section 10 project, redo a small, well-defined part of it in Rust with help from an AI agent. Do not begin by translating the whole project. Choose a function, kernel, or command whose inputs, outputs, tests, and benchmark case are already clear.
+After completing a Section 11 project, redo a small, well-defined part of it in Rust with help from an AI agent. Do not begin by translating the whole project. Choose a function, kernel, or command whose inputs, outputs, tests, and benchmark case are already clear.
 
 The workflow is:
 
-1. Start from the Section 10 specification and saved-data convention.
+1. Start from the Section 11 specification and saved-data convention.
 2. Ask the AI agent which part is suitable for a Rust implementation.
 3. Ask the agent to create or update a Cargo project.
 4. Port one small component first.
@@ -35,7 +35,7 @@ Benchmarking is part of the exercise, but it comes after correctness. Use the sa
 
 ## Exercise
 
-Choose one Section 10 project and ask an AI agent to implement one small Rust component. The prompt should include:
+Choose one Section 11 project and ask an AI agent to implement one small Rust component. The prompt should include:
 
 ```text
 Use the existing project specification.

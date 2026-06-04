@@ -1,5 +1,5 @@
 ---
-title: "5.1 Abstraction and interface"
+title: "7.1 Abstraction and interface"
 ---
 
 ## Explanation
@@ -7,6 +7,8 @@ title: "5.1 Abstraction and interface"
 This chapter builds on the previous Julia syntax chapter. The previous chapter focused on how to write and read basic code. This chapter focuses on how to organize code so that larger scientific programs remain understandable.
 
 An abstraction hides details behind a small set of operations. An interface is what other code is allowed to rely on. This matters in scientific computing because the same concept, such as a vector, matrix, lattice, mesh, or model, can have many implementations.
+
+When using AI agents, interfaces are especially important. A clear interface lets you ask for behavior, tests, and review without mixing the scientific specification with implementation details.
 
 For example, a two-dimensional vector can be represented as a plain array:
 

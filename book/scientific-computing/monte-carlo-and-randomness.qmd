@@ -1,5 +1,5 @@
 ---
-title: "8.4 Monte Carlo and randomness"
+title: "9.4 Monte Carlo and randomness"
 ---
 
 ## Explanation

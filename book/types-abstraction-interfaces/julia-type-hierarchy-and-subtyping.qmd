@@ -1,5 +1,5 @@
 ---
-title: "5.2 Julia type hierarchy and subtyping"
+title: "7.2 Julia type hierarchy and subtyping"
 ---
 
 ## Explanation
