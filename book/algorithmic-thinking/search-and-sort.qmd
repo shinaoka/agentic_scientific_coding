@@ -4,7 +4,7 @@ title: "7.2 Search and sort"
 
 ## Explanation
 
-Searching and sorting are basic operations with important assumptions. Binary search is fast, but only applies when the data are sorted. Some sorting algorithms are simple but slow for large inputs.
+Searching and sorting are basic operations with important assumptions. Search asks "where is the item?" Sorting rearranges data into a specified order so that later operations become easier.
 
 A linear search scans items one by one:
 
@@ -19,34 +19,129 @@ function linear_search(xs, target)
 end
 ```
 
-Julia also has built-in operations:
+For an unsorted array, linear search is the basic model. It may need to inspect every element, so the cost is proportional to `N`.
 
-```julia
-sort([3, 1, 2])
-findfirst(==(2), [3, 1, 2])
+If the data are already sorted, binary search is possible. Binary search checks the middle element first. If the target is smaller than the middle element, the right half can be ignored. If the target is larger, the left half can be ignored. Repeating this halves the remaining search range at each step.
+
+For example, to find `7` in:
+
+```text
+[1, 3, 5, 7, 9, 11, 13, 15, 17]
 ```
 
-Built-in functions are useful, but you still need to know the assumptions and what result is returned.
+one possible sequence is:
+
+1. Check the middle value `9`.
+2. Since `7 < 9`, discard `[9, 11, 13, 15]`.
+3. The remaining range is `[1, 3, 5, 7]`.
+4. Check the middle value `3`.
+5. Since `7 > 3`, discard `[1, 3]`.
+6. The remaining range is `[5, 7]`.
+7. Check `5`.
+8. Since `7 > 5`, discard `[5]`.
+9. The remaining range is `[7]`.
+10. Check `7` and stop.
+
+Because the search range is repeatedly halved, binary search takes about `log2(N)` steps, so the cost is `O(log N)`. The sorting cost is separate: binary search is cheap only after the sorted order is available.
+
+Sorting creates order:
+
+```julia
+sort([3, 1, 2])       # [1, 2, 3]
+sort(["b", "aa", "c"], by=length)  # ["b", "c", "aa"]
+```
+
+In Julia, `sort(xs)` returns a sorted copy. It does not modify `xs`. The mutating version is `sort!(xs)`.
+
+```julia
+xs = [3, 1, 2]
+ys = sort(xs)
+
+xs  # [3, 1, 2]
+ys  # [1, 2, 3]
+
+sort!(xs)
+xs  # [1, 2, 3]
+```
+
+Sorting requires a comparison rule. For numbers, the usual rule is `<`. For structured data, you must decide what key to sort by. A stable sort preserves the relative order of items that compare equal. This matters when records have multiple fields.
+
+```julia
+records = [("Alice", 2), ("Bob", 1), ("Carol", 2)]
+sort(records, by = x -> x[2])
+```
+
+Several simple sorting algorithms, such as selection sort and insertion sort, are useful for learning because you can run them by hand. Their typical cost is proportional to `N^2`. Production sorting algorithms are more sophisticated; comparison-based sorting is typically about `N log N` for large inputs.
+
+Built-in functions are useful, but you still need to know the assumptions: whether the data are sorted, what comparison rule is used, whether the operation mutates the input, and how duplicates are handled.
+
+For testing your own sorting function, the built-in `sort` is useful as a reference. Use a fixed random seed so that the test input is reproducible:
+
+```julia
+using Random
+using Test
+
+Random.seed!(1234)
+xs = rand(1:100, 20)
+expected = sort(xs)
+
+@test sort(xs) == expected  # later, replace the left side with your function
+```
 
 ## Things to look up
 
 - Linear search
 - Binary search
+- Pre-sorted data
+- `O(log N)`
 - Sorting algorithm
 - Stable sort
 - Selection sort or insertion sort
+- Comparison function
+- Sorting key
+- `sort` and `sort!` in Julia
+- `N log N`
+- Julia `Random.seed!`
+- Julia `Test`
 
 ## Exercise
 
-Write the difference between linear search and binary search. Then manually run selection sort or insertion sort on a short list of numbers.
+Write a function that returns a sorted copy of the input array:
+
+```julia
+function my_sort(xs)
+    # implement insertion sort or selection sort
+end
+```
+
+Place unit tests immediately after the function. Use Julia's built-in `sort` only in the tests, not inside `my_sort`.
+
+```julia
+using Random
+using Test
+
+@testset "my_sort" begin
+    @test my_sort([4, 1, 3, 1]) == sort([4, 1, 3, 1])
+    @test my_sort(Int[]) == Int[]
+    @test my_sort([5]) == [5]
+    @test my_sort([-1, 3, 0, -1]) == sort([-1, 3, 0, -1])
+
+    Random.seed!(1234)
+    xs = rand(1:100, 20)
+    @test my_sort(xs) == sort(xs)
+end
+```
 
 ## Notes for the exercise
 
-- State the precondition for binary search.
+- Do not call `sort` or `sort!` inside `my_sort`.
+- Return a sorted copy. Do not modify the input unless your function name and specification say so.
 - Explain how duplicates are handled.
-- Count how many comparisons or steps are needed for the small example.
-- State whether stable sorting matters for your example.
+- Include empty input, one-element input, duplicate values, negative values, and random input.
+- Use `Random.seed!` so that the random test is reproducible.
+- Use built-in `sort` as a reference in tests, but still understand the algorithm you implemented.
+- Count the number of nested loops and estimate why simple insertion sort or selection sort is `O(N^2)`.
 
 ## Optional coding check
 
-Ask Julia to sort a small array. Then explain what the built-in function hides from you.
+Ask an AI agent to review your `my_sort` implementation and tests. It should point out missing edge cases before modifying the code.

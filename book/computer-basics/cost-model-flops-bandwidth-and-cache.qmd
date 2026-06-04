@@ -4,7 +4,7 @@ title: "3.4 Cost model: FLOPS, bandwidth, and cache"
 
 ## Explanation
 
-Performance is not determined only by the number of arithmetic operations. A processor may be able to perform many floating-point operations per second, but the calculation can still be slow if data arrive from memory too slowly.
+Performance is not determined only by the number of arithmetic operations. A processor may be able to perform many floating-point operations per second, but the calculation can still be slow if data arrive from memory too slowly. On modern computers, many scientific programs are limited by memory bandwidth before they reach peak FLOPS.
 
 ![](../figures/memory-hierarchy.svg){fig-alt="Registers and cache are small and fast; RAM and storage are larger and slower."}
 

@@ -1,0 +1,104 @@
+---
+title: "7.3 Matrix multiplication as a performance model"
+---
+
+## Explanation
+
+Matrix multiplication is a useful example because it connects algorithmic complexity, memory access, and optimized libraries.
+
+If `A` has shape `N1 x N2` and `B` has shape `N2 x N3`, then `C = A * B` has shape `N1 x N3`. The basic algorithm computes:
+
+```julia
+C[i, j] = sum(A[i, k] * B[k, j] for k in 1:N2)
+```
+
+The number of multiply-add terms is proportional to:
+
+```text
+N1 * N2 * N3
+```
+
+The input data size is proportional to:
+
+```text
+N1 * N2 + N2 * N3
+```
+
+Writing the output also costs `N1 * N3` elements. In real code, data may be moved many more times if cache reuse is poor.
+
+When `N1 * N2 * N3` is much larger than the input data size, matrix multiplication can perform many arithmetic operations for each loaded value. This can hide memory-bandwidth limits better than operations that read data once and do very little arithmetic.
+
+A simple Julia implementation is useful for learning:
+
+```julia
+function matmul_basic(A, B)
+    n1, n2 = size(A)
+    n2b, n3 = size(B)
+    @assert n2 == n2b
+
+    T = promote_type(eltype(A), eltype(B))
+    C = zeros(T, n1, n3)
+
+    for i in 1:n1
+        for j in 1:n3
+            s = zero(T)
+            for k in 1:n2
+                s += A[i, k] * B[k, j]
+            end
+            C[i, j] = s
+        end
+    end
+    return C
+end
+```
+
+For actual dense matrix multiplication, use Julia's built-in `A * B`. It calls an optimized BLAS library, often OpenBLAS in a default Julia installation. The optimized library uses cache-aware algorithms and low-level tuning.
+
+For benchmarking, use `BenchmarkTools.jl`. If it is not installed, add it to the Julia project environment first. Project environments are discussed later in [9.2 Project structure, environment, and reproducibility](../reproducible-workflow/project-structure-and-reproducibility.qmd).
+
+To compare single-thread performance, start Julia with one thread for OpenMP and set BLAS threads to one:
+
+```bash
+OMP_NUM_THREADS=1 julia matrix_multiplication_benchmark.jl
+```
+
+```julia
+using LinearAlgebra
+using BenchmarkTools
+
+BLAS.set_num_threads(1)
+
+N1, N2, N3 = 128, 128, 128
+A = rand(N1, N2)
+B = rand(N2, N3)
+
+@show BLAS.get_num_threads()
+@show maximum(abs.(matmul_basic(A, B) .- A * B))
+
+@btime matmul_basic($A, $B)
+@btime $A * $B
+```
+
+## Things to look up
+
+- Matrix multiplication
+- Arithmetic intensity
+- Memory bandwidth
+- Cache blocking / tiling
+- BenchmarkTools.jl
+- BLAS
+- OpenBLAS
+- `BLAS.set_num_threads`
+
+## Exercise
+
+Write `matmul_basic(A, B)` and compare its speed with Julia's built-in `A * B` using `BenchmarkTools.jl`. Use one BLAS thread. Then modify your implementation to use blocking and try to improve its speed.
+
+## Notes for the exercise
+
+- First check correctness against `A * B`.
+- Use matrices large enough that timing is meaningful.
+- Record `N1`, `N2`, `N3`, BLAS thread count, and benchmark results.
+- Do not optimize before checking correctness.
+- Explain why blocking can reduce repeated memory transfer.
+- Do not expect a simple hand-written implementation to beat optimized BLAS.

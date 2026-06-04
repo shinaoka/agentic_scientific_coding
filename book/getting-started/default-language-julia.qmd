@@ -6,9 +6,11 @@ title: "1.3 Default language: Julia"
 
 Small examples and exercise checks use Julia by default. Here Julia is treated roughly as an open-source MATLAB: it is convenient for arrays, functions, linear algebra, plotting, and numerical experiments.
 
+Well-written Julia code, especially small numerical kernels and calls to optimized libraries, can run at speeds comparable to C/C++/Fortran. This makes Julia useful for learning computational physics without too much boilerplate.
+
 The goal is not to learn every part of Julia. The goal is to learn concepts that transfer across scientific programming: specification, input, output, mutation, side effects, edge cases, complexity, validation, and reproducibility.
 
-For large practical code, performance-critical code, or existing research software, use a language appropriate for the task. Rust, C/C++, Python, and Julia can all be reasonable choices.
+At the same time, Julia has dynamic features. Unintended allocations, type instability, global state, and garbage collection can become performance or predictability issues. For large practical code, performance-critical code, or existing research software, use a language appropriate for the task. Rust, C/C++, Python, and Julia can all be reasonable choices.
 
 ## Things to look up
 
@@ -16,6 +18,8 @@ For large practical code, performance-critical code, or existing research softwa
 - MATLAB and Julia comparison
 - Scientific computing language
 - Array programming
+- Garbage collection
+- Type stability
 
 ## Exercise
 

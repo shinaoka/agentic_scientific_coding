@@ -34,13 +34,13 @@ project:
     - correctness-validation/reproducibility-as-validation.qmd
     - algorithmic-thinking/complexity.qmd
     - algorithmic-thinking/search-and-sort.qmd
+    - algorithmic-thinking/matrix-multiplication-performance.qmd
     - scientific-computing/numerical-integration.qmd
     - scientific-computing/root-finding.qmd
     - scientific-computing/linear-algebra-computations.qmd
     - scientific-computing/monte-carlo-and-randomness.qmd
     - reproducible-workflow/git-basics-for-scientific-workflow.qmd
     - reproducible-workflow/project-structure-and-reproducibility.qmd
-    - reproducible-workflow/project-development-environment.qmd
     - reproducible-workflow/ai-agent-workflow.qmd
     - project-exercises/overview.qmd
     - project-exercises/exercise-format.qmd
@@ -100,6 +100,7 @@ book:
       chapters:
         - algorithmic-thinking/complexity.qmd
         - algorithmic-thinking/search-and-sort.qmd
+        - algorithmic-thinking/matrix-multiplication-performance.qmd
     - part: "Section 8: Scientific Computing Basics with Julia"
       chapters:
         - scientific-computing/numerical-integration.qmd
@@ -110,7 +111,6 @@ book:
       chapters:
         - reproducible-workflow/git-basics-for-scientific-workflow.qmd
         - reproducible-workflow/project-structure-and-reproducibility.qmd
-        - reproducible-workflow/project-development-environment.qmd
         - reproducible-workflow/ai-agent-workflow.qmd
     - part: "Section 10: Practical Project Exercises"
       chapters:

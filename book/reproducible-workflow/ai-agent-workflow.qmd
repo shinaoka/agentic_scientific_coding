@@ -1,16 +1,16 @@
 ---
-title: "9.4 AI-agent workflow"
+title: "9.3 AI-agent workflow"
 ---
 
 ## Explanation
 
 An AI agent can write code, tests, explanations, and logs. That does not remove the need for human review. The core workflow is a loop: brainstorm, plan, generate code, review, and give feedback.
 
-![](../figures/ai-agent-loop.svg){fig-alt="AI-agent scientific coding loop: brainstorm, plan, code generation, and review and feedback. Forward arrows are solid; backtracking arrows are dotted."}
+![](../figures/ai-agent-loop.svg){fig-alt="AI-agent scientific coding loop: brainstorm, plan, code generation, and review. Forward arrows are solid; feedback arrows return to earlier steps."}
 
 Do not start from code generation. First clarify the scientific problem, assumptions, inputs, outputs, edge cases, tests, and acceptance criteria. After the agent changes code, review tests first, then review the diff. Feedback should be specific and evidence-based: point to failed tests, missing validation, unclear assumptions, or code that is too complex to test.
 
-A useful review prompt is specific:
+Useful prompts are specific. They ask the agent to inspect, measure, or propose before editing code.
 
 ```text
 Review the diff. Check whether the function inputs, output,
@@ -18,23 +18,40 @@ side effects, tests, and saved metadata match the specification.
 List missing validation checks before changing code.
 ```
 
+```text
+Benchmark this code for the following case: ...
+Show possible ways to optimize the performance.
+Do not modify the code before reporting the benchmark result and bottlenecks.
+```
+
+```text
+Please check whether my code follows best practices in scientific coding using Julia.
+If there is any violation, point it out before modifying the code.
+Pay attention to functions, mutation, allocations, tests, and reproducibility.
+```
+
 ## Things to look up
 
 - Agentic coding
 - Code review
+- Benchmark
+- Performance optimization
+- Julia best practices
 - Work log
 - Test report
 - Validation report
 
 ## Exercise
 
-Write a checklist of ten items to inspect after an AI agent changes code for a scientific calculation. Then write three review prompts that are more specific than "Is this correct?"
+Write a checklist of ten items to inspect after an AI agent changes code for a scientific calculation. Then write three prompts that are more specific than "Is this correct?" Include one prompt about review, one about performance, and one about scientific coding practice.
 
 ## Notes for the exercise
 
 - Include diff review.
 - Include tests.
 - Include validation against known results or sanity checks.
+- Include performance only after correctness is specified.
 - Include reproducibility information.
 - Include the connection between code changes and numerical results.
+- Ask the agent to report findings before modifying code when you need review or diagnosis.
 - Do not accept "it runs" as sufficient evidence.

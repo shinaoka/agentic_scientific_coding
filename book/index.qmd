@@ -8,7 +8,7 @@ The goal is not to copy code produced by an AI agent. The goal is to learn how t
 
 After learning basic computer concepts and programming concepts, students should be able to work with an AI agent through a loop of brainstorming, planning, code generation, review, and feedback. They should be able to use this loop to write and verify Rust code for scientific computing tasks. The concepts are introduced with Julia because Julia makes arrays, numeric types, functions, and abstraction easy to inspect. Rust appears later as a practical implementation language for larger or more structured code.
 
-![](figures/ai-agent-loop.svg){fig-alt="AI-agent scientific coding loop: brainstorm, plan, code generation, and review and feedback. Forward arrows are solid; backtracking arrows are dotted."}
+![](figures/ai-agent-loop.svg){fig-alt="AI-agent scientific coding loop: brainstorm, plan, code generation, and review. Forward arrows are solid; feedback arrows return to earlier steps."}
 
 Non-goal: this is not a course where students write every line of Rust code by hand without AI assistance. In the Rust part, code generation and editing are done together with an AI agent. The student's responsibility is to understand the generated code, review the changes, design checks, run tests, judge whether the result is scientifically correct, give feedback, and if needed improve the code with the AI agent.
 

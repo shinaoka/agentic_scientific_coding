@@ -1,16 +1,18 @@
 ---
-title: "9.2 Project structure and reproducibility"
+title: "9.2 Project structure, environment, and reproducibility"
 ---
 
 ## Explanation
 
-A scientific computing project should separate source code, data, results, scripts, and notes. A reader should be able to find the entry point, understand what was run, and reproduce key results.
+A scientific computing project should separate source code, data, results, scripts, notes, and environment files. A reader should be able to find the entry point, understand what was run, install the required dependencies, and reproduce key results.
 
 One possible structure is:
 
 ```text
 project/
   README.md
+  Project.toml
+  Manifest.toml
   src/
   scripts/
   data/
@@ -20,6 +22,12 @@ project/
 
 The exact structure can change, but input data, source code, generated output, and notes should not be mixed without reason.
 
+In Julia, `Project.toml` describes the project environment, including direct dependencies. `Manifest.toml` records the resolved package versions. Together, these files help separate the dependencies of one project from another project.
+
+This is not unique to Julia. Rust has related ideas through `Cargo.toml` and `Cargo.lock`. Python projects often use `pyproject.toml` and lock files. The file names differ, but the concept is the same: make dependencies explicit and keep project environments separate.
+
+Do not confuse a project environment with an editor. VS Code, Cursor, or another editor can be useful, but the project should also be understandable from files and commands.
+
 ## Things to look up
 
 - Project structure
@@ -27,6 +35,11 @@ The exact structure can change, but input data, source code, generated output, a
 - Source code
 - Results directory
 - Work log
+- Dependency
+- Dependency resolution
+- Julia `Project.toml`
+- Julia `Manifest.toml`
+- Project environment
 
 ## Exercise
 
@@ -37,9 +50,11 @@ Design a project structure with at least:
 - `results/`
 - `scripts/`
 - `README.md`
+- `Project.toml`
+- `Manifest.toml`
 - `notes/`
 
-Then list what information is needed to reproduce one result.
+Then list what information is needed to reproduce one result, including the dependency environment and the command used to run the calculation.
 
 ## Notes for the exercise
 
@@ -47,3 +62,6 @@ Then list what information is needed to reproduce one result.
 - State what should be saved and what can be regenerated.
 - Make the README the entry point.
 - Connect each result file to its input parameters and code version.
+- State which dependency files should be kept.
+- Do not say only "it works on my computer".
+- If an AI agent edits the project, tell it which files define the project environment and which command verifies the result.
