@@ -40,7 +40,7 @@ After an AI agent changes code, read the diff before accepting the change.
 
 Explain repository, commit, and diff in your own words. Then list what you should inspect after an AI agent changes code.
 
-Advanced exercise: Fork this repository on GitHub, clone your fork locally, make a small improvement to the lecture notes, push the change to your remote fork, and open one pull request. Before doing this exercise, look up fork, clone, remote, push, and pull request.
+Advanced exercise: Fork [this repository on GitHub](https://github.com/shinaoka/agentic_scientific_coding), clone your fork locally, make a small improvement to the lecture notes, push the change to your remote fork, and open one pull request. Before doing this exercise, look up fork, clone, remote, push, and pull request.
 
 ## Notes for the exercise
 
