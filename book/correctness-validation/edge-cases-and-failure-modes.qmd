@@ -4,102 +4,74 @@ title: "6.2 Edge cases and failure modes"
 
 ## Explanation
 
-An edge case is an input near a boundary of the specification. A failure mode
-is a way the code or method can give a wrong, misleading, or unusable result.
+An edge case is an input near a boundary of the specification. An invalid input
+is an input for which the function should not produce an ordinary result. A
+failure mode is a way the code can give a wrong, misleading, or unusable result.
 
-Edge cases and failure modes are not only programming details. In scientific
-computing, the code can run without an error and still fail scientifically:
-the result may not support the claim being made.
+Consider a small function for relative error:
 
-It is useful to separate three levels:
+```julia
+relative_error(approx, reference)
+```
 
-- the program crashes or throws an error,
-- the program returns a numerically wrong answer,
-- the answer is numerically plausible but scientifically misleading.
+The intended value is
 
-For an average function, edge cases include an empty array, a one-element array,
-negative values, repeated values, very large values, and missing or invalid
-values. Failure modes include dividing by zero, silently ignoring invalid data,
-or computing an ordinary average when the specification required a weighted
-average.
+```julia
+abs(approx - reference) / abs(reference)
+```
 
-For root finding, edge cases include an interval where the function does not
-change sign, a discontinuity, multiple roots, a flat derivative, and a root near
-the boundary of the interval. Failure modes include reporting convergence to
-the wrong root, stopping because the step size is small even though the
-residual is not small, or trusting a result without checking assumptions of the
-method.
+This is a useful example because the dangerous cases are simple. A reasonable
+specification is:
 
-For Monte Carlo simulation, edge cases include zero samples, very small sample
-counts, invalid parameters, a fixed random seed, and repeated independent runs.
-Failure modes include insufficient burn-in, strong autocorrelation, a missing
-random seed, too few independent samples, or drawing a physical conclusion from
-noise.
+- `approx` and `reference` must be finite real numbers,
+- `reference` must not be zero,
+- valid input returns the relative error,
+- invalid input throws an explicit exception.
 
-The important cases depend on the algorithm. A generic checklist is not
-enough. For numerical differentiation, dangerous cases include a function that
-nearly diverges at one point, a function that is not differentiable at the point
-being checked, a step size that is too small and causes cancellation, and a
-step size that is too large and gives truncation error.
+With this specification, `relative_error(2.1, 2.0)` is valid, and
+`relative_error(2.0, 2.0)` should return `0.0`. Negative reference values are
+also valid because the denominator uses `abs(reference)`.
 
-Correct behavior has two forms. If the assumptions of the method are satisfied,
-the code should compute the result within the expected tolerance. If the
-assumptions are not satisfied, the code should fail clearly: throw an error,
-return a diagnostic value, or refuse to report convergence. The dangerous case
-is silent failure, where the calculation continues and produces a plausible but
-wrong result.
+The invalid cases are more important here. If `reference == 0`, the denominator
+is zero. If either input is `Inf` or `NaN`, the result is not a useful finite
+error. The function should not silently return `Inf` or `NaN` and allow later
+calculations to continue as if nothing happened. It should fail clearly.
 
-You can create dangerous cases yourself and ask an AI agent to implement tests
-for them. You can also ask an AI agent to propose candidate edge cases and
-failure modes for a specific algorithm. In both cases, you must decide whether
-the proposed case is mathematically or physically relevant and what correct
-behavior should be.
+This is the main lesson: a test should check not only correct values for valid
+inputs, but also correct failure for invalid inputs. A silent `Inf` or `NaN`
+can be more dangerous than an error, because it may flow into later calculations
+and make the final result misleading.
 
 ## Things to look up
 
 - Edge case
-- Failure mode
-- Boundary condition
 - Invalid input
-- Defensive programming
-- Convergence criterion
-- Burn-in
-- Autocorrelation
-- Numerical differentiation
-- Singularity
-- Cancellation error
-- Silent failure
+- Failure mode
 
 ## Exercise
 
-Choose two tasks from the list below. For each task, choose a concrete
-algorithm and list at least four dangerous cases:
+In `work/chapter_6.2/`, write tests for `relative_error(approx, reference)`.
+Use the specification above.
 
-- computing an average,
-- numerical differentiation,
-- finding a root of a function,
-- running a Monte Carlo simulation.
+Include tests for valid inputs, such as:
 
-For each dangerous case, write:
+- `relative_error(2.1, 2.0)`,
+- `relative_error(2.0, 2.0)`,
+- a case with a negative reference value.
 
-- why the case is dangerous,
-- whether the correct behavior is a numerical result, a warning, an error, or
-  refusal to converge,
-- one fast check that could detect the problem.
+Also include tests that invalid inputs throw an explicit exception:
 
-Then ask an AI agent to suggest additional dangerous cases for the same
-algorithm. Compare its suggestions with your own list, and keep only the cases
-whose mathematical or physical relevance you can explain.
+- `reference == 0`,
+- `approx` is `NaN`,
+- `reference` is `Inf`.
+
+After writing the tests, implement `relative_error` so that the tests pass.
 
 ## Notes for the exercise
 
-- Include both programming failures and scientific failures.
-- Do not list only syntax errors.
-- Include cases where the code runs but the result is misleading.
-- For root finding, mention at least one assumption of the method.
-- For Monte Carlo, mention randomness, sample size, and independence.
-- For numerical differentiation, mention step size and behavior of the
-  function near the point being differentiated.
-- Prefer checks that can run quickly before a long calculation.
-- Do not accept an AI-generated test unless you can explain the expected
-  behavior.
+- Use `@test_throws` for invalid inputs.
+- Use `isfinite` to detect `Inf` and `NaN`.
+- Do not return `Inf` or `NaN` for invalid input.
+- Do not add an arbitrary threshold for small nonzero `reference` in this
+  exercise.
+- Keep the tests fast and deterministic.
