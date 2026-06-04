@@ -11,7 +11,7 @@ cd agentic_scientific_coding
 codex
 ```
 
-The exact command depends on the AI agent you use. The important point is that the workspace should be the course folder. Before asking the agent to edit files, read [1.3 Minimal Git and diff safety](minimal-git-diff-safety.qmd).
+The exact command depends on the AI agent you use. The important point is that the workspace should be the course folder. Minimal Git safety is introduced in the next subsection, [1.3 Minimal Git and diff safety](minimal-git-diff-safety.qmd), and repository workflow is discussed in detail later in [10.1 Git basics for scientific workflow](../reproducible-workflow/git-basics-for-scientific-workflow.qmd). Before asking the agent to edit files, read that safety page.
 
 ## Things to look up
 

@@ -40,7 +40,7 @@ The repository page is:
 
 - https://github.com/shinaoka/agentic_scientific_coding
 
-Unpack the ZIP file and work inside the top-level folder. If you already know Git, cloning the repository is also fine. Git and repository-based workflow are explained later in the course.
+Unpack the ZIP file and work inside the top-level folder. If you already know Git, cloning the repository is also fine. You do not need to understand Git or repository management in detail at the beginning, but read [Minimal Git and diff safety](book/getting-started/minimal-git-diff-safety.qmd) before asking an AI agent to edit files.
 
 If you use an AI agent, start it from the top-level course folder so it can read the course text, exercise files, and project structure together.
 
