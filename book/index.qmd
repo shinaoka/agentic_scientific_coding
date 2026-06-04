@@ -16,7 +16,7 @@ Julia is used first as a microscope for concepts: arrays, numeric types, functio
 
 Non-goal: this is not a course where students write every line of Rust code by hand without AI assistance. In the Rust part, code generation and editing are done together with an AI agent. The student's responsibility is to understand the generated code, review the changes, design checks, run tests, judge whether the result is scientifically correct, give feedback, and if needed improve the code with the AI agent.
 
-This material is not self-contained, and it is not a comprehensive textbook. It covers a wide range of ideas, so it is meant to serve as a feature map: a guide to the concepts, tools, checks, and workflows that students should learn to recognize and investigate further. Each subsection gives:
+This material is not self-contained, and it is not a comprehensive textbook. It covers a wide range of ideas, so it is meant to serve as a conceptual roadmap: a guide to the concepts, tools, checks, and workflows that students should learn to recognize and investigate further. Each subsection gives:
 
 - a short explanation,
 - concrete syntax or examples when the concept is programming-related,
