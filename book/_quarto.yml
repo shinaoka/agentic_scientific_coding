@@ -48,6 +48,7 @@ project:
     - project-exercises/exercise-format.qmd
     - rust-practice/why-rust-after-julia.qmd
     - rust-practice/julia-rust-arrays-ownership.qmd
+    - rust-practice/rust-array-libraries.qmd
     - rust-practice/ai-assisted-rust-workflow.qmd
     - rust-practice/verifying-generated-rust-code.qmd
 
@@ -127,6 +128,7 @@ book:
       chapters:
         - rust-practice/why-rust-after-julia.qmd
         - rust-practice/julia-rust-arrays-ownership.qmd
+        - rust-practice/rust-array-libraries.qmd
         - rust-practice/ai-assisted-rust-workflow.qmd
         - rust-practice/verifying-generated-rust-code.qmd
 

@@ -4,49 +4,62 @@ title: "12.1 Why Rust after Julia"
 
 ## Explanation
 
-Julia is a great language for learning scientific computing. Arrays, functions, numerical types, multiple dispatch, plotting, and interactive exploration are easy to inspect. Small numerical kernels can also be very fast when written carefully.
+Julia is a great language for learning scientific computing. Arrays, functions,
+numerical types, multiple dispatch, plotting, and interactive exploration are
+easy to inspect. Small numerical kernels can also be very fast when written
+carefully.
 
-For larger practical code, the balance can change. One view is that Julia's human-friendly writing experience matters most in education and exploratory work, while AI agents reduce the cost of writing more verbose code in languages such as Rust. In that setting, the human role shifts toward specification, review, validation, and feedback. This is a softer version of the viewpoint discussed in [On Julia's future (Developer Experience in the Era of Generative AI)](https://zenn.dev/h_shinaoka/articles/f8395a2c4f54d0).
+For larger practical code, the balance can change. One view is that Julia's
+human-friendly writing experience matters most in education and exploratory
+work, while AI agents reduce the cost of writing more verbose code in languages
+such as Rust. In that setting, the human role shifts toward specification,
+review, validation, and feedback. This is a softer version of the viewpoint
+discussed in [On Julia's future (Developer Experience in the Era of Generative
+AI)](https://zenn.dev/h_shinaoka/articles/f8395a2c4f54d0).
 
-Rust is useful to introduce after Julia because it is different in ways that matter for scientific software:
+Rust is useful to introduce after Julia because it is different in ways that
+matter for scientific software:
 
 - Rust is statically typed. Many errors are caught before the program runs.
 - Rust has a strong package and build system through Cargo.
 - Rust has no garbage collector. Memory management is controlled through ownership and borrowing.
-- Safe Rust rejects uncontrolled mutable aliasing. You can have many immutable references, or one mutable reference, but not arbitrary mutation through multiple aliases at the same time.
+- Safe Rust rejects uncontrolled mutable aliasing. You can have many immutable
+  references, or one mutable reference, but not arbitrary mutation through
+  multiple aliases at the same time.
 - Compiler errors are often useful feedback when an AI agent generates code.
-- Rust is used beyond research code. For example, [Linux kernel documentation](https://www.kernel.org/doc/html/v6.17/rust/index.html) says Rust support was merged into the mainline kernel in version 6.1, although it still describes this support as development or experimental for some uses.
+- Rust is used beyond research code. For example, [Linux kernel
+  documentation](https://www.kernel.org/doc/html/v6.17/rust/index.html) says
+  Rust support was merged into the mainline kernel in version 6.1, although it
+  still describes this support as development or experimental for some uses.
 
-The goal is not to memorize Rust syntax. The goal is to understand generated Rust code well enough to review data structures, ownership, tests, benchmarks, and scientific claims.
+The goal is not to memorize Rust syntax. The goal is to understand generated
+Rust code well enough to review data structures, ownership, tests, benchmarks,
+and scientific claims.
 
-For an overview, start from the official Rust learning page: [Learn Rust](https://rust-lang.org/learn/).
+For an overview, start from the official Rust learning page: [Learn
+Rust](https://rust-lang.org/learn/).
 
 ## Things to look up
 
 - Rust programming language
 - Cargo
-- Crate
 - Ownership
 - Borrowing
-- Mutable reference
-- Mutable aliasing
-- `rustc`
-- Rust in the Linux kernel
 
 ## Exercise
 
-Ask an AI agent to explain the following Julia-to-Rust differences in the context of a numerical function that takes an array and returns a scalar:
+Open the official [Learn Rust](https://rust-lang.org/learn/) page. Read the
+overview and follow the beginner path far enough to recognize the words
+ownership, borrowing, Cargo, and crate.
 
-- dynamic language vs static language,
-- garbage collection vs ownership,
-- Julia package environment vs Cargo project,
-- array mutation in Julia vs mutable borrowing in Rust.
-
-Then write a short paragraph explaining why Rust may be useful for a larger implementation, even if Julia was easier for learning the concept.
+Do not try to write a full Rust program yet. Write down three Rust terms that
+look important but unfamiliar. Then continue to the next page and use those
+terms while comparing Julia and Rust array code.
 
 ## Notes for the exercise
 
-- Do not write that Julia is bad. The question is about choosing a tool for a task.
-- Do not write that all aliasing is impossible in Rust. Immutable aliasing exists; uncontrolled mutable aliasing is what safe Rust prevents.
+- Do not write that Julia is bad. The question is about choosing a tool for a
+  task.
 - Treat compiler errors as review feedback, not as a failure of the workflow.
-- For first contact with Rust, use official learning material rather than random snippets.
+- For first contact with Rust, use official learning material rather than
+  random snippets.
