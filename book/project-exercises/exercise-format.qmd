@@ -1,35 +1,68 @@
 ---
-title: "10.2 Exercise Format"
+title: "10.2 Project exercise catalog"
 ---
 
 ## Explanation
 
-A practical exercise is larger than a single subsection. It asks you to use an AI agent as a collaborator while keeping responsibility for the method, checks, and interpretation.
+The directories under `exercises/` contain practical project exercises. The HTML page gives the overview. The detailed step-by-step instructions are in each project directory.
 
-The language may differ from the basic chapters. For example, a project may use Python because the surrounding scientific ecosystem is convenient, or Rust because reliability and explicit data flow are important.
+## `exercises/ising_mcmc/`
+
+This project studies the two-dimensional ferromagnetic Ising model with single-spin Metropolis Monte Carlo. The goal is to use an AI agent to design, implement, test, validate, and analyze a simulation whose output is scientifically inspectable.
+
+The standard route uses Python with `uv`, JSON output, and separate simulation and analysis scripts. Important checks include deterministic unit tests for energy, magnetization, periodic boundaries, and local energy changes; low- and high-temperature sanity checks; exact enumeration for a very small lattice; comparison across independent random seeds; and an optional Binder-parameter estimate of the transition temperature.
+
+The important habit is to make the Markov-chain data auditable. A plot is not enough. The saved JSON should include parameters, seed, discarded sweeps, measurement interval, boundary convention, and measured time series.
+
+## `exercises/tight_binding_dos/`
+
+This project computes the density of states of nearest-neighbor tight-binding models on one-, two-, and three-dimensional hypercubic lattices. The standard calculation uses a dense k-mesh and a histogram.
+
+The standard route uses Python with `uv`, processed JSON output, and plots generated from saved files. Important checks include DOS normalization, band edges, comparison with the analytic one-dimensional DOS, and a qualitative observation of the two-dimensional Van Hove feature near `E = 0`.
+
+The advanced challenge is to study the two-dimensional Van Hove singularity more carefully, for example with a constant-energy contour integral or adaptive mesh refinement. The simple histogram is useful for learning, but it should not be treated as a precise method near the singularity.
+
+## Common format
+
+Each project should make the following items explicit:
+
+- problem statement,
+- method and assumptions,
+- project environment,
+- commands to run,
+- saved data format,
+- unit tests,
+- validation checks,
+- benchmark cases when relevant,
+- limitations of the result.
+
+Use the README in each subdirectory as the detailed checklist. The AI agent may help write code and analysis, but the student must judge whether the calculation and evidence match the specification.
 
 ## Things to look up
 
-- Project README
-- Scientific validation
-- Saved metadata
-- Independent test
-- Work log
+- Metropolis Monte Carlo
+- Markov chain
+- Exact enumeration
+- Binder parameter
+- Tight-binding model
+- Density of states
+- Histogram normalization
+- Van Hove singularity
+- JSON metadata
 
 ## Exercise
 
-Choose one practical exercise directory. Before asking an AI agent to implement anything, write a one-page plan covering:
+Open one project directory and read its README. Then write a short project summary for yourself:
 
-- the model or numerical problem,
-- the input parameters,
-- the output data,
-- deterministic tests,
-- validation checks,
-- what metadata should be saved.
+- What physical or numerical problem is being solved?
+- What data files should be produced?
+- What tests can be checked without running a long calculation?
+- What validation evidence is required before making a scientific claim?
+- Which parts are standard work and which parts are advanced challenges?
 
 ## Notes for the exercise
 
-- Do not begin by asking the agent for a full solution.
-- Keep simulation and analysis separate when relevant.
-- Save enough metadata to inspect the run.
-- Connect numerical claims to validation evidence.
+- The current project READMEs use Python for the standard route. This does not change the role of Julia in the earlier conceptual chapters.
+- If you translate a project to Julia or Rust, keep the same scientific specification and validation checks.
+- Do not remove metadata just because the code runs.
+- Do not compare performance until the outputs and conventions are checked.

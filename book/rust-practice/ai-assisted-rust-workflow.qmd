@@ -1,3 +1,61 @@
 ---
-title: "11.2 AI-assisted Rust workflow"
+title: "11.2 Reworking a project in Rust"
 ---
+
+## Explanation
+
+After completing a Section 10 project, redo a small, well-defined part of it in Rust with help from an AI agent. Do not begin by translating the whole project. Choose a function, kernel, or command whose inputs, outputs, tests, and benchmark case are already clear.
+
+The workflow is:
+
+1. Start from the Section 10 specification and saved-data convention.
+2. Ask the AI agent which part is suitable for a Rust implementation.
+3. Ask the agent to create or update a Cargo project.
+4. Port one small component first.
+5. Write unit tests that match the Julia or Python behavior.
+6. Add a benchmark for a fixed problem size.
+7. Compare output, runtime, and memory behavior with the original implementation.
+8. Read the generated Rust code with the agent and explain the ownership and data structures.
+
+For the Ising project, a suitable first target might be the deterministic energy and local energy-change functions, then the update loop. For the tight-binding DOS project, a suitable first target might be the dispersion calculation or k-mesh energy generation.
+
+Benchmarking is part of the exercise, but it comes after correctness. Use the same input size, seed policy where relevant, and output convention. If the Rust version is faster but produces different data or omits metadata, it is not a successful scientific implementation.
+
+## Things to look up
+
+- Cargo project
+- `cargo test`
+- `cargo run`
+- `cargo bench`
+- Criterion benchmark
+- JSON serialization in Rust
+- Rust ownership
+- Rust slice
+- Mutable borrow
+
+## Exercise
+
+Choose one Section 10 project and ask an AI agent to implement one small Rust component. The prompt should include:
+
+```text
+Use the existing project specification.
+Implement only the following component in Rust: ...
+Keep the same inputs, outputs, conventions, and validation checks.
+Add unit tests and one benchmark case.
+Before editing, summarize the Rust data structures and ownership design.
+```
+
+After the code is generated, compare it with the Julia or Python version. Explain:
+
+- what data structure represents the main array,
+- which functions mutate data,
+- which functions only read data,
+- how ownership or borrowing appears in the function signatures,
+- whether the tests check the same behavior as the original implementation.
+
+## Notes for the exercise
+
+- Do not ask the agent to translate the entire project in one step.
+- Do not benchmark before the tests and validation checks are meaningful.
+- Keep one benchmark case fixed so that later changes are comparable.
+- Inspect the generated code visually. Ask the AI agent to explain unfamiliar syntax, but verify the explanation against official documentation when needed.
