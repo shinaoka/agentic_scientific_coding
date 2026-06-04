@@ -1,5 +1,5 @@
 ---
-title: "Basic workflow"
+title: "1.6 Basic workflow"
 ---
 
 ## Explanation
@@ -11,7 +11,10 @@ Use this workflow for most subsections:
 3. Look up unfamiliar terms.
 4. Solve the exercise by hand.
 5. Use Julia only when a small coding check helps.
-6. If you use an AI agent, review its reasoning and any diff it creates.
+6. If you ask an AI agent to generate an answer, treat it as a worked example, not as something to copy.
+7. Understand the generated answer in detail: every line of code, every formula, every assumption, and every conclusion.
+8. If anything is unclear, ask the AI agent follow-up questions until you can explain it in your own words.
+9. If the AI agent edits files, review its reasoning and any diff it creates.
 
 ## Things to look up
 
@@ -20,13 +23,19 @@ Use this workflow for most subsections:
 - Unit test
 - Validation
 - Reproducibility
+- Worked example
 
 ## Exercise
 
-For one subsection, write a short study plan that includes reading, searching, a hand-written answer, and an optional Julia check.
+For one subsection, write a short study plan that includes reading, searching, a hand-written answer, optional AI help, and an optional Julia check.
+
+If your plan uses AI-generated answers, also write how you will check that you understand the answer in detail.
 
 ## Notes for the exercise
 
 - Do not skip the hand-written step.
 - Do not start by asking an AI agent for the final answer.
+- If you later ask an AI agent for an answer, inspect it line by line.
+- Ask follow-up questions about every unclear term, formula, code line, or assumption.
+- Do not submit or accept an answer that you cannot explain without looking at the AI output.
 - Make the validation step explicit.

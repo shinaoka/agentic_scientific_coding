@@ -1,5 +1,5 @@
 ---
-title: "Complexity"
+title: "6.1 Complexity"
 ---
 
 ## Explanation

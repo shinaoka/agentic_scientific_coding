@@ -1,5 +1,5 @@
 ---
-title: "Git basics for scientific workflow"
+title: "8.1 Git basics for scientific workflow"
 ---
 
 ## Explanation

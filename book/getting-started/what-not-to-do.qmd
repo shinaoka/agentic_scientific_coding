@@ -1,10 +1,12 @@
 ---
-title: "What not to do"
+title: "1.7 What not to do"
 ---
 
 ## Explanation
 
 Do not use the AI agent as a replacement for understanding. A working script is not enough. You must be able to explain the problem, the algorithm, the tests, and the limitations.
+
+It is acceptable to ask an AI agent to generate a possible answer after you have tried the exercise yourself. When you do this, your task is to understand the answer completely. Ask about anything unclear, including small syntax details, hidden assumptions, skipped algebra, boundary cases, and why a particular check is sufficient or insufficient.
 
 ## Things to look up
 
@@ -12,6 +14,7 @@ Do not use the AI agent as a replacement for understanding. A working script is 
 - Code review
 - Scientific reproducibility
 - Rubber duck debugging
+- Worked example
 
 ## Exercise
 
@@ -21,6 +24,7 @@ Rewrite each weak prompt into a better prompt:
 - "Is this correct?"
 - "Make it faster."
 - "Fix the error."
+- "Give me the answer."
 
 ## Notes for the exercise
 
@@ -28,3 +32,4 @@ Rewrite each weak prompt into a better prompt:
 - A better prompt gives context.
 - A better prompt asks for checks, assumptions, or failure modes.
 - A better prompt does not remove your responsibility to inspect the answer.
+- If AI generates an answer, you must be able to explain all details in your own words.

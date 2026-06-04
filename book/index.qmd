@@ -18,7 +18,7 @@ Small examples use Julia by default. In this material Julia is treated roughly a
 
 ## How to read this site
 
-Start with [Download the material](getting-started/download-the-material.qmd). Then move through the pages in order.
+Start with [1.1 Download the material](getting-started/download-the-material.qmd). Then move through the pages in order.
 
 The basic workflow is:
 
@@ -31,12 +31,12 @@ The basic workflow is:
 
 ## Chapters
 
-- How to Use This Material
-- Learning with AI and Web Search
-- Julia Syntax Basics
-- Types, Abstraction, and Interfaces
-- Correctness and Validation
-- Algorithmic Thinking
-- Scientific Computing Basics with Julia
-- Reproducible Scientific Workflow
-- Practical Project Exercises
+- Section 1: How to Use This Material
+- Section 2: Learning with AI and Web Search
+- Section 3: Julia Syntax Basics
+- Section 4: Types, Abstraction, and Interfaces
+- Section 5: Correctness and Validation
+- Section 6: Algorithmic Thinking
+- Section 7: Scientific Computing Basics with Julia
+- Section 8: Reproducible Scientific Workflow
+- Section 9: Practical Project Exercises

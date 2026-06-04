@@ -1,5 +1,5 @@
 ---
-title: "Using an AI agent"
+title: "1.2 Using an AI agent"
 ---
 
 ## Explanation

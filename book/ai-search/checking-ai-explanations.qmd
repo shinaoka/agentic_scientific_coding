@@ -1,5 +1,5 @@
 ---
-title: "Checking AI explanations"
+title: "2.3 Checking AI explanations"
 ---
 
 ## Explanation

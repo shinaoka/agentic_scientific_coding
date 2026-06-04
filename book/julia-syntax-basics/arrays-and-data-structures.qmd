@@ -1,5 +1,5 @@
 ---
-title: "Arrays and data structures"
+title: "3.6 Arrays and data structures"
 ---
 
 ## Explanation

@@ -1,5 +1,5 @@
 ---
-title: "Types and numeric values"
+title: "3.2 Types and numeric values"
 ---
 
 ## Explanation

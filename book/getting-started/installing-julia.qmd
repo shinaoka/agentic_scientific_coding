@@ -1,5 +1,5 @@
 ---
-title: "Installing Julia"
+title: "1.4 Installing Julia"
 ---
 
 ## Explanation

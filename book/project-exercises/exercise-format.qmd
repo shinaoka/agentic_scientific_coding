@@ -1,5 +1,5 @@
 ---
-title: "Exercise Format"
+title: "9.2 Exercise Format"
 ---
 
 ## Explanation

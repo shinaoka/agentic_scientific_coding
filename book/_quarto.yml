@@ -44,7 +44,7 @@ book:
     search: true
   chapters:
     - index.qmd
-    - part: "How to Use This Material"
+    - part: "Section 1: How to Use This Material"
       chapters:
         - getting-started/download-the-material.qmd
         - getting-started/using-an-ai-agent.qmd
@@ -53,12 +53,12 @@ book:
         - getting-started/running-julia.qmd
         - getting-started/basic-workflow.qmd
         - getting-started/what-not-to-do.qmd
-    - part: "Learning with AI and Web Search"
+    - part: "Section 2: Learning with AI and Web Search"
       chapters:
         - ai-search/asking-useful-questions.qmd
         - ai-search/reading-documentation-and-examples.qmd
         - ai-search/checking-ai-explanations.qmd
-    - part: "Julia Syntax Basics"
+    - part: "Section 3: Julia Syntax Basics"
       chapters:
         - julia-syntax-basics/variables-and-state.qmd
         - julia-syntax-basics/types-and-numeric-values.qmd
@@ -66,32 +66,32 @@ book:
         - julia-syntax-basics/loops.qmd
         - julia-syntax-basics/functions.qmd
         - julia-syntax-basics/arrays-and-data-structures.qmd
-    - part: "Types, Abstraction, and Interfaces"
+    - part: "Section 4: Types, Abstraction, and Interfaces"
       chapters:
         - types-abstraction-interfaces/abstraction-and-interface.qmd
         - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
         - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
-    - part: "Correctness and Validation"
+    - part: "Section 5: Correctness and Validation"
       chapters:
         - correctness-validation/testing-and-tdd.qmd
         - correctness-validation/edge-cases-and-failure-modes.qmd
         - correctness-validation/reproducibility-as-validation.qmd
-    - part: "Algorithmic Thinking"
+    - part: "Section 6: Algorithmic Thinking"
       chapters:
         - algorithmic-thinking/complexity.qmd
         - algorithmic-thinking/search-and-sort.qmd
-    - part: "Scientific Computing Basics with Julia"
+    - part: "Section 7: Scientific Computing Basics with Julia"
       chapters:
         - scientific-computing/numerical-integration.qmd
         - scientific-computing/root-finding.qmd
         - scientific-computing/linear-algebra-computations.qmd
         - scientific-computing/monte-carlo-and-randomness.qmd
-    - part: "Reproducible Scientific Workflow"
+    - part: "Section 8: Reproducible Scientific Workflow"
       chapters:
         - reproducible-workflow/git-basics-for-scientific-workflow.qmd
         - reproducible-workflow/project-structure-and-reproducibility.qmd
         - reproducible-workflow/ai-agent-workflow.qmd
-    - part: "Practical Project Exercises"
+    - part: "Section 9: Practical Project Exercises"
       chapters:
         - project-exercises/overview.qmd
         - project-exercises/exercise-format.qmd
@@ -101,6 +101,7 @@ format:
     theme: cosmo
     lang: en
     toc: true
+    number-sections: false
     code-copy: true
     code-overflow: wrap
     css: custom.css

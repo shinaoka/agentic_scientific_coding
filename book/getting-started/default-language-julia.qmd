@@ -1,5 +1,5 @@
 ---
-title: "Default language: Julia"
+title: "1.3 Default language: Julia"
 ---
 
 ## Explanation

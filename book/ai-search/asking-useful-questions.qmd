@@ -1,5 +1,5 @@
 ---
-title: "Asking useful questions"
+title: "2.1 Asking useful questions"
 ---
 
 ## Explanation

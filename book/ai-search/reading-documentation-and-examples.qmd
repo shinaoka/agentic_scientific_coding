@@ -1,5 +1,5 @@
 ---
-title: "Reading documentation and examples"
+title: "2.2 Reading documentation and examples"
 ---
 
 ## Explanation

@@ -1,5 +1,5 @@
 ---
-title: "Multiple dispatch as an interface"
+title: "4.3 Multiple dispatch as an interface"
 ---
 
 ## Explanation

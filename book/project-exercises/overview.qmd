@@ -1,5 +1,5 @@
 ---
-title: "Practical Project Exercises"
+title: "9.1 Practical Project Exercises"
 ---
 
 The directories under `exercises/` contain larger agentic-coding exercises in the repository. They may use Python or another language when that is appropriate for the project.

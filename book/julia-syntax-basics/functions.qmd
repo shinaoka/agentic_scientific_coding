@@ -1,5 +1,5 @@
 ---
-title: "Functions"
+title: "3.5 Functions"
 ---
 
 ## Explanation
