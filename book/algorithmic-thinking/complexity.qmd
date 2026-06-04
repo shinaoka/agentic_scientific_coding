@@ -1,0 +1,47 @@
+---
+title: "Complexity"
+---
+
+## Explanation
+
+Complexity estimates how work grows with input size. A calculation that is fast for `N = 100` can become impossible for `N = 10^6` if the algorithm scales poorly.
+
+A single loop over an array is usually linear:
+
+```julia
+total = 0.0
+for x in xs
+    total += x
+end
+```
+
+Two nested loops over `N` elements usually perform about `N^2` iterations:
+
+```julia
+count = 0
+for i in 1:N
+    for j in 1:N
+        count += 1
+    end
+end
+```
+
+Before optimizing code, first count what grows with input size.
+
+## Things to look up
+
+- Big O notation
+- Linear time
+- Quadratic time
+- Nested loop
+- Hidden constant
+
+## Exercise
+
+Estimate the number of loop iterations for one loop, two nested loops, and three nested loops over an input of size `N`. Then compare what happens for `N = 10^3` and `N = 10^6`.
+
+## Notes for the exercise
+
+- Count loops before naming the complexity.
+- Distinguish `O(N)`, `O(N^2)`, and `O(N^3)`.
+- Do not conclude that an algorithm scales well only because it works for a small input.

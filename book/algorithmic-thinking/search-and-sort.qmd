@@ -1,0 +1,52 @@
+---
+title: "Search and sort"
+---
+
+## Explanation
+
+Searching and sorting are basic operations with important assumptions. Binary search is fast, but only applies when the data are sorted. Some sorting algorithms are simple but slow for large inputs.
+
+A linear search scans items one by one:
+
+```julia
+function linear_search(xs, target)
+    for i in eachindex(xs)
+        if xs[i] == target
+            return i
+        end
+    end
+    return nothing
+end
+```
+
+Julia also has built-in operations:
+
+```julia
+sort([3, 1, 2])
+findfirst(==(2), [3, 1, 2])
+```
+
+Built-in functions are useful, but you still need to know the assumptions and what result is returned.
+
+## Things to look up
+
+- Linear search
+- Binary search
+- Sorting algorithm
+- Stable sort
+- Selection sort or insertion sort
+
+## Exercise
+
+Write the difference between linear search and binary search. Then manually run selection sort or insertion sort on a short list of numbers.
+
+## Notes for the exercise
+
+- State the precondition for binary search.
+- Explain how duplicates are handled.
+- Count how many comparisons or steps are needed for the small example.
+- State whether stable sorting matters for your example.
+
+## Optional coding check
+
+Ask Julia to sort a small array. Then explain what the built-in function hides from you.

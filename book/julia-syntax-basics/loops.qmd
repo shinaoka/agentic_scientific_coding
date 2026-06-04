@@ -1,0 +1,54 @@
+---
+title: "Loops"
+---
+
+## Explanation
+
+A loop repeats a block of operations. Many loops use an accumulator, such as a running sum, count, maximum, or error estimate.
+
+```julia
+xs = [2.0, 4.0, 6.0]
+
+total = 0.0
+for x in xs
+    total = total + x
+end
+
+mean_value = total / length(xs)
+```
+
+Here `total` is the accumulator. It starts at `0.0` and changes once for each element.
+
+An index-based loop is also possible:
+
+```julia
+for i in eachindex(xs)
+    println(i, " -> ", xs[i])
+end
+```
+
+Julia arrays are 1-indexed: the first element is `xs[1]`, not `xs[0]`.
+
+## Things to look up
+
+- For loop
+- Accumulator
+- `eachindex`
+- Loop invariant
+- Off-by-one error
+
+## Exercise
+
+Write pseudocode to compute the sum, maximum, and average of an array. For each algorithm, state the initial value and what changes during each loop iteration.
+
+## Notes for the exercise
+
+- The empty-array case must be discussed.
+- The one-element case must be discussed.
+- For the maximum, the initial value must be justified.
+- For the average, explain when division occurs.
+- Remember that Julia arrays are 1-indexed.
+
+## Optional coding check
+
+Run your algorithm on arrays of length 0, 1, and 3. If empty input is invalid, make that explicit.

@@ -1,0 +1,42 @@
+---
+title: "Git basics for scientific workflow"
+---
+
+## Explanation
+
+Git is a way to keep a history of a project. In scientific computing, Git is not only a software development tool. It is also a way to inspect what changed between calculations.
+
+Official Git book:
+
+- [Pro Git](https://git-scm.com/book/en/v2)
+
+Core ideas:
+
+```text
+repository: project folder with history
+commit: saved checkpoint
+diff: what changed
+history: sequence of saved checkpoints
+```
+
+After an AI agent changes code, read the diff before accepting the change.
+
+## Things to look up
+
+- Repository
+- Commit
+- Diff
+- Git history
+- Working tree
+
+## Exercise
+
+Explain repository, commit, and diff in your own words. Then list what you should inspect after an AI agent changes code.
+
+## Notes for the exercise
+
+- A repository is a project folder with history.
+- A commit is a saved checkpoint.
+- A diff shows what changed.
+- Read the diff after AI-agent edits.
+- Do not put a large unrelated set of changes into one commit.

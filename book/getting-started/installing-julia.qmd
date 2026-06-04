@@ -1,0 +1,34 @@
+---
+title: "Installing Julia"
+---
+
+## Explanation
+
+Install Julia with `juliaup` unless you have a good reason to use another route. Do not rely on old blog posts for installation details. Use the official Julia installation page or ask an AI agent to search for the current instructions for your OS.
+
+Official sites:
+
+- [Julia installation](https://julialang.org/install/)
+- [Julia documentation](https://docs.julialang.org/)
+
+## Things to look up
+
+- juliaup
+- Julia official installation
+- Julia version manager
+- `julia --version`
+
+## Exercise
+
+Install Julia or confirm that Julia is already installed. Record:
+
+- how you found the installation instructions,
+- your OS,
+- the output of `julia --version`.
+
+## Notes for the exercise
+
+- Prefer official information.
+- If an AI agent gives install commands, ask where the instructions came from.
+- Confirm the installation by running Julia, not only by reading an install log.
+- Do not include long installation notes in your solution unless the exercise asks for them.

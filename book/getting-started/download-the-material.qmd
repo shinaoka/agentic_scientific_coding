@@ -1,0 +1,44 @@
+---
+title: "Download the material"
+---
+
+## Explanation
+
+The default way to start is to download the ZIP archive of the course material:
+
+- [Download ZIP](https://github.com/shinaoka/agentic_scientific_coding/archive/refs/heads/main.zip)
+
+The repository page is:
+
+- [https://github.com/shinaoka/agentic_scientific_coding](https://github.com/shinaoka/agentic_scientific_coding)
+
+Unpack the ZIP file and work inside the top-level folder. You do not need to understand Git or repository management at the beginning. Git and repository-based workflow are discussed later in [Reproducible Scientific Workflow](../reproducible-workflow/git-basics-for-scientific-workflow.qmd).
+
+If you already know Git, cloning is also fine:
+
+```bash
+git clone https://github.com/shinaoka/agentic_scientific_coding.git
+cd agentic_scientific_coding
+```
+
+## Things to look up
+
+- ZIP archive
+- Top-level folder
+- Current working directory
+- Command line basics for your OS
+
+## Exercise
+
+Download and unpack the course material. Write down:
+
+- where you downloaded it from,
+- the path to the top-level folder,
+- how you opened a terminal there,
+- which files or folders you see at the top level.
+
+## Notes for the exercise
+
+- Do not work from a random subdirectory unless the exercise explicitly says so.
+- You do not need to use Git for this first step.
+- If you use an AI agent, tell it the top-level folder and ask it to inspect the current files before editing anything.

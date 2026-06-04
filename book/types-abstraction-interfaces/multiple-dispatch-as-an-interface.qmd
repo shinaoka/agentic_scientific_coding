@@ -1,0 +1,44 @@
+---
+title: "Multiple dispatch as an interface"
+---
+
+## Explanation
+
+Julia often expresses interfaces through functions and multiple dispatch. The same function name can have different methods for different input types.
+
+```julia
+abstract type AbstractModel end
+
+struct HarmonicOscillator <: AbstractModel
+    k::Float64
+end
+
+struct FreeParticle <: AbstractModel
+end
+
+energy(model::HarmonicOscillator, x, v) = 0.5 * model.k * x^2 + 0.5 * v^2
+energy(model::FreeParticle, x, v) = 0.5 * v^2
+```
+
+The interface is the operation `energy(model, x, v)`. Different model types provide different methods.
+
+This is useful in scientific code because it lets you separate the mathematical model from the algorithm that uses it.
+
+## Things to look up
+
+- Multiple dispatch
+- Method
+- Generic function
+- Abstract type
+- Model interface
+
+## Exercise
+
+Design a tiny interface for a numerical model. It should include at least one abstract type and one function that different model types could implement.
+
+## Notes for the exercise
+
+- Name the operation, not only the data fields.
+- State what inputs the operation expects.
+- State what the operation returns.
+- Do not hide a global variable inside the method.

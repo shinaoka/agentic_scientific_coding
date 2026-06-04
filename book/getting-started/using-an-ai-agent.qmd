@@ -1,0 +1,37 @@
+---
+title: "Using an AI agent"
+---
+
+## Explanation
+
+If you use an AI agent, start it from the top-level course folder. This lets the agent read the teaching material, exercise files, work logs, and project structure as one workspace.
+
+```bash
+cd agentic_scientific_coding
+codex
+```
+
+The exact command depends on the AI agent you use. The important point is that the workspace should be the course folder. Git and repository workflow are introduced later.
+
+## Things to look up
+
+- AI coding agent
+- Workspace
+- AGENTS.md
+- Project folder
+
+## Exercise
+
+Write three prompts you could give an AI agent before asking it to write code. Each prompt must ask about one of the following:
+
+- inputs and outputs,
+- boundary cases,
+- tests or validation,
+- possible failure modes.
+
+## Notes for the exercise
+
+- Do not ask only "Is this correct?"
+- Ask for specific checks.
+- Ask the agent to explain assumptions.
+- Keep responsibility for the final judgment yourself.

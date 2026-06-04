@@ -1,0 +1,48 @@
+---
+title: "Testing and TDD"
+---
+
+## Explanation
+
+A test checks expected behavior. Test-driven development means stating the expected behavior before writing or changing the implementation. The important habit is not the ritual, but the discipline of making expectations explicit.
+
+Julia has a standard testing library:
+
+```julia
+using Test
+
+@test 1 + 1 == 2
+@test isapprox(sqrt(2)^2, 2.0)
+```
+
+A test for a mean function should be based on the specification, not on copying the implementation.
+
+```julia
+@test mean_value([2.0, 4.0, 6.0]) == 4.0
+@test mean_value([5.0]) == 5.0
+```
+
+## Things to look up
+
+- Unit test
+- Regression test
+- Test-driven development
+- Reference implementation
+- Julia `Test` standard library
+
+## Exercise
+
+Design five tests for a function that returns the mean of an array. For each test, write what property it checks.
+
+## Notes for the exercise
+
+- Include empty input or explain why it is invalid.
+- Include a one-element input.
+- Include repeated values.
+- Include negative values.
+- Include a case whose answer is known by hand.
+- Tests should check the specification, not copy the implementation.
+
+## Optional coding check
+
+Use Julia's `Test` standard library to write one of your tests. Use official documentation or an AI agent to find the minimal syntax.

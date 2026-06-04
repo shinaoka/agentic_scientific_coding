@@ -1,0 +1,17 @@
+---
+title: "Practical Project Exercises"
+---
+
+The directories under `exercises/` contain larger agentic-coding exercises in the repository. They may use Python or another language when that is appropriate for the project.
+
+- `exercises/ising_mcmc/`
+- `exercises/tight_binding_dos/`
+
+These exercises are not meant to replace the basic chapters. They are larger practice tasks for applying the workflow:
+
+1. design before coding,
+2. implement in small pieces,
+3. save inspectable data,
+4. test deterministic parts,
+5. validate numerical results,
+6. review AI-agent diffs.

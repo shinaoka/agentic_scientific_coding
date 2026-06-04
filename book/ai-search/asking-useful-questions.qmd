@@ -1,0 +1,40 @@
+---
+title: "Asking useful questions"
+---
+
+## Explanation
+
+Useful questions are specific. Instead of asking whether something is correct, ask about inputs, outputs, assumptions, edge cases, complexity, and validation.
+
+Weak:
+
+```text
+Is this function correct?
+```
+
+Better:
+
+```text
+For this function, list the expected input type, output type,
+edge cases, and tests that would catch a wrong implementation.
+```
+
+## Things to look up
+
+- How to ask coding questions
+- Input and output
+- Edge case
+- Failure mode
+- Prompting for code review
+
+## Exercise
+
+You are given an unknown function that computes a numerical quantity from an array. Write five questions you would ask an AI agent to understand the function.
+
+## Notes for the exercise
+
+- Include at least one question about input.
+- Include at least one question about output.
+- Include at least one question about boundary cases.
+- Include at least one question about validation.
+- Avoid the phrase "Is it correct?" unless you also specify a criterion.

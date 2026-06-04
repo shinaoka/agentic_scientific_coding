@@ -3,15 +3,39 @@ project:
   output-dir: dist
   render:
     - index.qmd
-    - getting-started.qmd
-    - ai-search.qmd
-    - julia-fundamentals.qmd
-    - program-structure.qmd
-    - correctness-validation.qmd
-    - algorithmic-thinking.qmd
-    - scientific-computing.qmd
-    - reproducible-workflow.qmd
-    - project-exercises.qmd
+    - getting-started/download-the-material.qmd
+    - getting-started/using-an-ai-agent.qmd
+    - getting-started/default-language-julia.qmd
+    - getting-started/installing-julia.qmd
+    - getting-started/running-julia.qmd
+    - getting-started/basic-workflow.qmd
+    - getting-started/what-not-to-do.qmd
+    - ai-search/asking-useful-questions.qmd
+    - ai-search/reading-documentation-and-examples.qmd
+    - ai-search/checking-ai-explanations.qmd
+    - julia-syntax-basics/variables-and-state.qmd
+    - julia-syntax-basics/types-and-numeric-values.qmd
+    - julia-syntax-basics/conditionals.qmd
+    - julia-syntax-basics/loops.qmd
+    - julia-syntax-basics/functions.qmd
+    - julia-syntax-basics/arrays-and-data-structures.qmd
+    - types-abstraction-interfaces/abstraction-and-interface.qmd
+    - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
+    - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
+    - correctness-validation/testing-and-tdd.qmd
+    - correctness-validation/edge-cases-and-failure-modes.qmd
+    - correctness-validation/reproducibility-as-validation.qmd
+    - algorithmic-thinking/complexity.qmd
+    - algorithmic-thinking/search-and-sort.qmd
+    - scientific-computing/numerical-integration.qmd
+    - scientific-computing/root-finding.qmd
+    - scientific-computing/linear-algebra-computations.qmd
+    - scientific-computing/monte-carlo-and-randomness.qmd
+    - reproducible-workflow/git-basics-for-scientific-workflow.qmd
+    - reproducible-workflow/project-structure-and-reproducibility.qmd
+    - reproducible-workflow/ai-agent-workflow.qmd
+    - project-exercises/overview.qmd
+    - project-exercises/exercise-format.qmd
 
 book:
   title: "Agentic Scientific Coding"
@@ -20,15 +44,57 @@ book:
     search: true
   chapters:
     - index.qmd
-    - getting-started.qmd
-    - ai-search.qmd
-    - julia-fundamentals.qmd
-    - program-structure.qmd
-    - correctness-validation.qmd
-    - algorithmic-thinking.qmd
-    - scientific-computing.qmd
-    - reproducible-workflow.qmd
-    - project-exercises.qmd
+    - part: "How to Use This Material"
+      chapters:
+        - getting-started/download-the-material.qmd
+        - getting-started/using-an-ai-agent.qmd
+        - getting-started/default-language-julia.qmd
+        - getting-started/installing-julia.qmd
+        - getting-started/running-julia.qmd
+        - getting-started/basic-workflow.qmd
+        - getting-started/what-not-to-do.qmd
+    - part: "Learning with AI and Web Search"
+      chapters:
+        - ai-search/asking-useful-questions.qmd
+        - ai-search/reading-documentation-and-examples.qmd
+        - ai-search/checking-ai-explanations.qmd
+    - part: "Julia Syntax Basics"
+      chapters:
+        - julia-syntax-basics/variables-and-state.qmd
+        - julia-syntax-basics/types-and-numeric-values.qmd
+        - julia-syntax-basics/conditionals.qmd
+        - julia-syntax-basics/loops.qmd
+        - julia-syntax-basics/functions.qmd
+        - julia-syntax-basics/arrays-and-data-structures.qmd
+    - part: "Types, Abstraction, and Interfaces"
+      chapters:
+        - types-abstraction-interfaces/abstraction-and-interface.qmd
+        - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
+        - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
+    - part: "Correctness and Validation"
+      chapters:
+        - correctness-validation/testing-and-tdd.qmd
+        - correctness-validation/edge-cases-and-failure-modes.qmd
+        - correctness-validation/reproducibility-as-validation.qmd
+    - part: "Algorithmic Thinking"
+      chapters:
+        - algorithmic-thinking/complexity.qmd
+        - algorithmic-thinking/search-and-sort.qmd
+    - part: "Scientific Computing Basics with Julia"
+      chapters:
+        - scientific-computing/numerical-integration.qmd
+        - scientific-computing/root-finding.qmd
+        - scientific-computing/linear-algebra-computations.qmd
+        - scientific-computing/monte-carlo-and-randomness.qmd
+    - part: "Reproducible Scientific Workflow"
+      chapters:
+        - reproducible-workflow/git-basics-for-scientific-workflow.qmd
+        - reproducible-workflow/project-structure-and-reproducibility.qmd
+        - reproducible-workflow/ai-agent-workflow.qmd
+    - part: "Practical Project Exercises"
+      chapters:
+        - project-exercises/overview.qmd
+        - project-exercises/exercise-format.qmd
 
 format:
   html:

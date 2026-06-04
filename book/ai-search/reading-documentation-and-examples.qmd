@@ -1,0 +1,35 @@
+---
+title: "Reading documentation and examples"
+---
+
+## Explanation
+
+Documentation and examples are not the same. Documentation describes intended behavior. Examples show common usage. You need both, and you should prefer official documentation when learning core tools.
+
+For Julia, a useful workflow is:
+
+```text
+1. Find the official documentation page.
+2. Read the short description.
+3. Try a small example in the REPL.
+4. Ask what can go wrong for your use case.
+```
+
+## Things to look up
+
+- Official documentation
+- API reference
+- Example code
+- Minimal working example
+- Julia documentation
+
+## Exercise
+
+Choose one Julia function related to arrays or mathematics. Find its official documentation and one example. Write down what the function does, what inputs it expects, and one possible mistake when using it.
+
+## Notes for the exercise
+
+- Use an official source when possible.
+- Do not copy a long documentation passage.
+- Explain the function in your own words.
+- Include one concrete input example.

@@ -1,0 +1,53 @@
+---
+title: "Abstraction and interface"
+---
+
+## Explanation
+
+This chapter builds on the previous Julia syntax chapter. The previous chapter focused on how to write and read basic code. This chapter focuses on how to organize code so that larger scientific programs remain understandable.
+
+An abstraction hides details behind a small set of operations. An interface is what other code is allowed to rely on. This matters in scientific computing because the same concept, such as a vector, matrix, lattice, mesh, or model, can have many implementations.
+
+For example, a two-dimensional vector can be represented as a plain array:
+
+```julia
+v = [3.0, 4.0]
+norm_v = sqrt(v[1]^2 + v[2]^2)
+```
+
+This is simple, but every user must remember that the first element is `x` and the second element is `y`.
+
+You can also define a small type:
+
+```julia
+struct Vector2D
+    x::Float64
+    y::Float64
+end
+
+norm2(v::Vector2D) = sqrt(v.x^2 + v.y^2)
+
+v = Vector2D(3.0, 4.0)
+norm2(v)
+```
+
+The type makes the intended structure visible. The interface is the set of operations users should rely on, such as constructing `Vector2D` and calling `norm2`.
+
+## Things to look up
+
+- Abstraction
+- Interface
+- Implementation detail
+- Public API
+- Julia `struct`
+
+## Exercise
+
+Compare representing a two-dimensional vector as a plain two-element array and as a `Vector2D` type. Write what users of each design need to know.
+
+## Notes for the exercise
+
+- Separate what the user sees from how the data is stored.
+- State what operations are guaranteed.
+- State what changes would break user code.
+- Do not add an abstraction unless it clarifies responsibility.

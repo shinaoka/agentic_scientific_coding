@@ -1,0 +1,39 @@
+---
+title: "Reproducibility as validation"
+---
+
+## Explanation
+
+A result is more trustworthy when someone can reproduce how it was obtained. Reproducibility requires keeping the input, code version, parameters, random seed when relevant, and output together in an inspectable form.
+
+A minimal saved result might contain:
+
+```julia
+result = Dict(
+    "method" => "trapezoidal_rule",
+    "n_intervals" => 100,
+    "value" => 0.33335,
+    "code_version" => "git commit hash here",
+)
+```
+
+The exact format depends on the project. The important point is to save more than the final number.
+
+## Things to look up
+
+- Reproducibility
+- Random seed
+- Metadata
+- Version information
+- Saved output
+
+## Exercise
+
+Suppose a script computes a numerical estimate and writes a result file. List the information that should be saved with the result so another student can inspect the calculation.
+
+## Notes for the exercise
+
+- Include parameters.
+- Include software or code version information.
+- Include the random seed if randomness is used.
+- Include enough information to connect the output to the run that produced it.

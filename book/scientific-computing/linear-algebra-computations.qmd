@@ -1,0 +1,40 @@
+---
+title: "Linear algebra computations"
+---
+
+## Explanation
+
+Linear algebra code must track shapes. Matrix-vector products, matrix-matrix products, transposes, and factorizations all have shape requirements. Large matrix operations also have important complexity costs.
+
+```julia
+A = [1.0 2.0; 3.0 4.0]  # 2 x 2 matrix
+x = [10.0, 20.0]        # length-2 vector
+
+b = A * x               # length-2 vector
+C = A * A               # 2 x 2 matrix
+```
+
+The syntax is compact, but you must still know the shapes. A shape mismatch is not a small detail; it usually means the mathematical expression is not well-defined.
+
+## Things to look up
+
+- Matrix-vector product
+- Matrix-matrix product
+- Shape mismatch
+- Dense matrix
+- Sparse matrix
+
+## Exercise
+
+Write pseudocode for matrix-vector multiplication and matrix-matrix multiplication. State the input shapes and estimate the complexity for square matrices of size `N`.
+
+## Notes for the exercise
+
+- State all shapes before writing loops.
+- Check index order.
+- Matrix-matrix multiplication is usually `O(N^3)` for the basic algorithm.
+- Mention whether symmetry or sparsity could change the approach.
+
+## Optional coding check
+
+Use Julia to multiply small matrices and vectors. Then intentionally try an incompatible shape and inspect the error message.

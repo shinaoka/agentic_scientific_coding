@@ -1,0 +1,28 @@
+---
+title: "Default language: Julia"
+---
+
+## Explanation
+
+Small examples and exercise checks use Julia by default. Here Julia is treated roughly as an open-source MATLAB: it is convenient for arrays, functions, linear algebra, plotting, and numerical experiments.
+
+The goal is not to learn every part of Julia. The goal is to learn concepts that transfer across scientific programming: specification, input, output, mutation, side effects, edge cases, complexity, validation, and reproducibility.
+
+For large practical code, performance-critical code, or existing research software, use a language appropriate for the task. Rust, C/C++, Python, and Julia can all be reasonable choices.
+
+## Things to look up
+
+- Julia programming language
+- MATLAB and Julia comparison
+- Scientific computing language
+- Array programming
+
+## Exercise
+
+Write a short paragraph explaining why a simple numerical exercise might use Julia, while a larger research code might use another language.
+
+## Notes for the exercise
+
+- Do not argue that one language is always best.
+- Separate language syntax from scientific workflow.
+- Mention at least two criteria, such as readability, libraries, performance, reliability, or existing code.

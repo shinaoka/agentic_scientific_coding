@@ -2,7 +2,7 @@
 
 This repository contains teaching material for B4/M1 students who are beginning to use programming and AI agents for scientific computing.
 
-The course text is a Quarto book. Manuscripts are in [`book/*.qmd`](book/).
+The course text is a Quarto book. Manuscripts are in [`book/`](book/) as one `.qmd` file per subsection.
 
 ## Local preview
 
@@ -32,7 +32,17 @@ In the repository settings, set Pages to use GitHub Actions as the source.
 
 ## For students
 
-Download or clone the whole repository. If you use an AI agent, start it from the repository root so it can read the course text, exercise files, and project structure together.
+Start by downloading the ZIP archive:
+
+- https://github.com/shinaoka/agentic_scientific_coding/archive/refs/heads/main.zip
+
+The repository page is:
+
+- https://github.com/shinaoka/agentic_scientific_coding
+
+Unpack the ZIP file and work inside the top-level folder. If you already know Git, cloning the repository is also fine. Git and repository-based workflow are explained later in the course.
+
+If you use an AI agent, start it from the top-level course folder so it can read the course text, exercise files, and project structure together.
 
 Small examples use Julia by default. Install Julia through `juliaup` using the official instructions:
 

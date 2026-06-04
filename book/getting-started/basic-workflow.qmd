@@ -1,0 +1,32 @@
+---
+title: "Basic workflow"
+---
+
+## Explanation
+
+Use this workflow for most subsections:
+
+1. Read the short explanation.
+2. Inspect the concrete syntax or example.
+3. Look up unfamiliar terms.
+4. Solve the exercise by hand.
+5. Use Julia only when a small coding check helps.
+6. If you use an AI agent, review its reasoning and any diff it creates.
+
+## Things to look up
+
+- Hand-written exercise
+- Pseudocode
+- Unit test
+- Validation
+- Reproducibility
+
+## Exercise
+
+For one subsection, write a short study plan that includes reading, searching, a hand-written answer, and an optional Julia check.
+
+## Notes for the exercise
+
+- Do not skip the hand-written step.
+- Do not start by asking an AI agent for the final answer.
+- Make the validation step explicit.

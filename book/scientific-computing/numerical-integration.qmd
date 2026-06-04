@@ -1,0 +1,46 @@
+---
+title: "Numerical integration"
+---
+
+## Explanation
+
+Numerical integration approximates an integral by combining function values. A single plausible number is not enough. You should compare with known answers when possible and check how the result changes as the step size changes.
+
+For the trapezoidal rule on `[a, b]`:
+
+```julia
+function trapezoidal(f, a, b, n)
+    h = (b - a) / n
+    total = 0.5 * f(a) + 0.5 * f(b)
+    for i in 1:(n - 1)
+        x = a + i * h
+        total += f(x)
+    end
+    return h * total
+end
+```
+
+This syntax is useful, but the key idea is the formula and the convergence check, not the exact code.
+
+## Things to look up
+
+- Numerical integration
+- Trapezoidal rule
+- Simpson's rule
+- Step size
+- Convergence
+
+## Exercise
+
+Use the trapezoidal rule to approximate the integral of `f(x) = x^2` from `0` to `1`. Write the formula, compute a small example by hand, and state what should happen when the step size is halved.
+
+## Notes for the exercise
+
+- Compare with the exact answer.
+- Do not rely on one step size.
+- State how error should change qualitatively.
+- Discuss what could go wrong for a non-smooth function.
+
+## Optional coding check
+
+Implement the trapezoidal rule in Julia and test several step sizes.

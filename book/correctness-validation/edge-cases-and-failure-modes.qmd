@@ -1,0 +1,38 @@
+---
+title: "Edge cases and failure modes"
+---
+
+## Explanation
+
+An edge case is an input near a boundary of the specification. A failure mode is a way the code or method can give a wrong, misleading, or unusable result.
+
+For example, an average function might fail for:
+
+- an empty array,
+- integer overflow in a low-level language,
+- missing values,
+- a user expecting weighted average instead of ordinary average.
+
+Some failures are programming failures. Others are scientific failures: the code runs, but the result does not support the claim.
+
+## Things to look up
+
+- Edge case
+- Failure mode
+- Boundary condition
+- Invalid input
+- Defensive programming
+
+## Exercise
+
+For each task, list at least three edge cases and two failure modes:
+
+- computing an average,
+- finding a root of a function,
+- running a Monte Carlo simulation.
+
+## Notes for the exercise
+
+- Include both programming failures and scientific failures.
+- Do not list only syntax errors.
+- Include cases where the code runs but the result is misleading.

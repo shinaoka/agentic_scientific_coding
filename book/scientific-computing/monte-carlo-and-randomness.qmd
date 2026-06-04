@@ -1,0 +1,65 @@
+---
+title: "Monte Carlo and randomness"
+---
+
+## Explanation
+
+Monte Carlo methods use randomness to estimate quantities. A Monte Carlo result should include the random seed, sample size, estimated uncertainty, and a check that the result changes sensibly with more samples.
+
+Computers usually generate pseudorandom numbers, not truly random numbers. A pseudorandom number generator follows a deterministic algorithm. The seed selects the starting point of the sequence. If the seed, algorithm, and code are the same, the same sequence can be reproduced.
+
+This is useful for debugging and reproducibility. It does not remove sampling error, and it does not make a Monte Carlo estimate exact.
+
+Put the main sampling work in a function. A function makes the computation easier to test, rerun with different parameters, and separate from printing or plotting.
+
+```julia
+using Random
+
+function estimate_pi(n; seed=1234)
+    rng = MersenneTwister(seed)
+    inside = 0
+
+    for _ in 1:n
+        x = rand(rng)
+        y = rand(rng)
+        if x^2 + y^2 <= 1
+            inside += 1
+        end
+    end
+
+    return 4 * inside / n
+end
+
+pi_estimate = estimate_pi(10_000; seed=1234)
+```
+
+The seed `1234` makes the run reproducible. A different seed gives a different pseudorandom sequence. When making a scientific claim, compare multiple seeds or report an uncertainty estimate instead of trusting one run.
+
+## Things to look up
+
+- Monte Carlo method
+- Pseudorandom number generator
+- Random seed
+- Sampling error
+- Error bar
+- Law of large numbers
+
+## Exercise
+
+Describe how to estimate pi by sampling random points in a square. Then write a function-level design for the calculation: inputs, output, internal state, and what should not be handled inside the function.
+
+State what data you would save and how you would check whether the estimate is reliable.
+
+## Notes for the exercise
+
+- Record the seed.
+- Record the number of samples.
+- Put the repeated sampling loop in a function.
+- Keep plotting, printing, and file output outside the core computation when possible.
+- Do not judge from one run only.
+- Include an uncertainty estimate or repeated independent runs.
+- Explain how the error should change as the sample size increases.
+
+## Optional coding check
+
+Write a small Julia script for the pi estimate. Run it with two sample sizes and compare the results.

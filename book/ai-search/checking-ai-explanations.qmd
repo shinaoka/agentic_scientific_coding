@@ -1,0 +1,32 @@
+---
+title: "Checking AI explanations"
+---
+
+## Explanation
+
+AI explanations can be useful and still incomplete. Check whether the explanation states assumptions, handles boundary cases, and gives a way to verify the claim.
+
+For example, if an AI agent explains an algorithm for the maximum of an array, check whether it mentions:
+
+- what happens for empty input,
+- what initial value is used,
+- how repeated maximum values are handled,
+- whether the output is the value, the index, or both.
+
+## Things to look up
+
+- Hallucination
+- Verification
+- Assumption
+- Counterexample
+- Sanity check
+
+## Exercise
+
+Ask an AI agent to explain a simple algorithm, such as computing the maximum of an array. Then write three checks you would apply to the explanation.
+
+## Notes for the exercise
+
+- Check whether empty input is discussed.
+- Check whether the algorithm updates the correct state.
+- Check whether the explanation distinguishes the algorithm from its implementation.

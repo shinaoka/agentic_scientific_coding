@@ -1,0 +1,30 @@
+---
+title: "What not to do"
+---
+
+## Explanation
+
+Do not use the AI agent as a replacement for understanding. A working script is not enough. You must be able to explain the problem, the algorithm, the tests, and the limitations.
+
+## Things to look up
+
+- Hallucination in AI coding
+- Code review
+- Scientific reproducibility
+- Rubber duck debugging
+
+## Exercise
+
+Rewrite each weak prompt into a better prompt:
+
+- "Write the code."
+- "Is this correct?"
+- "Make it faster."
+- "Fix the error."
+
+## Notes for the exercise
+
+- A better prompt names the goal.
+- A better prompt gives context.
+- A better prompt asks for checks, assumptions, or failure modes.
+- A better prompt does not remove your responsibility to inspect the answer.

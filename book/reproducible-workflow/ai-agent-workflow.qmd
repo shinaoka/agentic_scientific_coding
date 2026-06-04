@@ -1,0 +1,36 @@
+---
+title: "AI-agent workflow"
+---
+
+## Explanation
+
+An AI agent can write code, tests, explanations, and logs. That does not remove the need for human review. The core workflow is: define the task, ask for a plan, inspect the change, run checks, and record what was done.
+
+A useful review prompt is specific:
+
+```text
+Review the diff. Check whether the function inputs, output,
+side effects, tests, and saved metadata match the specification.
+List missing validation checks before changing code.
+```
+
+## Things to look up
+
+- Agentic coding
+- Code review
+- Work log
+- Test report
+- Validation report
+
+## Exercise
+
+Write a checklist of ten items to inspect after an AI agent changes code for a scientific calculation. Then write three review prompts that are more specific than "Is this correct?"
+
+## Notes for the exercise
+
+- Include diff review.
+- Include tests.
+- Include validation against known results or sanity checks.
+- Include reproducibility information.
+- Include the connection between code changes and numerical results.
+- Do not accept "it runs" as sufficient evidence.

@@ -1,0 +1,60 @@
+---
+title: "Root finding"
+---
+
+## Explanation
+
+Root finding tries to solve `f(x) = 0`. Bisection is robust when a sign change brackets a root. Newton's method can be fast, but it depends on the initial guess and derivative behavior.
+
+A bisection function should check the bracket before iterating:
+
+```julia
+function bisection(f, a, b; tol=1e-8, maxiter=100)
+    fa = f(a)
+    fb = f(b)
+    if fa * fb > 0
+        error("The interval does not bracket a root")
+    end
+
+    for _ in 1:maxiter
+        c = (a + b) / 2
+        fc = f(c)
+        if abs(fc) < tol || (b - a) / 2 < tol
+            return c
+        elseif fa * fc <= 0
+            b = c
+            fb = fc
+        else
+            a = c
+            fa = fc
+        end
+    end
+
+    error("Bisection did not converge")
+end
+```
+
+The function is longer than the mathematical idea because it must handle preconditions and stopping.
+
+## Things to look up
+
+- Bisection method
+- Newton's method
+- Bracketing
+- Stopping criterion
+- Convergence failure
+
+## Exercise
+
+For bisection, write the invariant that must remain true at every step. For Newton's method, describe two situations where the method can fail.
+
+## Notes for the exercise
+
+- Bisection requires a bracketing condition.
+- The stopping criterion must be explicit.
+- Newton's method depends on the initial value.
+- A small derivative or multiple roots can cause trouble.
+
+## Optional coding check
+
+Ask an AI agent to help write a minimal Julia bisection function. Before accepting it, check the bracketing condition and stopping rule.
