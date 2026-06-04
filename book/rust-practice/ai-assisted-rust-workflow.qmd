@@ -32,6 +32,7 @@ Benchmarking is part of the exercise, but it comes after correctness. Use the sa
 - Rust ownership
 - Rust slice
 - Mutable borrow
+- Row-major and column-major layout
 
 ## Exercise
 
@@ -58,4 +59,5 @@ After the code is generated, compare it with the Julia or Python version. Explai
 - Do not ask the agent to translate the entire project in one step.
 - Do not benchmark before the tests and validation checks are meaningful.
 - Keep one benchmark case fixed so that later changes are comparable.
+- When porting array code, define the mapping from multidimensional indices to a flat buffer before comparing correctness or performance.
 - Inspect the generated code visually. Ask the AI agent to explain unfamiliar syntax, but verify the explanation against official documentation when needed.

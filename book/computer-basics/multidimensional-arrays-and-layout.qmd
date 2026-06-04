@@ -10,6 +10,8 @@ A multidimensional array has a shape, such as `2 x 3`. The same mathematical sha
 
 Julia, MATLAB, and Fortran use column-major layout. C and many C-style arrays use row-major layout. Shape and memory layout are different concepts.
 
+For an N-dimensional array written as `A[i1, i2, ..., iN]`, column-major layout makes the leftmost index `i1` change fastest in contiguous memory. Row-major layout makes the rightmost index `iN` change fastest.
+
 This matters for performance because memory access order affects cache locality.
 
 ## Things to look up
@@ -17,6 +19,7 @@ This matters for performance because memory access order affects cache locality.
 - Shape
 - Row-major layout
 - Column-major layout
+- Fastest-varying index
 - Cache locality
 - Loop order
 
@@ -27,10 +30,12 @@ For a `2 x 3` matrix with entries `a11, a12, a13` on the first row and `a21, a22
 1. Write the row-major memory order.
 2. Write the column-major memory order.
 3. State which convention Julia uses.
+4. For a 3-dimensional array `A[i, j, k]`, state which index changes fastest in row-major layout and which index changes fastest in column-major layout.
 
 ## Notes for the exercise
 
 - Do not confuse mathematical matrix notation with memory layout.
 - State the shape separately from the storage order.
 - Remember that Julia is column-major.
+- For N-dimensional arrays, say which index is fastest-varying instead of relying only on the words row and column.
 - Explain why access order can affect performance.
