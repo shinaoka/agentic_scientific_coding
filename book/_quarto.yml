@@ -47,6 +47,7 @@ project:
     - project-exercises/overview.qmd
     - project-exercises/exercise-format.qmd
     - rust-practice/why-rust-after-julia.qmd
+    - rust-practice/julia-rust-arrays-ownership.qmd
     - rust-practice/ai-assisted-rust-workflow.qmd
     - rust-practice/verifying-generated-rust-code.qmd
 
@@ -125,6 +126,7 @@ book:
     - part: "Section 12: Rust Practice with AI Agents"
       chapters:
         - rust-practice/why-rust-after-julia.qmd
+        - rust-practice/julia-rust-arrays-ownership.qmd
         - rust-practice/ai-assisted-rust-workflow.qmd
         - rust-practice/verifying-generated-rust-code.qmd
 

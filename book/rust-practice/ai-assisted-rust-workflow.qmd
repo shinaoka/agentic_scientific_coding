@@ -1,5 +1,5 @@
 ---
-title: "12.2 Reworking a project in Rust"
+title: "12.3 Reworking a project in Rust"
 ---
 
 ## Explanation
