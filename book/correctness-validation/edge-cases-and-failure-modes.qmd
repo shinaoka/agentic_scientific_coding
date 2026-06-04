@@ -36,13 +36,24 @@ Failure modes include insufficient burn-in, strong autocorrelation, a missing
 random seed, too few independent samples, or drawing a physical conclusion from
 noise.
 
-A compact way to organize this thinking is a table:
+The important cases depend on the algorithm. A generic checklist is not
+enough. For numerical differentiation, dangerous cases include a function that
+nearly diverges at one point, a function that is not differentiable at the point
+being checked, a step size that is too small and causes cancellation, and a
+step size that is too large and gives truncation error.
 
-| Task | Edge case | Possible failure mode | Check |
-|---|---|---|---|
-| Average | Empty input | Division by zero or meaningless result | Throw a clear error |
-| Root finding | No sign change | Method assumption is violated | Check preconditions |
-| Monte Carlo | Too few samples | Plausible but noisy estimate | Compare multiple seeds |
+Correct behavior has two forms. If the assumptions of the method are satisfied,
+the code should compute the result within the expected tolerance. If the
+assumptions are not satisfied, the code should fail clearly: throw an error,
+return a diagnostic value, or refuse to report convergence. The dangerous case
+is silent failure, where the calculation continues and produces a plausible but
+wrong result.
+
+You can create dangerous cases yourself and ask an AI agent to implement tests
+for them. You can also ask an AI agent to propose candidate edge cases and
+failure modes for a specific algorithm. In both cases, you must decide whether
+the proposed case is mathematically or physically relevant and what correct
+behavior should be.
 
 ## Things to look up
 
@@ -54,15 +65,31 @@ A compact way to organize this thinking is a table:
 - Convergence criterion
 - Burn-in
 - Autocorrelation
+- Numerical differentiation
+- Singularity
+- Cancellation error
+- Silent failure
 
 ## Exercise
 
-For each task, make a table with at least three edge cases, two failure modes,
-and one check that could detect each failure mode:
+Choose two tasks from the list below. For each task, choose a concrete
+algorithm and list at least four dangerous cases:
 
 - computing an average,
+- numerical differentiation,
 - finding a root of a function,
 - running a Monte Carlo simulation.
+
+For each dangerous case, write:
+
+- why the case is dangerous,
+- whether the correct behavior is a numerical result, a warning, an error, or
+  refusal to converge,
+- one fast check that could detect the problem.
+
+Then ask an AI agent to suggest additional dangerous cases for the same
+algorithm. Compare its suggestions with your own list, and keep only the cases
+whose mathematical or physical relevance you can explain.
 
 ## Notes for the exercise
 
@@ -71,4 +98,8 @@ and one check that could detect each failure mode:
 - Include cases where the code runs but the result is misleading.
 - For root finding, mention at least one assumption of the method.
 - For Monte Carlo, mention randomness, sample size, and independence.
+- For numerical differentiation, mention step size and behavior of the
+  function near the point being differentiated.
 - Prefer checks that can run quickly before a long calculation.
+- Do not accept an AI-generated test unless you can explain the expected
+  behavior.
