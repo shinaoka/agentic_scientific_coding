@@ -1,6 +1,8 @@
 # Agentic Scientific Coding
 
-This repository contains teaching material for B4/M1 students who are beginning to use programming and AI agents for scientific computing.
+This repository contains teaching material for B4/M1 physics majors and students
+in related fields who are beginning to use programming and AI agents for
+physics-oriented numerical computing.
 
 The course text is a Quarto book. Manuscripts are in [`book/`](book/) as one `.qmd` file per subsection.
 

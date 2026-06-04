@@ -4,20 +4,54 @@ title: "6.3 Reproducibility as validation"
 
 ## Explanation
 
-A result is more trustworthy when someone can reproduce how it was obtained. Reproducibility requires keeping the input, code version, parameters, random seed when relevant, and output together in an inspectable form.
+A result is more trustworthy when someone can reproduce how it was obtained.
+Reproducibility is not only a reporting habit. It is part of validation,
+because a result that cannot be inspected later cannot be checked seriously.
 
-A minimal saved result might contain:
+Saving only the final number is usually not enough:
+
+```julia
+0.33335
+```
+
+A useful saved result keeps the number together with the information needed to
+understand and rerun the calculation:
 
 ```julia
 result = Dict(
+    "quantity" => "integral of x^2 from 0 to 1",
     "method" => "trapezoidal_rule",
     "n_intervals" => 100,
     "value" => 0.33335,
+    "expected_scale" => "near 1/3",
+    "tolerance" => 1e-4,
     "code_version" => "git commit hash here",
+    "julia_version" => VERSION,
+    "command" => "julia scripts/integrate.jl",
 )
 ```
 
-The exact format depends on the project. The important point is to save more than the final number.
+The exact format depends on the project. The important point is to save more
+than the final number: inputs, parameters, code version, software environment,
+random seed when relevant, output, and enough context to connect the output to
+the run that produced it.
+
+There are several levels of reproducibility:
+
+- rerun the same code with the same inputs and get the same result,
+- rerun after a code change and check that trusted examples still pass,
+- compare against independent reference data or a simpler reference method.
+
+The last level is especially important when using AI agents. If the same agent
+can freely edit both implementation code and tests, it may accidentally or
+intentionally make the tests match the bug. One defense is to keep verification
+data separately: fixed inputs, expected outputs, tolerances, provenance, and
+notes that are reviewed separately from ordinary code edits.
+
+Such data are often called oracle data. One public example is
+[tensor-ad-oracles](https://github.com/tensor4all/tensor-ad-oracles), which
+stores machine-readable JSON oracle data and mathematical notes for checking
+derivative correctness of tensor and linear algebra operations.
 
 ## Things to look up
 
@@ -25,11 +59,26 @@ The exact format depends on the project. The important point is to save more tha
 - Random seed
 - Metadata
 - Version information
-- Saved output
+- Provenance
+- Oracle data
+- Tolerance
+- JSON
 
 ## Exercise
 
-Suppose a script computes a numerical estimate and writes a result file. List the information that should be saved with the result so another student can inspect the calculation.
+Suppose a script computes a numerical estimate and writes a result file. List
+the information that should be saved with the result so another student can
+inspect the calculation.
+
+Then design a small verification-data record for one simple calculation, such
+as an average, a numerical integral, or a root-finding problem. Include inputs,
+expected output, tolerance, and provenance.
+
+Advanced: ask an AI agent to inspect
+[tensor-ad-oracles](https://github.com/tensor4all/tensor-ad-oracles) and
+summarize what kinds of information are stored for each verification case.
+Focus on the structure of the stored data, not on the details of automatic
+differentiation.
 
 ## Notes for the exercise
 
@@ -37,3 +86,6 @@ Suppose a script computes a numerical estimate and writes a result file. List th
 - Include software or code version information.
 - Include the random seed if randomness is used.
 - Include enough information to connect the output to the run that produced it.
+- Say which checks should be fast and which checks may be expensive.
+- Explain why verification data should be reviewed carefully when an AI agent
+  edits the project.

@@ -2,11 +2,13 @@
 title: "Introduction"
 ---
 
-This site contains teaching material for students who are beginning to use
-programming and AI agents for scientific computing.
+This site contains teaching material for physics majors and students in related
+fields who are beginning to use programming and AI agents for physics-oriented
+numerical computing.
 
 It is intended for science and engineering students who can follow elementary
-mathematics and want to learn computational work with AI agents. Prior
+mathematics and want to learn computational work with AI agents on
+physics-related numerical problems. Prior
 programming experience is helpful but not required. The material is not a
 complete Julia or Rust textbook; it teaches the minimum concepts needed to
 inspect, test, and validate scientific code.

@@ -27,6 +27,7 @@ project:
     - julia-syntax-basics/loops.qmd
     - julia-syntax-basics/functions.qmd
     - julia-syntax-basics/arrays-and-data-structures.qmd
+    - correctness-validation/overview.qmd
     - correctness-validation/testing-and-tdd.qmd
     - correctness-validation/edge-cases-and-failure-modes.qmd
     - correctness-validation/reproducibility-as-validation.qmd
@@ -92,6 +93,7 @@ book:
         - julia-syntax-basics/arrays-and-data-structures.qmd
     - part: "Section 6: Correctness and Validation"
       chapters:
+        - correctness-validation/overview.qmd
         - correctness-validation/testing-and-tdd.qmd
         - correctness-validation/edge-cases-and-failure-modes.qmd
         - correctness-validation/reproducibility-as-validation.qmd

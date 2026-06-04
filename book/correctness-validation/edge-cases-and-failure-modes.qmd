@@ -4,16 +4,45 @@ title: "6.2 Edge cases and failure modes"
 
 ## Explanation
 
-An edge case is an input near a boundary of the specification. A failure mode is a way the code or method can give a wrong, misleading, or unusable result.
+An edge case is an input near a boundary of the specification. A failure mode
+is a way the code or method can give a wrong, misleading, or unusable result.
 
-For example, an average function might fail for:
+Edge cases and failure modes are not only programming details. In scientific
+computing, the code can run without an error and still fail scientifically:
+the result may not support the claim being made.
 
-- an empty array,
-- integer overflow in a low-level language,
-- missing values,
-- a user expecting weighted average instead of ordinary average.
+It is useful to separate three levels:
 
-Some failures are programming failures. Others are scientific failures: the code runs, but the result does not support the claim.
+- the program crashes or throws an error,
+- the program returns a numerically wrong answer,
+- the answer is numerically plausible but scientifically misleading.
+
+For an average function, edge cases include an empty array, a one-element array,
+negative values, repeated values, very large values, and missing or invalid
+values. Failure modes include dividing by zero, silently ignoring invalid data,
+or computing an ordinary average when the specification required a weighted
+average.
+
+For root finding, edge cases include an interval where the function does not
+change sign, a discontinuity, multiple roots, a flat derivative, and a root near
+the boundary of the interval. Failure modes include reporting convergence to
+the wrong root, stopping because the step size is small even though the
+residual is not small, or trusting a result without checking assumptions of the
+method.
+
+For Monte Carlo simulation, edge cases include zero samples, very small sample
+counts, invalid parameters, a fixed random seed, and repeated independent runs.
+Failure modes include insufficient burn-in, strong autocorrelation, a missing
+random seed, too few independent samples, or drawing a physical conclusion from
+noise.
+
+A compact way to organize this thinking is a table:
+
+| Task | Edge case | Possible failure mode | Check |
+|---|---|---|---|
+| Average | Empty input | Division by zero or meaningless result | Throw a clear error |
+| Root finding | No sign change | Method assumption is violated | Check preconditions |
+| Monte Carlo | Too few samples | Plausible but noisy estimate | Compare multiple seeds |
 
 ## Things to look up
 
@@ -22,10 +51,14 @@ Some failures are programming failures. Others are scientific failures: the code
 - Boundary condition
 - Invalid input
 - Defensive programming
+- Convergence criterion
+- Burn-in
+- Autocorrelation
 
 ## Exercise
 
-For each task, list at least three edge cases and two failure modes:
+For each task, make a table with at least three edge cases, two failure modes,
+and one check that could detect each failure mode:
 
 - computing an average,
 - finding a root of a function,
@@ -36,3 +69,6 @@ For each task, list at least three edge cases and two failure modes:
 - Include both programming failures and scientific failures.
 - Do not list only syntax errors.
 - Include cases where the code runs but the result is misleading.
+- For root finding, mention at least one assumption of the method.
+- For Monte Carlo, mention randomness, sample size, and independence.
+- Prefer checks that can run quickly before a long calculation.

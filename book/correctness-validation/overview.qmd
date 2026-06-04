@@ -1,0 +1,91 @@
+---
+title: "Correctness and Validation"
+---
+
+## Explanation
+
+A numerical program is not validated just because it produces a number once.
+It must be organized so that wrong results can be found, localized, and
+corrected.
+
+The idea is similar to assembling a car. A car has many parts: an engine,
+doors, brakes, wheels, wiring, and many smaller components. If you assemble the
+whole car first and only then do a driving test, a failure tells you that
+something is wrong, but not which part caused it.
+
+Real inspection is built in layers. Inspect each part before installing it.
+After combining several parts, inspect that combination by itself. Then test
+the whole car. Software needs the same structure. A long script with hidden
+global state is like a car that can only be inspected after final assembly.
+
+This section develops three connected habits:
+
+- design code as small parts that can be tested independently,
+- think about edge cases and failure modes before trusting results,
+- save enough information that a result can be inspected and reproduced later.
+
+Test-driven development, or TDD, is a discipline for making the first habit
+concrete. Write the expected behavior as tests before writing the
+implementation. This is hard for humans because we naturally want to implement
+first and check casually afterward. TDD makes that shortcut visible.
+
+Tests also support handoff. If another person, or an AI agent, changes the
+code, the test suite gives a fast way to check whether the change broke
+existing behavior. Tests should therefore be fast. Small unit tests should run
+in seconds, and even in a large project the ordinary test suite should ideally
+finish in a few minutes or less. Expensive scientific validation can be kept as
+a separate check.
+
+This ideal is not always easy in Julia. In a large Julia project, startup,
+package loading, and precompilation overhead can make test execution much
+longer. This is one practical reason to consider Rust for larger structured
+projects: many type, ownership, and interface errors are caught at compile time
+before a long test or validation run starts. It is discouraging to wait through
+a long calculation and then fail on an error that a compiler could have found
+earlier.
+
+There is one AI-specific risk: an agent may make tests pass by weakening or
+rewriting the tests themselves. That is not validation. Review test changes
+first. For important reference cases, keep independent verification data:
+fixed inputs, expected outputs, tolerances, provenance, and notes stored in a
+place that is reviewed separately from ordinary implementation edits.
+
+One example of this idea is
+[tensor-ad-oracles](https://github.com/tensor4all/tensor-ad-oracles), which
+stores machine-readable oracle data for derivative-correctness checks.
+
+## Things to look up
+
+- Unit test
+- Test suite
+- Regression test
+- Edge case
+- Failure mode
+- Reproducibility
+- Oracle data
+- Provenance
+- Julia precompilation
+- Compile-time error
+
+## Exercise
+
+Choose one computational task, such as computing an average, finding a root, or
+running a small Monte Carlo simulation. Write a short validation plan with:
+
+- the small parts that should be tested independently,
+- the edge cases and failure modes to check,
+- the information that should be saved with the final result.
+
+Advanced: ask an AI agent to inspect the `tensor-ad-oracles` repository and
+summarize what kinds of information are stored in its oracle data. Do not ask
+for a full explanation of automatic differentiation; focus on what is stored
+for verification.
+
+## Notes for the exercise
+
+- Separate fast tests from expensive validation runs.
+- Include at least one check that would catch a scientifically misleading
+  result even if the code runs without an error.
+- Explain how the tests would help another person continue the work.
+- If an AI agent helps, review changes to tests and verification data before
+  reviewing implementation changes.
