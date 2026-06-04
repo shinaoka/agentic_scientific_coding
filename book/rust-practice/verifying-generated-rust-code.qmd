@@ -50,6 +50,7 @@ Then inspect Rust-specific details:
 - `cargo test`
 - `cargo bench`
 - `cargo clippy`
+- `cargo clean`
 - Rust ownership
 - Rust borrowing
 - Clone
@@ -74,4 +75,5 @@ Then choose one issue and ask the agent to improve the code. After the change, r
 - Passing `cargo test` is required, but it is not sufficient.
 - A faster benchmark is not useful if the output convention changed.
 - Unnecessary `clone` calls may hide ownership problems and add allocations.
+- `cargo clean` removes build artifacts, so use it when you want to understand rebuilds or cached state, not as a routine correctness check.
 - Use the compiler and AI agent together: compiler errors identify constraints, and the agent can help explain how to satisfy them.
