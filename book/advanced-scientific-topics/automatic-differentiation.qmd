@@ -1,0 +1,51 @@
+---
+title: "8.1 Automatic differentiation"
+---
+
+## Explanation
+
+Automatic differentiation computes derivatives of programs. It is useful when
+the quantity you care about is produced by many arithmetic operations rather
+than by a single formula written on paper.
+
+Gradients matter in optimization, parameter fitting, inverse problems, and
+sensitivity analysis. A gradient can tell you how a small change in one input
+changes the output of a calculation.
+
+AI-generated derivative code must still be checked. A derivative that compiles
+can be wrong because of a missing factor, a branch condition, an indexing
+mistake, or a mismatch between the mathematical function and the implemented
+function.
+
+Future Rust ecosystem material may connect this topic to tenferro-related work,
+`tidu-rs`, and `chainrules-rs`. For now, treat this page as a placeholder for
+the concept and for the validation habit.
+
+## Things to look up
+
+- Automatic differentiation
+- Forward mode
+- Reverse mode
+- Gradient check
+- Finite difference
+- Sensitivity analysis
+
+## Exercise
+
+Ask an AI agent to explain finite-difference checking of a derivative. Use a
+small scalar function such as `f(x) = x^2 + 3x`.
+
+In your answer, write:
+
+- the function being differentiated,
+- the exact derivative,
+- the finite-difference formula,
+- one reason the step size cannot be too large,
+- one reason the step size cannot be too small.
+
+## Notes for the exercise
+
+- This page is a short orientation, not a full AD tutorial.
+- A gradient check compares two independent ways of estimating the derivative.
+- Finite differences are useful for checking, but they are not a replacement
+  for understanding the derivative being tested.

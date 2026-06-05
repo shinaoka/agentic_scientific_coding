@@ -1,73 +1,107 @@
 ---
-title: "10.2 Project structure, environment, and reproducibility"
+title: "9.2 Project structure, environment, and reproducibility"
 ---
 
 ## Explanation
 
-A scientific computing project should separate source code, data, results, scripts, notes, and environment files. A reader should be able to find the entry point, understand what was run, install the required dependencies, and reproduce key results.
+A scientific computing project should separate source code, tests, input data,
+generated results, plotting scripts, notes, and environment files. A reader
+should be able to find the entry point, understand what was run, install the
+required dependencies, and reproduce key results.
 
-One possible structure is:
+One possible Rust project structure is:
 
 ```text
 project/
   README.md
-  Project.toml
-  Manifest.toml
+  Cargo.toml
+  Cargo.lock
   src/
-  test/
-  scripts/
+    lib.rs
+    main.rs
+    bin/
+      compute.rs
+  tests/
   data/
   results/
+  scripts/
+    plot_results.py
   notes/
 ```
 
-The exact structure can change, but input data, source code, generated output, and notes should not be mixed without reason.
+`Cargo.toml` describes the project and its direct dependencies. `Cargo.lock`
+records the resolved dependency versions and Git revisions. Complete exercise
+projects should commit both files.
 
-Test code should also be separated from runtime code. In Julia projects, tests are commonly placed under `test/`. Other languages use different conventions, but the idea is the same: normal execution should run the calculation, and a separate test command should run the tests.
+For example, a tenferro tensor dependency currently uses the tensor crate from
+the `tenferro-rs` workspace:
 
-In Julia, `Project.toml` describes the project environment, including direct dependencies. `Manifest.toml` records the resolved package versions. Together, these files help separate the dependencies of one project from another project.
+```toml
+tenferro-tensor = { git = "https://github.com/tensor4all/tenferro-rs", branch = "main" }
+```
 
-This is not unique to Julia. Rust has related ideas through `Cargo.toml` and `Cargo.lock`. Python projects often use `pyproject.toml` and lock files. The file names differ, but the concept is the same: make dependencies explicit and keep project environments separate.
+The calculation and plotting steps should be separate. A compute binary or
+script should write results and metadata to a file under `results/`. A plotting
+script should read that file and make the figure. The plot should not be the
+only saved output, and the plotting script should not silently recompute the
+scientific result.
 
-Do not confuse a project environment with an editor. VS Code, Cursor, or another editor can be useful, but the project should also be understandable from files and commands.
+Choose result formats to match the data:
+
+- Small scalar values, short time series, and metadata can use JSON, CSV, TSV,
+  or plain text.
+- Large arrays and multidimensional tensor data should use an array or
+  container format such as `.npy`, `.npz`, or HDF5.
+- Avoid ad hoc text dumps for heavy arrays, because shape, dtype, metadata, and
+  loading performance become fragile.
+
+Do not confuse a project environment with an editor. VS Code, Cursor, or
+another editor can be useful, but the project should also be understandable
+from files and commands.
 
 ## Things to look up
 
 - Project structure
 - README
-- Source code
-- Test suite
-- Results directory
-- Work log
-- Dependency
-- Dependency resolution
-- Julia `Project.toml`
-- Julia `Manifest.toml`
-- Project environment
+- `Cargo.toml`
+- `Cargo.lock`
+- `src/lib.rs`
+- `src/main.rs`
+- `tests/`
+- Result metadata
+- JSON
+- NPY and NPZ
+- HDF5
 
 ## Exercise
 
 Design a project structure with at least:
 
-- `src/`
-- `test/`
+- `Cargo.toml`
+- `Cargo.lock`
+- `src/lib.rs`
+- `src/main.rs` or `src/bin/compute.rs`
+- `tests/`
 - `data/`
 - `results/`
-- `scripts/`
+- a plotting script under `scripts/`
 - `README.md`
-- `Project.toml`
-- `Manifest.toml`
 - `notes/`
 
-Then list what information is needed to reproduce one result, including the dependency environment and the command used to run the calculation.
+Then list what information is needed to reproduce one result, including the
+dependency environment, command, input parameters, output file format, and the
+code version.
 
 ## Notes for the exercise
 
 - Do not mix input data, source code, and generated output.
 - Keep test code separate from runtime code.
+- Separate compute scripts from plotting scripts.
+- The compute step should dump result data and metadata before plotting.
 - State what should be saved and what can be regenerated.
 - Make the README the entry point.
-- Connect each result file to its input parameters and code version.
-- State which dependency files should be kept.
+- Connect each result file to its input parameters, code version, dependency
+  lock file, and command.
+- Choose JSON or text for small outputs, and `.npy`, `.npz`, HDF5, or a similar
+  array format for large multidimensional outputs.
 - Do not say only "it works on my computer".
-- If an AI agent edits the project, tell it which files define the project environment and which command verifies the result.

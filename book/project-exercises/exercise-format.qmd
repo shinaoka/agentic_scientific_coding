@@ -1,26 +1,56 @@
 ---
-title: "11.2 Project exercise catalog"
+title: "9.5 Project exercise catalog"
 ---
 
 ## Explanation
 
-The directories under `exercises/` contain practical project exercises. The HTML page gives the overview. The detailed step-by-step instructions are in each project directory in the [GitHub repository](https://github.com/shinaoka/agentic_scientific_coding), especially under [`exercises/`](https://github.com/shinaoka/agentic_scientific_coding/tree/main/exercises).
+The directories under `exercises/` contain practical project exercises. The
+HTML page gives the overview. The detailed step-by-step instructions are in
+each project directory in the
+[GitHub repository](https://github.com/shinaoka/agentic_scientific_coding),
+especially under
+[`exercises/`](https://github.com/shinaoka/agentic_scientific_coding/tree/main/exercises).
+
+The standard route for new or rewritten projects is Rust/Cargo. A complete
+project should include `Cargo.toml`, `Cargo.lock`, source code, tests, saved
+results, metadata, and a clear command sequence.
 
 ## `exercises/ising_mcmc/`
 
-This project studies the two-dimensional ferromagnetic Ising model with single-spin Metropolis Monte Carlo. The goal is to use an AI agent to design, implement, test, validate, and analyze a simulation whose output is scientifically inspectable.
+This project studies the two-dimensional ferromagnetic Ising model with
+single-spin Metropolis Monte Carlo. The goal is to use an AI agent to design,
+implement, test, validate, and analyze a simulation whose output is
+scientifically inspectable.
 
-The standard route uses Python with `uv`, JSON output, and separate simulation and analysis scripts. Important checks include deterministic unit tests for energy, magnetization, periodic boundaries, and local energy changes; low- and high-temperature sanity checks; exact enumeration for a very small lattice; comparison across independent random seeds; and an optional Binder-parameter estimate of the transition temperature.
+The current project README may still describe a Python route. Treat that as a
+historical or transitional implementation route until the project is rewritten.
+The scientific checks remain important in any language: deterministic unit
+tests for energy, magnetization, periodic boundaries, and local energy changes;
+low- and high-temperature sanity checks; exact enumeration for a very small
+lattice; comparison across independent random seeds; and an optional
+Binder-parameter estimate of the transition temperature.
 
-The important habit is to make the Markov-chain data auditable. A plot is not enough. The saved JSON should include parameters, seed, discarded sweeps, measurement interval, boundary convention, and measured time series.
+The important habit is to make the Markov-chain data auditable. A plot is not
+enough. Saved output should include parameters, seed, discarded sweeps,
+measurement interval, boundary convention, measured time series, code version,
+and dependency lock information.
 
 ## `exercises/tight_binding_dos/`
 
-This project computes the density of states of nearest-neighbor tight-binding models on one-, two-, and three-dimensional hypercubic lattices. The standard calculation uses a dense k-mesh and a histogram.
+This project computes the density of states of nearest-neighbor tight-binding
+models on one-, two-, and three-dimensional hypercubic lattices. The standard
+calculation uses a dense k-mesh and a histogram.
 
-The standard route uses Python with `uv`, processed JSON output, and plots generated from saved files. Important checks include DOS normalization, band edges, comparison with the analytic one-dimensional DOS, and a qualitative observation of the two-dimensional Van Hove feature near `E = 0`.
+The current project README may still describe a Python route. Treat that as a
+historical or transitional implementation route until the project is rewritten.
+The important checks remain DOS normalization, band edges, comparison with the
+analytic one-dimensional DOS, and a qualitative observation of the
+two-dimensional Van Hove feature near `E = 0`.
 
-The advanced challenge is to study the two-dimensional Van Hove singularity more carefully, for example with a constant-energy contour integral or adaptive mesh refinement. The simple histogram is useful for learning, but it should not be treated as a precise method near the singularity.
+The advanced challenge is to study the two-dimensional Van Hove singularity
+more carefully, for example with a constant-energy contour integral or adaptive
+mesh refinement. The simple histogram is useful for learning, but it should
+not be treated as a precise method near the singularity.
 
 ## Common format
 
@@ -29,14 +59,26 @@ Each project should make the following items explicit:
 - problem statement,
 - method and assumptions,
 - project environment,
+- `Cargo.toml` and `Cargo.lock` for Rust projects,
 - commands to run,
-- saved data format,
+- source entry points,
 - unit tests,
 - validation checks,
+- saved data format,
+- result metadata,
+- separation of compute scripts and plotting scripts,
 - benchmark cases when relevant,
 - limitations of the result.
 
-Use the README in each subdirectory as the detailed checklist. The AI agent may help write code and analysis, but the student must judge whether the calculation and evidence match the specification.
+Small scalar or tabular outputs can use JSON, CSV, TSV, or plain text. Large
+or multidimensional arrays should use an array or container format such as
+`.npy`, `.npz`, or HDF5. For 2D and higher numerical arrays in Rust code, use
+tenferro typed tensors unless the project explicitly asks for a flat-buffer
+implementation or another library.
+
+Use the README in each subdirectory as the detailed checklist. The AI agent may
+help write code and analysis, but the student must judge whether the
+calculation and evidence match the specification.
 
 ## Things to look up
 
@@ -48,21 +90,28 @@ Use the README in each subdirectory as the detailed checklist. The AI agent may 
 - Density of states
 - Histogram normalization
 - Van Hove singularity
-- JSON metadata
+- Result metadata
+- HDF5
+- NPY and NPZ
 
 ## Exercise
 
-Open one project directory and read its README. Then write a short project summary for yourself:
+Open one project directory and read its README. Then write a short project
+summary for yourself:
 
 - What physical or numerical problem is being solved?
 - What data files should be produced?
 - What tests can be checked without running a long calculation?
 - What validation evidence is required before making a scientific claim?
+- Which result format is appropriate for the data size and shape?
+- Which script computes the result, and which script plots it?
 - Which parts are standard work and which parts are advanced challenges?
 
 ## Notes for the exercise
 
-- The current project READMEs use Python for the standard route. This does not change the role of Julia in the earlier conceptual chapters.
-- If you translate a project to Julia or Rust, keep the same scientific specification and validation checks.
+- Current project READMEs may contain transitional implementation routes.
+- Keep the same scientific specification and validation checks when rewriting a
+  project in Rust.
 - Do not remove metadata just because the code runs.
+- Do not make plots the only saved output.
 - Do not compare performance until the outputs and conventions are checked.

@@ -1,11 +1,11 @@
 ---
-title: "10.1 Git basics for scientific workflow"
+title: "9.1 Git basics for scientific workflow"
 ---
 
 ## Explanation
 
-Git is a way to keep a history of a project. In scientific computing, Git is not
-only a software development tool. It is also a way to inspect what changed
+Git is a way to keep a history of a project. In scientific computing, Git is
+not only a software development tool. It is also a way to inspect what changed
 between calculations.
 
 The minimum safety commands were introduced earlier in
@@ -23,9 +23,17 @@ repository: project folder with history
 commit: saved checkpoint
 diff: what changed
 history: sequence of saved checkpoints
+working tree: files that may differ from the last commit
 ```
 
-After an AI agent changes code, read the diff before accepting the change.
+After an AI agent changes Rust code, read the diff before accepting the change.
+Check both scientific files and environment files such as `Cargo.toml` and
+`Cargo.lock`. A dependency change can affect numerical results even when the
+source code change looks small.
+
+Git does not replace result files. A reproducible calculation should still save
+the command, input parameters, result metadata, and output artifacts needed to
+inspect the run.
 
 ## Things to look up
 
@@ -34,18 +42,18 @@ After an AI agent changes code, read the diff before accepting the change.
 - Diff
 - Git history
 - Working tree
-- GitHub fork
-- `git clone`
 - Git remote
+- `git clone`
 - `git push`
 - Pull request
+- `Cargo.lock`
 
 ## Exercise
 
 Explain repository, commit, and diff in your own words. Then list what you
-should inspect after an AI agent changes code.
+should inspect after an AI agent changes a Rust scientific-coding project.
 
-Advanced exercise: Fork
+Advanced exercise: fork
 [this repository on GitHub](https://github.com/shinaoka/agentic_scientific_coding),
 clone your fork locally, make a small improvement to the lecture notes, push the
 change to your remote fork, and open one pull request. Before doing this
@@ -57,6 +65,7 @@ exercise, look up fork, clone, remote, push, and pull request.
 - A commit is a saved checkpoint.
 - A diff shows what changed.
 - Read the diff after AI-agent edits.
+- Check whether `Cargo.toml` or `Cargo.lock` changed.
 - Do not put a large unrelated set of changes into one commit.
 - In the advanced exercise, choose one small improvement so the pull request is
   easy to review.

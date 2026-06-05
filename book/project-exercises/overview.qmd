@@ -1,62 +1,70 @@
 ---
-title: "11.1 Practical project workflow"
+title: "9.4 Practical project workflow"
 ---
 
 ## Explanation
 
-The practical projects are larger than the small examples in the previous sections. Treat each project directory as a working directory. Start the AI agent there, read the local instructions, and keep the calculation, tests, saved data, and analysis connected.
+The practical projects are larger than the small examples in the previous
+sections. Treat each project directory as a working directory. Start the AI
+agent there, read the local instructions, and keep the calculation, tests,
+saved data, metadata, and analysis connected.
 
-The default language for basic concepts in this material is Julia. For a Julia project, move into the project directory and activate its project environment before working:
+The default project route for this course is Rust/Cargo. A normal project
+should make the environment explicit with `Cargo.toml` and `Cargo.lock`, put
+testable logic in `src/lib.rs`, put runnable entry points in `src/main.rs` or
+`src/bin/`, and put integration tests under `tests/`.
 
-```text
-cd path/to/project
-julia --project=.
-```
-
-or, from the Julia REPL:
-
-```julia
-import Pkg
-Pkg.activate(".")
-Pkg.instantiate()
-```
-
-Some practical projects may use Python, Rust, or another language because that is more appropriate for the task. In that case, use the environment tool specified by the project README, such as `uv` for Python or Cargo for Rust. The workflow is the same: make the environment explicit before asking the agent to edit code.
+Some existing project READMEs may still use Python with `uv`. Treat those as
+historical or transitional until the project is rewritten. The scientific
+workflow is the same: make the environment explicit, save inspectable result
+artifacts, and validate before plotting or making claims.
 
 A typical project workflow is:
 
 1. Move to the project working directory.
-2. Activate the project environment.
-3. Read the problem statement and identify the input, output, assumptions, and expected evidence.
-4. Study the algorithm or numerical method. Ask the AI agent for explanations, references, and possible failure modes before implementation.
-5. With the agent, write a short Markdown or LaTeX note describing the method, data format, and test cases. This is the brainstorm stage.
-6. Implement in small pieces. Start with deterministic functions and tests before long simulations or large calculations.
-7. Save inspectable data and metadata.
-8. Run tests, validation checks, and benchmarks when performance matters.
-9. Review the diff, give feedback, and iterate.
+2. Identify the project environment files and verification command.
+3. Read the problem statement and identify the input, output, assumptions, and
+   expected evidence.
+4. Study the algorithm or numerical method. Ask the AI agent for explanations,
+   references, and possible failure modes before implementation.
+5. With the agent, write a short Markdown or LaTeX note describing the method,
+   data representation, result format, and test cases.
+6. Implement in small pieces. Start with deterministic functions and tests
+   before long simulations or large calculations.
+7. Save inspectable data and metadata from the compute step.
+8. Plot or analyze by reading saved result files, not by recomputing inside the
+   plotting script.
+9. Run tests, validation checks, and benchmarks when performance matters.
+10. Review the diff, give feedback, and iterate.
 
-The purpose is not to make the agent produce a large answer in one step. The purpose is to make the scientific result reviewable.
+The purpose is not to make the agent produce a large answer in one step. The
+purpose is to make the scientific result reviewable.
 
 ## Things to look up
 
 - Project environment
-- Julia `Pkg.activate`
-- Julia `Project.toml`
+- `Cargo.toml`
+- `Cargo.lock`
 - Markdown
 - LaTeX
 - Algorithm design
 - Validation check
 - Work log
 - Diff review
+- Result artifact
 
 ## Exercise
 
-Choose one project directory. Before implementing anything, ask the AI agent to help you write a one-page project note in Markdown or LaTeX form. The note should include:
+Choose one project directory. Before implementing anything, ask the AI agent to
+help you write a one-page project note in Markdown or LaTeX form. The note
+should include:
 
 - the scientific problem,
 - the algorithm or numerical method,
 - inputs and parameters,
+- data representation,
 - output files and metadata,
+- the result file format,
 - deterministic unit tests,
 - validation checks,
 - benchmark cases if performance matters.
@@ -66,8 +74,12 @@ Then ask the agent to review the note before editing code.
 ## Notes for the exercise
 
 - Do not begin with "write the whole program."
-- Keep the environment activation command visible.
+- Keep the environment and verification commands visible.
 - Ask for algorithm explanation before code generation.
-- Start tests from small deterministic functions, and put them in the project test suite for real project code.
+- Start tests from small deterministic functions, and put them in the project
+  test suite for real project code.
 - Review tests and saved metadata before trusting plots.
+- Separate compute scripts from plotting scripts.
+- Choose JSON or text for small outputs, and `.npy`, `.npz`, HDF5, or a similar
+  array format for large multidimensional outputs.
 - If an answer was generated by AI, understand the details before using it.
