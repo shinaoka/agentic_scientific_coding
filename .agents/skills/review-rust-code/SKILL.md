@@ -45,6 +45,8 @@ work.
 - Are nested vectors such as `Vec<Vec<f64>>` avoided for numerical arrays?
 - Are small hand-checkable tests and edge cases included?
 - Was `cargo test` run, or is the missing test run clearly reported?
+- For numerical experiments that generate plots, are computation and plotting
+  separated so that results and metadata are written to a file before plotting?
 - When performance is discussed, is cache-friendly access considered?
 - Are scientific validation issues separated from Rust syntax issues?
 

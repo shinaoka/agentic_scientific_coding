@@ -61,6 +61,10 @@ repository and asks for help with exercises, questions, or code review.
   representation; they may appear only as an anti-pattern to discuss.
 - Check whether small hand-checkable tests, edge cases, and `cargo test` are
   provided when the answer is a Cargo project.
+- For numerical experiments that generate plots, check whether the computation
+  script and plotting script are separated. The computation should first dump
+  results and metadata to a file, and the plotting script should read that file
+  instead of recomputing the result.
 - When performance matters, check whether the answer considers cache-friendly
   memory access separately from Rust syntax issues.
 
