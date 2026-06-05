@@ -1,25 +1,18 @@
 ---
-title: "12.1 Why Rust for scientific computing"
+title: "12.1 Starting Rust for scientific computing"
 ---
 
 ## Explanation
 
-Julia is a great language for learning scientific computing, but you do not
-have to start every project in Julia. Rust can also be the first implementation
-language, especially when an AI agent helps with syntax, Cargo setup, and
-compiler errors.
+Rust can be the first implementation language for a scientific-computing
+project. An AI agent can help with syntax, Cargo setup, compiler errors, tests,
+and refactoring. The human role is to keep the specification, validation data,
+and scientific meaning clear.
 
-The important question is not "Julia first or Rust first?" The important
+The important question is not which language comes first. The important
 question is whether the project has a clear specification, small tested
 functions, reference data, and a validation workflow. With those in place, Rust
-is a reasonable language even for the first implementation.
-
-One view is that Julia's human-friendly writing experience matters most in
-education and exploratory work, while AI agents reduce the cost of writing more
-verbose code in languages such as Rust. In that setting, the human role shifts
-toward specification, review, validation, and feedback. This is a softer version
-of the viewpoint discussed in [On Julia's future (Developer Experience in the
-Era of Generative AI)](https://zenn.dev/h_shinaoka/articles/f8395a2c4f54d0).
+is a reasonable language for the first implementation.
 
 Rust is useful for scientific software because it is different in ways that
 matter for larger practical code:
@@ -36,9 +29,9 @@ matter for larger practical code:
   Rust support was merged into the mainline kernel in version 6.1, although it
   still describes this support as development or experimental for some uses.
 
-The goal is not to memorize Rust syntax. The goal is to understand generated
-Rust code well enough to review data structures, ownership, tests, benchmarks,
-and scientific claims.
+The goal is not to memorize Rust syntax before writing anything. The goal is to
+understand generated Rust code well enough to review data structures, ownership,
+tests, benchmarks, and scientific claims.
 
 For an overview, start from the official Rust learning page: [Learn
 Rust](https://rust-lang.org/learn/).
@@ -57,13 +50,13 @@ overview and follow the beginner path far enough to recognize the words
 ownership, borrowing, Cargo, and crate.
 
 Do not try to write a full Rust program yet. Write down three Rust terms that
-look important but unfamiliar. Then continue to the next page and use those
-terms while comparing Julia and Rust array code.
+look important but unfamiliar. Ask an AI agent to explain each term using a
+small numerical function that takes a `Vec<f64>` or slice. Then continue to the
+next page and use those terms while reading Rust function signatures.
 
 ## Notes for the exercise
 
-- Do not write that Julia is bad. The question is about choosing a tool for a
-  task.
+- Do not try to learn the whole language before writing small functions.
 - Treat compiler errors as review feedback, not as a failure of the workflow.
 - For first contact with Rust, use official learning material rather than
   random snippets.
