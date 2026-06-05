@@ -1,0 +1,50 @@
+---
+title: "4.7 Ownership and borrowing"
+---
+
+## Explanation
+
+Rust values have one owner. Code may create many immutable borrows of a value,
+or one mutable borrow, but not both at the same time. This rule makes mutation
+visible and prevents uncontrolled mutable aliasing.
+
+Function signatures show whether a function reads or changes data. A `&[f64]`
+argument reads a slice. A `&mut [f64]` argument may change a slice.
+
+```rust
+fn norm2(xs: &[f64]) -> f64 {
+    xs.iter().map(|x| *x * *x).sum::<f64>().sqrt()
+}
+
+fn normalize(xs: &mut [f64]) {
+    let n = norm2(xs);
+    if n > 0.0 {
+        for x in xs {
+            *x /= n;
+        }
+    }
+}
+```
+
+The `normalize` function first reads the slice to compute the norm, then uses a
+mutable borrow to change the values.
+
+## Things to look up
+
+- Owner
+- Immutable borrow
+- Mutable borrow
+- Aliasing
+- Borrow checker
+
+## Exercise
+
+Ask an AI agent why Rust rejects two simultaneous mutable borrows of the same
+vector. Then write a small example that first reads a slice and then mutates it
+in a separate step.
+
+## Notes for the exercise
+
+- Rust does not forbid all aliasing; it controls mutable aliasing.
+- Read function signatures before reading the function body.
+- Treat borrow-checker messages as information about data flow.

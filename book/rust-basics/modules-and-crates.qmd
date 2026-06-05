@@ -1,0 +1,56 @@
+---
+title: "4.9 Modules and crates"
+---
+
+## Explanation
+
+Cargo projects usually separate reusable code from command-line entry points.
+`src/lib.rs` exposes reusable functions and modules. `src/main.rs` is for a
+binary program that reads arguments, calls library code, and prints or saves
+results.
+
+Tests can live in `#[cfg(test)]` modules next to the code or in the `tests/`
+directory as integration tests. Keep runtime code and test code separated so
+the library can be reused by small programs and experiments.
+
+Minimal library layout:
+
+```rust
+// src/lib.rs
+pub fn square(x: f64) -> f64 {
+    x * x
+}
+```
+
+Minimal integration test:
+
+```rust
+// tests/basic.rs
+use my_crate::square;
+
+#[test]
+fn square_of_three_is_nine() {
+    assert_eq!(square(3.0), 9.0);
+}
+```
+
+## Things to look up
+
+- Cargo package
+- Crate
+- `src/lib.rs`
+- `src/main.rs`
+- Integration test
+- `#[cfg(test)]`
+
+## Exercise
+
+Ask an AI agent to create a tiny Cargo library with one reusable function and
+one integration test in `tests/`. Run `cargo test` and inspect which files are
+used.
+
+## Notes for the exercise
+
+- Keep runtime code and test code separated.
+- Put reusable numerical functions in the library when possible.
+- Use `src/main.rs` only when a command-line entry point is needed.

@@ -1,0 +1,48 @@
+---
+title: "4.8 Struct, enum, and trait"
+---
+
+## Explanation
+
+A `struct` groups named data. An `enum` represents one value chosen from a set
+of alternatives. A `trait` describes shared behavior that several types can
+provide.
+
+```rust
+struct Grid1D {
+    n: usize,
+    dx: f64,
+}
+
+enum Boundary {
+    Open,
+    Periodic,
+}
+
+trait Energy {
+    fn energy(&self) -> f64;
+}
+```
+
+These tools are useful for scientific interfaces. A grid can carry its size and
+spacing together, a boundary condition can be represented explicitly, and an
+energy calculation can be required through a trait.
+
+## Things to look up
+
+- `struct`
+- Field
+- `enum`
+- Variant
+- `trait`
+
+## Exercise
+
+Design a small struct for a 1D grid. Decide which fields it should contain,
+what units those fields use, and which values would be invalid.
+
+## Notes for the exercise
+
+- Make field names meaningful.
+- Write units clearly in comments or surrounding text.
+- Keep alternatives explicit when a value can only be one of a few choices.

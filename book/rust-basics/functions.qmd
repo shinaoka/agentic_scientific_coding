@@ -1,0 +1,44 @@
+---
+title: "4.5 Functions"
+---
+
+## Explanation
+
+A function signature defines an input and output contract. The name, argument
+types, and return type say what data the function expects and what it returns.
+
+Small functions are easier to test and review. They also make it easier to
+avoid hidden global mutable state, because data must be passed in through the
+function arguments or returned as a value.
+
+```rust
+fn square(x: f64) -> f64 {
+    x * x
+}
+
+fn sum(xs: &[f64]) -> f64 {
+    xs.iter().sum()
+}
+```
+
+The `sum` function reads a slice and does not take ownership of the underlying
+data.
+
+## Things to look up
+
+- Function signature
+- Return type
+- Slice argument
+- `Option`
+- Unit test
+
+## Exercise
+
+Implement `mean(xs: &[f64]) -> Option<f64>`. Return `None` for an empty slice
+and `Some(value)` for a non-empty slice.
+
+## Notes for the exercise
+
+- The empty slice is a boundary case.
+- Use a small hand-checkable input such as `[1.0, 2.0, 3.0]`.
+- Keep the function independent of hidden global state.

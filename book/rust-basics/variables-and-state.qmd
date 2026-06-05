@@ -1,0 +1,44 @@
+---
+title: "4.1 Variables and state"
+---
+
+## Explanation
+
+A `let` binding gives a name to a value. In Rust, a binding is immutable by
+default. Add `mut` only when the binding needs to change.
+
+```rust
+fn main() {
+    let x = 2;
+    let mut y = 3;
+    y += x;
+    println!("{y}");
+}
+```
+
+Values also have owners. For simple numbers this is usually invisible, but the
+same rule matters later for arrays, strings, and larger data. Rust makes
+mutation explicit, so a reader can see which names may change.
+
+For scientific code, avoid hidden global mutable state. Put state in values that
+are passed to functions, returned from functions, or stored in clearly named
+objects.
+
+## Things to look up
+
+- `let` binding
+- `mut`
+- Ownership
+- Global state
+
+## Exercise
+
+Before running the program above, predict the value printed by `println!`. Then
+change `let mut y = 3;` to `let y = 3;` and ask an AI agent why `mut` is
+required for `y += x`.
+
+## Notes for the exercise
+
+- Separate a name binding from mutation of the object or value behind the name.
+- Track which line changes a value.
+- Explain why making mutation visible helps review generated code.

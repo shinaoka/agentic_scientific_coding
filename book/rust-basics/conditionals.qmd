@@ -1,0 +1,43 @@
+---
+title: "4.3 Conditionals"
+---
+
+## Explanation
+
+An `if` expression chooses a branch using a `bool` condition. Comparisons such
+as `<`, `>`, `<=`, `>=`, `==`, and `!=` produce `bool` values.
+
+```rust
+fn sign_label(x: f64) -> &'static str {
+    if x < 0.0 {
+        "negative"
+    } else if x > 0.0 {
+        "positive"
+    } else {
+        "zero"
+    }
+}
+```
+
+Branch conditions are part of the numerical algorithm. A condition may decide
+which formula is used, when an iteration stops, or how a boundary case is
+handled.
+
+## Things to look up
+
+- `if`
+- `else`
+- Comparison operators
+- Boolean expression
+- Boundary case
+
+## Exercise
+
+Test `sign_label` with `x = -1.0`, `x = 0.0`, and `x = 1.0`. Before running the
+test, predict which branch each input should take.
+
+## Notes for the exercise
+
+- The boundary case `x = 0.0` is deliberate.
+- Check both ordinary cases and the value exactly on the boundary.
+- Read the branch conditions as part of the algorithm, not as decoration.

@@ -1,0 +1,48 @@
+---
+title: "4.2 Types and numeric values"
+---
+
+## Explanation
+
+Rust values have types. Common basic types include `i32` for signed integers,
+`usize` for sizes and indices, `f64` for floating-point numbers, `bool` for
+true-or-false values, and `String` for owned text.
+
+Integer and floating-point literals are different. The literal `10` can be an
+integer type such as `usize`, while `0.1` is a floating-point value. Choose
+numeric types deliberately so that indices, counts, and physical quantities are
+not mixed by accident.
+
+```rust
+fn main() {
+    let n: usize = 10;
+    let dx: f64 = 0.1;
+    let ok: bool = n > 0;
+
+    println!("n = {n}, dx = {dx}, ok = {ok}");
+}
+```
+
+The compiler can infer many types, but explicit annotations are useful at
+function boundaries and when reviewing important numerical assumptions.
+
+## Things to look up
+
+- `i32`
+- `usize`
+- `f64`
+- `bool`
+- `String`
+- Type inference
+
+## Exercise
+
+Predict the types of small expressions such as `1 + 2`, `0.5 * 2.0`,
+`10_usize - 1`, and `3.0 > 2.0`. Then check your prediction by asking an AI
+agent or by adding type annotations in a small Rust program.
+
+## Notes for the exercise
+
+- Indices and lengths often use `usize`.
+- Physical quantities often use `f64` in this course.
+- Do not choose a type only because a generated snippet happened to use it.

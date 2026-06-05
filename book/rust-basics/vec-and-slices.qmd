@@ -1,0 +1,52 @@
+---
+title: "4.6 Vec and slices"
+---
+
+## Explanation
+
+`Vec<T>` owns a contiguous 1D buffer of values. For owned 1D numerical data in
+this course, `Vec<f64>` is the standard storage type.
+
+A slice borrows part or all of a buffer. Use `&[T]` for a read-only borrow and
+`&mut [T]` for a mutable borrow. Function boundaries should usually take slices
+instead of owned vectors when the function only needs to read or change
+existing data.
+
+```rust
+fn mean(xs: &[f64]) -> Option<f64> {
+    if xs.is_empty() {
+        None
+    } else {
+        Some(xs.iter().sum::<f64>() / xs.len() as f64)
+    }
+}
+
+fn scale_in_place(xs: &mut [f64], alpha: f64) {
+    for x in xs {
+        *x *= alpha;
+    }
+}
+```
+
+This interface works for a full vector, a part of a vector, or other 1D storage
+that can be borrowed as a slice.
+
+## Things to look up
+
+- `Vec<T>`
+- Slice
+- `&[T]`
+- `&mut [T]`
+- Contiguous memory
+
+## Exercise
+
+Create tests for `mean` and `scale_in_place`. Include a non-empty slice, an
+empty slice for `mean`, and a small vector whose values are changed by
+`scale_in_place`.
+
+## Notes for the exercise
+
+- Do not take `&Vec<f64>` when `&[f64]` is enough.
+- Use `Vec<f64>` for owned 1D numerical storage.
+- Check both returned values and in-place mutation.

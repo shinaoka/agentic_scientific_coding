@@ -1,0 +1,53 @@
+---
+title: "4.4 Loops"
+---
+
+## Explanation
+
+Rust `for` loops can iterate over ranges or over borrowed data. Ranges such as
+`0..xs.len()` are useful when the algorithm needs positions. Rust indexing is
+0-based, so the first element has index `0`.
+
+```rust
+fn sum_by_index(xs: &[f64]) -> f64 {
+    let mut total = 0.0;
+    for i in 0..xs.len() {
+        total += xs[i];
+    }
+    total
+}
+```
+
+When the algorithm only needs values, iterate over the slice directly.
+
+```rust
+fn sum_by_value(xs: &[f64]) -> f64 {
+    let mut total = 0.0;
+    for x in xs {
+        total += *x;
+    }
+    total
+}
+```
+
+Both versions read the same slice. The choice is about whether the position
+`i` is part of the algorithm.
+
+## Things to look up
+
+- `for` loop
+- Range `0..n`
+- Slice iteration
+- 0-based indexing
+
+## Exercise
+
+For the slice `[2.0, 4.0, 6.0]`, compute the sum by hand and write down the
+value of `total` after each loop step. Then implement a small `sum(xs: &[f64])
+-> f64` function and compare the result.
+
+## Notes for the exercise
+
+- Prefer iterator forms when indices are not needed.
+- Use indices when the algorithm depends on positions.
+- Include the empty slice as a boundary case when testing a sum function.
