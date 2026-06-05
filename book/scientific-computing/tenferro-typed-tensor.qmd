@@ -4,10 +4,12 @@ title: "7.1 Typed tensors with tenferro"
 
 ## Explanation
 
-For this course, `tenferro::TypedTensor` is the standard path for
-two-dimensional and higher numerical arrays. One-dimensional owned data should
-still normally use `Vec<f64>`, with functions accepting `&[f64]` or
-`&mut [f64]` at their boundaries.
+For this course, tenferro typed tensors are the standard path for
+two-dimensional and higher numerical arrays. In the current `tenferro-rs`
+layout, the type is imported as `tenferro_tensor::TypedTensor` from the
+`tenferro-tensor` crate. One-dimensional owned data should still normally use
+`Vec<f64>`, with functions accepting `&[f64]` or `&mut [f64]` at their
+boundaries.
 
 A tensor is not just a block of numbers. It carries data together with shape
 information and, in typed-tensor code, meaning for the axes. For example, one
@@ -18,21 +20,23 @@ Shape validation is part of correctness. If an algorithm expects a
 `time x variable` tensor, accepting a `variable x time` tensor by accident can
 produce a number that looks plausible but means the wrong thing.
 
-Use this Cargo dependency snippet exactly when an exercise project needs
-`tenferro`:
+At the time of this writing, `tenferro-rs` has no all-in-one `tenferro` facade
+crate. Use the tensor crate directly when an exercise project needs typed
+tensors:
 
 ```toml
-tenferro = { git = "https://github.com/tensor4all/tenferro-rs", branch = "main" }
+tenferro-tensor = { git = "https://github.com/tensor4all/tenferro-rs", branch = "main" }
 ```
 
 Complete exercise projects should commit `Cargo.lock`. The lock file records
 the resolved Git revision, which matters because `tenferro` is under active
 development. Before trusting AI-generated tensor code, verify the current
-repository or documentation and record the resolved revision.
+repository or documentation, crate names, import paths, and resolved revision.
 
 ## Things to look up
 
 - `tenferro`
+- `tenferro-tensor`
 - `TypedTensor`
 - Tensor shape
 - Tensor axis
@@ -56,6 +60,7 @@ In your answer, record:
 
 - Do not trust generated tensor code without checking the current repository
   or API.
+- Check the current crate name and import path before copying generated code.
 - Shape and axis meaning are part of the scientific specification.
 - A small working example with a recorded revision is more useful than a long
   example that silently depends on an outdated API.

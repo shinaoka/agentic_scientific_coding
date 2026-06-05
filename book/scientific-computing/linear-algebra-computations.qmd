@@ -21,11 +21,12 @@ fn dot(x: &[f64], y: &[f64]) -> Option<f64> {
 }
 ```
 
-For two-dimensional matrix or tensor examples, use `tenferro::TypedTensor` by
-default. Because `tenferro` is under active development, inspect the current
-API and the resolved Git revision before writing constructor or indexing code.
-The scientific design should still be clear before the exact API calls are
-chosen:
+For two-dimensional matrix or tensor examples, use tenferro typed tensors by
+default. In the current crate layout this means `tenferro_tensor::TypedTensor`,
+but `tenferro-rs` is under active development. Inspect the current API, crate
+name, import path, and resolved Git revision before writing constructor or
+indexing code. The scientific design should still be clear before the exact API
+calls are chosen:
 
 - State the shape of each input.
 - State the axis meaning.
@@ -35,7 +36,9 @@ chosen:
 `ndarray` and `ndarray-linalg` remain alternatives for established BLAS and
 LAPACK workflows, especially when a project needs routines already exposed by
 that ecosystem. The algorithmic cost of matrix multiplication is discussed in
-[Matrix multiplication as a performance model](../algorithmic-thinking/matrix-multiplication-performance.qmd).
+[Matrix multiplication as a performance model][gemm-performance].
+
+[gemm-performance]: ../algorithmic-thinking/matrix-multiplication-performance.qmd
 
 ## Things to look up
 
@@ -58,8 +61,8 @@ vector length matches the matrix column count. In your answer:
 - State the input shapes.
 - State the output shape.
 - State what error is returned for a mismatch.
-- Explain which part would use `&[f64]` and which part would use
-  `tenferro::TypedTensor`.
+- Explain which part would use `&[f64]` and which part would use a tenferro
+  typed tensor.
 
 ## Notes for the exercise
 

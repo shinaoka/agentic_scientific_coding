@@ -8,7 +8,8 @@ The course default is simple and explicit:
 
 - Use slices for one-dimensional function boundaries.
 - Use `Vec<f64>` for owned one-dimensional numerical data.
-- Use `tenferro::TypedTensor` for two-dimensional and higher arrays or tensors.
+- Use tenferro typed tensors, currently `tenferro_tensor::TypedTensor`, for
+  two-dimensional and higher arrays or tensors.
 
 The Rust ecosystem also includes important alternatives. `ndarray` is a widely
 used N-dimensional array library. `ndarray-linalg` connects ndarray-style
@@ -36,15 +37,17 @@ array types designed for numerical work.
 
 ## Exercise
 
-Compare the `tenferro`, `ndarray`, and `ndarray-linalg` documentation for one
-array operation, such as creating a small two-dimensional array, checking its
-shape, or performing a matrix-vector product.
+Compare the `tenferro-tensor` and `ndarray` documentation for one basic array
+operation, such as creating a small two-dimensional array or checking its
+shape. Then inspect `ndarray-linalg` documentation for one BLAS/LAPACK-style
+operation, such as solving a linear system or calling a matrix factorization.
 
 For each library, record:
 
 - Where you found the documentation.
 - What shape information the example makes visible.
-- Whether the operation needs optional features or external libraries.
+- Whether the operation needs optional features, backend crates, or external
+  libraries.
 - One validation check you would add before using the result scientifically.
 
 ## Notes for the exercise
