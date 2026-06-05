@@ -1,0 +1,41 @@
+---
+title: "1.5 Installing Rust"
+---
+
+## Explanation
+
+Install Rust with `rustup` unless you have a local reason to use another
+route. Examples of local reasons include a managed classroom computer, a
+cluster module system, or an operating-system package policy.
+
+Use the official Rust installation instructions. Do not rely on old blog posts
+or copied commands without checking where they came from.
+
+After installation, confirm that both `rustc` and `cargo` are available from
+the terminal. `rustc` is the Rust compiler. `cargo` is the standard tool for
+creating projects, building code, running programs, and running tests.
+
+## Things to look up
+
+- Rust installation
+- rustup
+- rustc
+- cargo
+
+## Exercise
+
+Install Rust or confirm that Rust is already installed. Record:
+
+- your OS,
+- the installation route you used,
+- the output of `rustc --version`,
+- the output of `cargo --version`.
+
+## Notes for the exercise
+
+- Prefer official information.
+- If an AI agent gives install commands, ask where the instructions came from.
+- Confirm the installation by running the commands, not only by reading an
+  install log.
+- Do not include long installation notes in your solution unless the exercise
+  asks for them.

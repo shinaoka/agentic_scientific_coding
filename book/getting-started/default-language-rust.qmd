@@ -1,0 +1,53 @@
+---
+title: "1.4 Default language: Rust"
+---
+
+## Explanation
+
+Rust is the default language for examples and exercise checks in this
+material. This does not mean that Rust is the best language for every
+scientific project. It means that the course uses one common language when a
+small program or testable exercise is useful.
+
+Cargo gives Rust projects a standard build and test workflow. A student, an AI
+agent, and a reviewer can usually agree on simple commands such as
+`cargo test`, inspect the same files, and reproduce the same checks.
+
+Rust compiler errors are useful feedback when working with AI agents. The
+compiler often points to a specific type, ownership, borrowing, or lifetime
+problem. Instead of treating those messages as a failure, use them as evidence
+for the next question or edit.
+
+For one-dimensional numerical data, owned storage should normally use
+`Vec<f64>`. Function boundaries should normally use slices such as `&[f64]` or
+`&mut [f64]`. This keeps functions flexible without hiding unnecessary copies.
+
+For two-dimensional and higher numerical arrays, use `tenferro::TypedTensor`
+by default unless an exercise explicitly asks for a flat-buffer
+implementation. The goal is to make shape and array meaning explicit, not to
+build large nested vectors.
+
+The goal is scientific workflow, not memorizing all Rust syntax. Focus on
+inputs, outputs, assumptions, boundary cases, tests, validation, and
+reproducibility.
+
+## Things to look up
+
+- Rust programming language
+- Cargo
+- rustup
+- Ownership and borrowing
+- Slice
+- Crate
+
+## Exercise
+
+Write a short paragraph explaining why a scientific exercise can start in Rust
+with help from an AI agent.
+
+## Notes for the exercise
+
+- Mention tests, compiler feedback, and reproducibility.
+- Do not argue that Rust is always the best language.
+- Separate Rust syntax from scientific workflow.
+- Explain what you would check before trusting AI-generated code.

@@ -1,0 +1,38 @@
+---
+title: "1.6 Running Rust"
+---
+
+## Explanation
+
+For reproducible checks, prefer a tiny Cargo project. Cargo creates a standard
+project layout, records package metadata, and gives the same basic commands to
+students, AI agents, and reviewers.
+
+Use `cargo run` to build and execute a program. Use `cargo test` to build the
+project and run its tests.
+
+Single `.rs` files can be useful for tiny experiments, especially while
+thinking through syntax or a small calculation. Exercises that include tests
+should normally use Cargo so that the test command and project layout are
+clear.
+
+## Things to look up
+
+- `cargo new`
+- `cargo run`
+- `cargo test`
+- `src/main.rs`
+- `src/lib.rs`
+- `tests` directory
+
+## Exercise
+
+Create `work/chapter_1.6/hello_rust` with `cargo new`. Run the program with
+`cargo run`. Add one simple test and run it with `cargo test`.
+
+## Notes for the exercise
+
+- Keep generated files small.
+- Know which command runs the program and which command runs the tests.
+- Know which file contains the program entry point.
+- Commit `Cargo.lock` for exercise projects that add dependencies.

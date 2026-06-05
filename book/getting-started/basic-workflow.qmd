@@ -7,56 +7,41 @@ title: "1.7 Basic workflow"
 Use this workflow for most subsections:
 
 1. Read the short explanation.
-2. Inspect the concrete syntax or example.
+2. Write a small plan before asking an AI agent for code.
 3. Look up unfamiliar terms.
-4. Solve the exercise by hand.
-5. Use Julia only when a small coding check helps.
-6. If you ask an AI agent to generate an answer, treat it as a worked example,
-   not as something to copy.
-7. Understand the generated answer in detail: every line of code, every formula,
-   every assumption, and every conclusion.
-8. If anything is unclear, ask the AI agent follow-up questions until you can
-   explain it in your own words.
-9. If the AI agent edits files, review its reasoning and any diff it creates.
+4. Create a working directory such as `work/chapter_x.y/`.
+5. Use `answer.rs` for tiny scratch work, or create a Cargo project for tested
+   work.
+6. Write reusable functions in `src/lib.rs` when the exercise needs functions
+   that can be tested.
+7. Write tests in a `tests/` directory or in `#[cfg(test)]` modules near the
+   code.
+8. Run `cargo test`.
+9. If an AI agent edits files, inspect `git diff` before asking it to continue.
 
 For each item in "Things to look up", write one sentence in your own words and
 one example related to scientific computing. The goal is not to collect
 definitions; the goal is to connect the word to a calculation, code fragment,
 data file, or validation check.
 
-For a small Julia exercise, keep the code you want an AI agent to review in one
-clear file. For example, when working on
-[Variables and state](../julia-syntax-basics/variables-and-state.qmd), you
-can use the following pattern:
+Small scratch files are useful when the code is only a short experiment. Tested
+exercise work should normally use Cargo because it gives a standard project
+layout and a standard test command.
+
+For example:
 
 ```bash
-mkdir -p work/chapter_5.1
-cd work/chapter_5.1
-julia --project=@.
+mkdir -p work/chapter_4.6
+cd work/chapter_4.6
+cargo new slice_check
+cd slice_check
+cargo test
 ```
 
-Inside the Julia REPL, create a local project environment if needed:
-
-```julia
-import Pkg
-Pkg.activate(".")
-# If the exercise needs an external package, add it here.
-# Pkg.add("BenchmarkTools")
-Pkg.instantiate()
-```
-
-Write the answer you want reviewed in `answer.jl`. Before asking for review,
-confirm that the file runs from the command line:
-
-```bash
-julia --project=@. answer.jl
-```
-
-Then ask the AI agent to review the path, for example
-`work/chapter_5.1/answer.jl`, and to report issues before editing the file. A
+Before asking an AI agent to continue, review the current files and diff. A
 useful review should check the algorithm, inputs and outputs, boundary cases,
-tests or validation, use of functions or structured units, and unnecessary
-global state.
+tests or validation, use of functions or modules, and hidden global mutable
+state.
 
 ## Things to look up
 
@@ -67,24 +52,26 @@ global state.
 - Reproducibility
 - Worked example
 - Submission artifact
-- Julia project environment
-- `answer.jl`
+- Cargo project
+- `answer.rs`
+- `src/lib.rs`
+- `tests` directory
 
 ## Exercise
 
 For one subsection, write a short study plan that includes reading, searching,
-a hand-written answer, optional AI help, and an optional Julia check.
+a hand-written answer, optional AI help, and an optional Rust check.
 
 If your plan uses AI-generated answers, also write how you will check that you
 understand the answer in detail.
 
-Also state the expected output of your work, such as a hand-written note,
-Markdown note, Julia file, test file, saved result file, or work log.
+State the expected output of your work, such as a hand-written note, Markdown
+note, `answer.rs`, Cargo project, test file, saved result file, or work log.
 
-For [Variables and state](../julia-syntax-basics/variables-and-state.qmd),
-create `work/chapter_5.1/answer.jl`, run it with
-`julia --project=@. answer.jl`, and write down what you would ask an AI agent
-to review.
+Create a small `work/chapter_x.y/` directory for the subsection you choose.
+Decide whether the exercise is small enough for `answer.rs` or should use a
+Cargo project with tests. Write down the command you would run before asking an
+AI agent to review the result.
 
 ## Notes for the exercise
 
