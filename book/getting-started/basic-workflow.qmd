@@ -33,7 +33,7 @@ For example:
 ```bash
 mkdir -p work/chapter_4.6
 cd work/chapter_4.6
-cargo new slice_check
+cargo new --lib slice_check
 cd slice_check
 cargo test
 ```

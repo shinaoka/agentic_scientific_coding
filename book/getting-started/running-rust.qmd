@@ -27,12 +27,13 @@ clear.
 
 ## Exercise
 
-Create `work/chapter_1.6/hello_rust` with `cargo new`. Run the program with
-`cargo run`. Add one simple test and run it with `cargo test`.
+Create `work/chapter_1.6/hello_rust` with `cargo new --lib`. Add one simple
+function and one simple test. Run the test with `cargo test`.
 
 ## Notes for the exercise
 
 - Keep generated files small.
 - Know which command runs the program and which command runs the tests.
 - Know which file contains the program entry point.
-- Commit `Cargo.lock` for exercise projects that add dependencies.
+- Keep `Cargo.lock` with Cargo exercise projects so the resolved environment is
+  visible.
