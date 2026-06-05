@@ -455,9 +455,10 @@ Reference for exchange Monte Carlo:
 
 - K. Hukushima and K. Nemoto, "Exchange Monte Carlo Method and Application to Spin Glass Simulations," *Journal of the Physical Society of Japan* **65**, 1604-1608, 1996. DOI: [10.1143/JPSJ.65.1604](https://doi.org/10.1143/JPSJ.65.1604)
 
-## Extension: Speed Up With Rust or Julia
+## Extension: Speed Up With Rust
 
-After completing the Python version, you may ask the AI agent to help speed up the simulation using Rust or Julia.
+After completing the standard version, you may ask the AI agent to help speed
+up the simulation using Rust.
 
 This is an extension, not a replacement for validation.
 

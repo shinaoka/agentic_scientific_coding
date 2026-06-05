@@ -30,7 +30,7 @@
   <text x="694" y="187" font-family="Arial, sans-serif" font-size="12">a23 ...</text>
 
   <text x="550" y="240" font-family="Arial, sans-serif" font-size="16" font-weight="700">Column-major</text>
-  <text x="550" y="266" font-family="Arial, sans-serif" font-size="13">Julia, MATLAB, Fortran</text>
+  <text x="550" y="266" font-family="Arial, sans-serif" font-size="13">MATLAB, Fortran</text>
   <g font-family="Arial, sans-serif" font-size="12">
     <rect x="500" y="282" width="55" height="34" fill="#eaf8ef" stroke="#4c8f42"/><text x="528" y="304" text-anchor="middle">a11</text>
     <rect x="555" y="282" width="55" height="34" fill="#eaf8ef" stroke="#4c8f42"/><text x="583" y="304" text-anchor="middle">a21</text>

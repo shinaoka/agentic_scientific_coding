@@ -39,7 +39,7 @@
       <text x="457" y="205" text-anchor="middle">3</text>
     </g>
   </g>
-  <text x="610" y="145" font-family="Arial, sans-serif" font-size="14">Julia, MATLAB, Fortran</text>
+  <text x="610" y="145" font-family="Arial, sans-serif" font-size="14">MATLAB, Fortran</text>
   <text x="610" y="200" font-family="Arial, sans-serif" font-size="14">C, C++, Python, Rust</text>
   <text x="390" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Check the indexing convention before translating loops between languages.</text>
 </svg>
