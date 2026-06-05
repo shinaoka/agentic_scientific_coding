@@ -2,8 +2,8 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Rewrite the course into a Rust-first scientific coding note with slices
-for 1D data, `tenferro::TypedTensor` for 2D and higher arrays, and a
+**Goal:** Rewrite the course into a Rust-first scientific coding note with
+slices for 1D data, tenferro typed tensors for 2D and higher arrays, and a
 course-specific Rust review skill.
 
 **Architecture:** Treat the rewrite as a documentation migration with explicit
@@ -151,7 +151,8 @@ Apply these rules to all active material outside `backups/`:
 
 - Rust is the default language for examples and exercise checks.
 - Use `&[f64]` and `&mut [f64]` for 1D numerical function boundaries.
-- Use `tenferro::TypedTensor` for 2D and higher numerical arrays.
+- Use tenferro typed tensors for 2D and higher numerical arrays. The current
+  concrete path is `tenferro_tensor::TypedTensor` from `tenferro-tensor`.
 - Keep `ndarray` and `ndarray-linalg` as alternatives, not the course default.
 - Do not present `Vec<Vec<f64>>` as a normal numerical-array representation.
 - Mention nested vectors only as an anti-pattern or contrast example.
@@ -248,8 +249,9 @@ work.
 - Are ownership and borrowing choices understandable at function boundaries?
 - For 1D numerical data, does owned storage use `Vec<f64>` and do function
   boundaries use `&[f64]` or `&mut [f64]`?
-- For 2D and higher numerical data, is `tenferro::TypedTensor` used unless the
-  exercise explicitly asks for a flat-buffer implementation?
+- For 2D and higher numerical data, are tenferro typed tensors used unless the
+  exercise explicitly asks for a flat-buffer implementation? In the current
+  crate layout, this means `tenferro_tensor::TypedTensor`.
 - Are nested vectors such as `Vec<Vec<f64>>` avoided for numerical arrays?
 - Are small hand-checkable tests and edge cases included?
 - Was `cargo test` run, or is the missing test run clearly reported?
@@ -284,15 +286,17 @@ Learning Mode:
 - Discuss algorithm, inputs, outputs, boundary cases, representation, and tests
   before code.
 - Review all exercises for functions/modules, hidden global mutable state,
-  ownership/borrowing, slices for 1D, tenferro::TypedTensor for 2D+, no nested
-  vectors, cargo test, and cache-friendly access when performance matters.
+  ownership/borrowing, slices for 1D, tenferro typed tensors for 2D+, no
+  nested vectors, cargo test, and cache-friendly access when performance
+  matters.
 - Mention review-rust-code as the review skill.
 
 Editing Mode:
 - Edit material as a concept map with short explanations and exercises.
 - Use Rust by default.
 - Use slices for 1D numerical examples.
-- Use tenferro::TypedTensor for 2D+ examples.
+- Use tenferro typed tensors for 2D+ examples, currently
+  `tenferro_tensor::TypedTensor` from `tenferro-tensor`.
 - Keep ndarray and ndarray-linalg as alternatives.
 - Do not include long installation procedures.
 - Prefer official Rust and crate documentation links.
@@ -383,7 +387,8 @@ Use `apply_patch` to make the introduction state:
   reproducibility.
 - Rust and Cargo are used from the beginning.
 - 1D data use Vec and slices.
-- 2D+ arrays use tenferro::TypedTensor.
+- 2D+ arrays use tenferro typed tensors, currently
+  `tenferro_tensor::TypedTensor` from `tenferro-tensor`.
 - ndarray and ndarray-linalg are ecosystem alternatives.
 - The chapter list has nine sections matching the approved spec.
 ```
@@ -532,7 +537,8 @@ Explanation:
 - Cargo gives a standard build/test workflow.
 - Rust compiler errors are useful feedback when working with AI agents.
 - 1D data use Vec and slices.
-- 2D+ arrays use tenferro::TypedTensor.
+- 2D+ arrays use tenferro typed tensors, currently
+  `tenferro_tensor::TypedTensor` from `tenferro-tensor`.
 - The goal is scientific workflow, not memorizing all Rust syntax.
 
 Things to look up:
@@ -950,7 +956,8 @@ indexing-conventions.qmd:
 
 multidimensional-arrays-and-layout.qmd:
 - distinguish shape, stride, memory layout, and tensor metadata.
-- Rust standard path is tenferro::TypedTensor for 2D+.
+- Rust standard path is tenferro typed tensors for 2D+, currently
+  `tenferro_tensor::TypedTensor` from `tenferro-tensor`.
 - nested vectors are identified as a poor numerical-array default.
 
 reshape-view-copy-and-transpose.qmd:
@@ -1059,7 +1066,9 @@ Explanation:
 - GEMM computes C = A B.
 - State shape convention explicitly.
 - Use flat Vec<f64> for hand-written low-level GEMM.
-- Use tenferro::TypedTensor for the library/tensor comparison path.
+- Use tenferro typed tensors for the library/tensor comparison path.
+- Verify current `tenferro-rs` crate names, import paths, and resolved Git
+  revision before using generated tensor code.
 - Explain cache-friendly access, contiguous memory, row/column layout, blocking,
   vectorization, bounds-check elimination, FLOPs, and memory bandwidth.
 - State that safe indexing has bounds checks unless the compiler proves access
@@ -1122,14 +1131,18 @@ Content contract:
 ```text
 Title: "7.1 Typed tensors with tenferro"
 Explanation:
-- tenferro::TypedTensor is the standard course path for 2D+ arrays.
+- tenferro typed tensors are the standard course path for 2D+ arrays.
+- In the current crate layout, use `tenferro_tensor::TypedTensor` from
+  `tenferro-tensor`.
 - A tensor carries data plus shape/axis meaning.
 - Shape validation is part of correctness.
 - Cargo dependency uses:
-  tenferro = { git = "https://github.com/tensor4all/tenferro-rs", branch = "main" }
+  tenferro-tensor = { git = "https://github.com/tensor4all/tenferro-rs", branch = "main" }
 - Commit Cargo.lock in complete exercise projects.
+- There is currently no all-in-one `tenferro` facade crate.
 Things to look up:
 - tenferro
+- tenferro-tensor
 - TypedTensor
 - tensor shape
 - tensor axis
@@ -1148,7 +1161,9 @@ Content contract:
 ```text
 Title: "7.2 Rust array ecosystem"
 Explanation:
-- Course default: slices for 1D, tenferro::TypedTensor for 2D+.
+- Course default: slices for 1D, tenferro typed tensors for 2D+.
+- In the current crate layout, use `tenferro_tensor::TypedTensor` from
+  `tenferro-tensor`.
 - ndarray is an important Rust N-dimensional array library.
 - ndarray-linalg connects ndarray-style arrays to BLAS/LAPACK routines.
 - Choosing a library requires checking API, maintenance, dependencies, and
@@ -1161,8 +1176,9 @@ Things to look up:
 - LAPACK
 - contiguous memory
 Exercise:
-- Compare tenferro, ndarray, and ndarray-linalg documentation for one array
+- Compare tenferro-tensor and ndarray documentation for one basic array
   operation.
+- Inspect ndarray-linalg documentation for one BLAS/LAPACK-style operation.
 Notes:
 - Do not switch libraries only because an AI agent suggests one.
 ```
@@ -1204,7 +1220,8 @@ Content contract:
 ```text
 Explanation:
 - 1D vector operations use slices.
-- 2D matrix/tensor examples use tenferro::TypedTensor.
+- 2D matrix/tensor examples use tenferro typed tensors, currently
+  `tenferro_tensor::TypedTensor` from `tenferro-tensor`.
 - ndarray and ndarray-linalg are alternatives for established BLAS/LAPACK
   workflows.
 Exercise:
@@ -1520,7 +1537,8 @@ The rewrite is ready for user review when:
 - `review-rust-code` exists and validates,
 - `review-julia-exercise` is removed from active repository skills,
 - 1D numerical examples use slices,
-- 2D and higher numerical examples use `tenferro::TypedTensor`,
+- 2D and higher numerical examples use tenferro typed tensors, currently
+  `tenferro_tensor::TypedTensor` from `tenferro-tensor`,
 - `ndarray` and `ndarray-linalg` remain as alternatives,
 - nested vectors are explicitly rejected as normal numerical arrays,
 - the GEMM page covers cache-friendly access, controlled benchmarks, shape

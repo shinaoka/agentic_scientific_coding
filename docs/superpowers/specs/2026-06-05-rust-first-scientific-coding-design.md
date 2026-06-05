@@ -17,7 +17,8 @@ The central technical path is:
 - Rust and Cargo from the beginning,
 - one-dimensional numerical data through `Vec<T>` ownership and slice
   interfaces such as `&[f64]` and `&mut [f64]`,
-- multidimensional arrays and tensors through `tenferro::TypedTensor`,
+- multidimensional arrays and tensors through tenferro typed tensors,
+  currently `tenferro_tensor::TypedTensor` from `tenferro-tensor`,
 - `ndarray` and `ndarray-linalg` mentioned as important Rust ecosystem
   alternatives, but not as the standard course path.
 
@@ -124,8 +125,8 @@ borrowing at the function boundary.
 Use this policy consistently in the course:
 
 - one-dimensional numerical data: `Vec<f64>`, `&[f64]`, and `&mut [f64]`;
-- two-dimensional and higher numerical arrays/tensors:
-  `tenferro::TypedTensor`;
+- two-dimensional and higher numerical arrays/tensors: tenferro typed tensors,
+  currently `tenferro_tensor::TypedTensor` from `tenferro-tensor`;
 - low-level performance exercises: flat buffers such as `Vec<f64>` with
   explicit shape and indexing are allowed;
 - nested vectors such as `Vec<Vec<f64>>` are not allowed as the standard
@@ -135,11 +136,12 @@ Nested vectors should be described as poor defaults for scientific arrays
 because they do not guarantee a single contiguous data buffer, make shape
 validation awkward, and obscure cache-friendly access patterns.
 
-The tenferro dependency should be shown as a Git dependency tracking the main
+The `tenferro-rs` workspace currently has no all-in-one `tenferro` facade
+crate. The tensor crate should be shown as a Git dependency tracking the main
 branch:
 
 ```toml
-tenferro = { git = "https://github.com/tensor4all/tenferro-rs", branch = "main" }
+tenferro-tensor = { git = "https://github.com/tensor4all/tenferro-rs", branch = "main" }
 ```
 
 Student projects should commit `Cargo.lock` so the resolved Git revision is
@@ -148,8 +150,11 @@ examples should use `branch = "main"`.
 
 ## tenferro Section
 
-Add or rewrite scientific-computing material so that `tenferro::TypedTensor` is
-the standard representation for 2D and higher examples.
+Add or rewrite scientific-computing material so that tenferro typed tensors are
+the standard representation for 2D and higher examples. The current concrete
+path is `tenferro_tensor::TypedTensor` from `tenferro-tensor`, but material
+should tell students to verify current crate names, import paths, and resolved
+Git revisions because `tenferro-rs` is under active development.
 
 The tenferro material should include:
 
@@ -183,8 +188,8 @@ Each page should keep the standard subsection structure:
 - Notes for the exercise.
 
 Small one-dimensional checks should use slices. Multidimensional examples should
-use `tenferro::TypedTensor` unless the exercise is deliberately about flat
-buffer indexing.
+use tenferro typed tensors unless the exercise is deliberately about flat buffer
+indexing.
 
 ## Matrix Multiplication Case Study
 
@@ -273,7 +278,7 @@ Exercise review guidance should require checking:
 - whether functions avoid hidden global mutable state,
 - whether ownership and borrowing choices are understandable,
 - whether 1D numerical interfaces use slices where appropriate,
-- whether 2D and higher arrays use `tenferro::TypedTensor` unless there is a
+- whether 2D and higher arrays use tenferro typed tensors unless there is a
   justified low-level flat-buffer exercise,
 - whether nested vectors are avoided for numerical arrays,
 - whether unit tests exist and are run with `cargo test`,
@@ -283,7 +288,8 @@ Editing Mode should say:
 
 - use Rust as the default language for examples and exercise checks,
 - use slices for 1D numerical examples,
-- use `tenferro::TypedTensor` for 2D and higher examples,
+- use tenferro typed tensors, currently `tenferro_tensor::TypedTensor` from
+  `tenferro-tensor`, for 2D and higher examples,
 - keep `ndarray` and `ndarray-linalg` as alternatives where useful,
 - prefer official Rust and crate documentation over long installation
   procedures,
@@ -316,7 +322,7 @@ The skill should instruct agents to:
 - check ownership and borrowing at function boundaries,
 - check that 1D data use slices where appropriate,
 - reject nested vectors as the normal representation for numerical arrays,
-- check that 2D and higher numerical arrays use `tenferro::TypedTensor` unless a
+- check that 2D and higher numerical arrays use tenferro typed tensors unless a
   flat-buffer implementation is explicitly part of the exercise,
 - check tests, including small hand-checkable examples and edge cases,
 - check that `cargo test` has been run or clearly report when it has not,
@@ -398,6 +404,6 @@ After implementation, verify:
 ## Completion Criteria
 
 The rewrite is complete when the course reads as a Rust-first scientific coding
-note, the normal array path is slices for 1D and `tenferro::TypedTensor` for
-2D and higher, the old Julia-first route is gone from active material, and the
+note, the normal array path is slices for 1D and tenferro typed tensors for 2D
+and higher, the old Julia-first route is gone from active material, and the
 repository includes a Rust-specific review skill for student exercise work.
