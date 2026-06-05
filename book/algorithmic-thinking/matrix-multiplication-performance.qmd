@@ -1,5 +1,5 @@
 ---
-title: "8.3 Matrix multiplication as a performance model"
+title: "6.3 Matrix multiplication as a performance model"
 ---
 
 ## Explanation
@@ -87,8 +87,9 @@ In that project:
 2. Test small matrices by hand, including at least one non-square case.
 3. Benchmark a controlled run. Record matrix sizes, build mode, CPU/thread
    assumptions, elapsed time, and an approximate FLOP rate.
-4. Compare the result with a `tenferro::TypedTensor` calculation for the same
-   data and shapes.
+4. Check the current `tenferro` API and resolved Git revision, then compare the
+   result with a `tenferro::TypedTensor` calculation for the same data and
+   shapes.
 5. Ask the agent to optimize the hand-written implementation using safe Rust.
    Consider shape checks outside the hot loop, row slices, loop order, and
    blocking.
@@ -107,5 +108,7 @@ In that project:
   size used for each timing result.
 - A faster result that fails a correctness test is not an optimization.
 - Compare memory access order separately from Rust syntax changes.
+- Because `tenferro` is under active development, verify the current API and
+  resolved Git revision before trusting AI-generated tensor code.
 - Do not expect a short teaching implementation to match a tuned library on
   large dense matrices.
