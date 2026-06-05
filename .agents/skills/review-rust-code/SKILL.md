@@ -47,6 +47,9 @@ work.
 - Was `cargo test` run, or is the missing test run clearly reported?
 - For numerical experiments that generate plots, are computation and plotting
   separated so that results and metadata are written to a file before plotting?
+- Does the saved result format fit the data size and shape, using JSON or plain
+  text for small outputs and formats such as `.npy`, `.npz`, or HDF5 for large
+  or multidimensional arrays?
 - When performance is discussed, is cache-friendly access considered?
 - Are scientific validation issues separated from Rust syntax issues?
 

@@ -65,6 +65,10 @@ repository and asks for help with exercises, questions, or code review.
   script and plotting script are separated. The computation should first dump
   results and metadata to a file, and the plotting script should read that file
   instead of recomputing the result.
+- Check whether saved result formats fit the data. Small scalar or tabular
+  outputs may use JSON or plain text. Large or multidimensional array outputs
+  should use an appropriate array or container format, such as `.npy`, `.npz`,
+  or HDF5, rather than ad hoc text dumps.
 - When performance matters, check whether the answer considers cache-friendly
   memory access separately from Rust syntax issues.
 
