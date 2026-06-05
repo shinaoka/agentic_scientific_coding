@@ -19,7 +19,17 @@ easy to implement first, run one convenient example, and decide that the code is
 probably correct. TDD forces you to state the expected behavior before the
 implementation exists.
 
-In a small Rust project, start by writing the test file. For example:
+In a small Rust project, start by writing the test file. For this example,
+create the library project with:
+
+```bash
+cargo new --lib mean_tools
+```
+
+The package name in `Cargo.toml` is also the crate name used by integration
+tests. Therefore the test below imports `mean_tools::mean_value`.
+
+For example:
 
 `tests/mean.rs`
 
@@ -166,9 +176,14 @@ separate test command should run the tests. Project organization is discussed in
 
 ## Exercise
 
-In `work/chapter_6.1/`, create a small Cargo project with a function
-`mean_value(xs: &[f64]) -> Option<f64>`. Put the source code in `src/lib.rs`
-and the integration tests in `tests/mean.rs`.
+In `work/chapter_6.1/`, create a small Cargo library project:
+
+```bash
+cargo new --lib mean_tools
+```
+
+Add a function `mean_value(xs: &[f64]) -> Option<f64>`. Put the source code in
+`src/lib.rs` and the integration tests in `tests/mean.rs`.
 
 Write the tests before writing the implementation. Run the tests once while the
 implementation is still missing or incomplete, and record what failure you saw.
@@ -181,6 +196,8 @@ property it checks.
 
 - The source file should be `src/lib.rs`.
 - The integration test file should be `tests/mean.rs`.
+- The package should be named `mean_tools` so the integration test can import
+  `mean_tools::mean_value`.
 - `mean_value(xs: &[f64])` should receive data through the argument `xs` and
   return the result.
 - Do not make `mean_value` read from or write to a global variable.

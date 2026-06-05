@@ -83,6 +83,8 @@ After writing the tests, implement `relative_error` so that the tests pass.
 - Use `is_finite()` to detect infinity and NaN.
 - Do not return infinity or NaN for invalid input.
 - Use `Result` for recoverable invalid input in this exercise.
+- For valid `Ok(f64)` values that are not exactly representable, compare with a
+  tolerance instead of `assert_eq!`.
 - Do not add an arbitrary threshold for small nonzero `reference` in this
   exercise.
 - Keep the tests fast and deterministic.
