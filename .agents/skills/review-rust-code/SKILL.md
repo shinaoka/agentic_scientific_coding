@@ -46,7 +46,8 @@ work.
 - Are small hand-checkable tests and edge cases included?
 - Was `cargo test` run, or is the missing test run clearly reported?
 - For numerical experiments that generate plots, are computation and plotting
-  separated so that results and metadata are written to a file before plotting?
+  separated so that results and metadata are written to a file first, and the
+  plotting script reads that file instead of recomputing the result?
 - Does the saved result format fit the data size and shape, using JSON or plain
   text for small outputs and formats such as `.npy`, `.npz`, or HDF5 for large
   or multidimensional arrays?

@@ -18,7 +18,7 @@ Accept targets such as:
 - `5.1`
 - `Section 6`
 - `Variables and state`
-- `book/rust-basics/variables-and-state.qmd`
+- a source file under `book/`
 
 ## Workflow
 
