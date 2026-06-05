@@ -18,7 +18,7 @@ Accept targets such as:
 - `5.1`
 - `Section 6`
 - `Variables and state`
-- `book/julia-syntax-basics/variables-and-state.qmd`
+- `book/rust-syntax-basics/variables-and-state.qmd`
 
 ## Workflow
 
@@ -32,7 +32,7 @@ Accept targets such as:
 
    - short concept-map explanations,
    - hand-written reasoning before coding,
-   - Julia as the default language for small checks,
+   - Rust as the default language for small checks,
    - no long syntax lists or installation procedures,
    - validation, boundary cases, and reproducibility when relevant.
 
@@ -45,9 +45,10 @@ Provide 2-4 additional exercises. For each exercise, include:
 - what the student should learn or check,
 - brief notes for the exercise.
 
-When the topic involves Julia or scientific coding, prefer exercises that make
+When the topic involves Rust or scientific coding, prefer exercises that make
 students reason about inputs, outputs, boundary cases, tests, functions,
-unnecessary global state, numerical validation, or reproducibility.
+unnecessary global state, ownership and borrowing, numerical validation, or
+reproducibility.
 
 If the user asks to edit the teaching material, insert the exercise using the
 page's existing structure and keep the change concise.

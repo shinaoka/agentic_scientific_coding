@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Rust Code"
+  short_description: "Review Rust scientific-coding exercise answers for this course."
+  default_prompt: "Review my Rust scientific-coding exercise answer using the course rules."
