@@ -34,6 +34,7 @@ function and one simple test. Run the test with `cargo test`.
 
 - Keep generated files small.
 - Know which command runs the program and which command runs the tests.
-- Know which file contains the program entry point.
+- Know that `src/lib.rs` is for reusable library code, while `src/main.rs` is
+  for a runnable program entry point.
 - Keep `Cargo.lock` with Cargo exercise projects so the resolved environment is
   visible.
