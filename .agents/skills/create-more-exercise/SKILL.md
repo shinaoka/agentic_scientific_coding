@@ -33,8 +33,15 @@ Accept targets such as:
    - short concept-map explanations,
    - hand-written reasoning before coding,
    - Rust as the default language for small checks,
+   - slices for 1D numerical data,
+   - `tenferro::TypedTensor` for 2D and higher numerical arrays,
+   - no nested vectors such as `Vec<Vec<f64>>` as the normal numerical-array
+     representation,
    - no long syntax lists or installation procedures,
-   - validation, boundary cases, and reproducibility when relevant.
+   - Cargo-testable code when a coding check is needed,
+   - validation, boundary cases, and reproducibility when relevant,
+   - separated computation and plotting scripts when plots are generated,
+   - result file formats that fit the data size and shape.
 
 ## Output
 
@@ -49,6 +56,11 @@ When the topic involves Rust or scientific coding, prefer exercises that make
 students reason about inputs, outputs, boundary cases, tests, functions,
 unnecessary global state, ownership and borrowing, numerical validation, or
 reproducibility.
+
+For exercises that generate numerical results, prefer a workflow where the
+calculation writes results and metadata to a file before plotting. Small scalar
+or tabular outputs may use JSON or plain text; large or multidimensional arrays
+should use an array or container format such as `.npy`, `.npz`, or HDF5.
 
 If the user asks to edit the teaching material, insert the exercise using the
 page's existing structure and keep the change concise.

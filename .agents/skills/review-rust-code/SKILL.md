@@ -1,6 +1,6 @@
 ---
 name: review-rust-code
-description: Review a student's Rust scientific-coding exercise answer for this course. Use when asked to review Rust code, Cargo projects, answer.rs, src/lib.rs, tests, performance exercises, tenferro examples, or scientific-coding exercise solutions. Follow AGENTS.md, act as an educator, and do not generate the full solution.
+description: Review a student's Rust scientific-coding exercise answer for this course. Use when asked to review Rust code, Rust Cargo projects, Rust answer.rs files, Rust src/lib.rs files, Rust tests, Rust performance exercises, tenferro examples, or Rust scientific-coding exercise solutions. Follow AGENTS.md, act as an educator, and do not generate the full solution.
 ---
 
 # Review Rust Code
