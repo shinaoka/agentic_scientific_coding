@@ -1,40 +1,54 @@
 ---
-title: "9.2 Root finding"
+title: "7.4 Root finding"
 ---
 
 ## Explanation
 
-Root finding tries to solve `f(x) = 0`. Bisection is robust when a sign change brackets a root. Newton's method can be fast, but it depends on the initial guess and derivative behavior.
+Root finding tries to solve `f(x) = 0`. Bisection is robust when a sign change
+brackets a root. Newton's method can be fast, but it depends on the initial
+guess and derivative behavior.
 
 A bisection function should check the bracket before iterating:
 
-```julia
-function bisection(f, a, b; tol=1e-8, maxiter=100)
-    fa = f(a)
-    fb = f(b)
-    if fa * fb > 0
-        error("The interval does not bracket a root")
-    end
+```rust
+fn bisection<F: Fn(f64) -> f64>(
+    f: F,
+    mut a: f64,
+    mut b: f64,
+    tol: f64,
+    max_iter: usize,
+) -> Result<f64, String> {
+    let mut fa = f(a);
+    let fb = f(b);
 
-    for _ in 1:maxiter
-        c = (a + b) / 2
-        fc = f(c)
-        if abs(fc) < tol || (b - a) / 2 < tol
-            return c
-        elseif fa * fc <= 0
-            b = c
-            fb = fc
-        else
-            a = c
-            fa = fc
-        end
-    end
+    if fa * fb > 0.0 {
+        return Err("interval does not bracket a root".to_string());
+    }
 
-    error("Bisection did not converge")
-end
+    for _ in 0..max_iter {
+        let c = 0.5 * (a + b);
+        let fc = f(c);
+
+        if fc.abs() < tol || 0.5 * (b - a).abs() < tol {
+            return Ok(c);
+        }
+
+        if fa * fc <= 0.0 {
+            b = c;
+        } else {
+            a = c;
+            fa = fc;
+        }
+    }
+
+    Err("bisection did not converge".to_string())
+}
 ```
 
-The function is longer than the mathematical idea because it must handle preconditions and stopping.
+The function is longer than the mathematical idea because it must handle
+preconditions and stopping. Returning `Result<f64, String>` makes invalid
+brackets and non-convergence visible to the caller. For a shorter exercise,
+returning `Option<f64>` for an invalid bracket is also acceptable.
 
 ## Things to look up
 
@@ -46,15 +60,19 @@ The function is longer than the mathematical idea because it must handle precond
 
 ## Exercise
 
-For bisection, write the invariant that must remain true at every step. For Newton's method, describe two situations where the method can fail.
+Implement bisection in Rust using `Fn(f64) -> f64`. Use either
+`Result<f64, String>` or `Option<f64>` to report an invalid bracket.
+
+Add tests for:
+
+- A valid bracket, such as finding the root of `x * x - 2.0` on `[1, 2]`.
+- An invalid bracket, such as `x * x + 1.0` on `[-1, 1]`.
+
+State the invariant that should remain true after each bisection step.
 
 ## Notes for the exercise
 
-- Bisection requires a bracketing condition.
+- Check the sign change before iterations.
 - The stopping criterion must be explicit.
-- Newton's method depends on the initial value.
-- A small derivative or multiple roots can cause trouble.
-
-## Optional coding check
-
-Ask an AI agent to help write a minimal Julia bisection function. Before accepting it, check the bracketing condition and stopping rule.
+- Preserve the bracket invariant when choosing the next interval.
+- Test invalid input as carefully as successful input.

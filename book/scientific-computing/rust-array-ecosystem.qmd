@@ -1,0 +1,56 @@
+---
+title: "7.2 Rust array ecosystem"
+---
+
+## Explanation
+
+The course default is simple and explicit:
+
+- Use slices for one-dimensional function boundaries.
+- Use `Vec<f64>` for owned one-dimensional numerical data.
+- Use `tenferro::TypedTensor` for two-dimensional and higher arrays or tensors.
+
+The Rust ecosystem also includes important alternatives. `ndarray` is a widely
+used N-dimensional array library. `ndarray-linalg` connects ndarray-style
+arrays to BLAS and LAPACK routines for established dense linear algebra
+workflows.
+
+Choosing a library is a scientific-coding decision, not only a syntax decision.
+Check the current API, maintenance state, dependencies, memory layout, and the
+validation needs of the calculation. A library that is convenient for one
+operation may be a poor fit if it hides shapes, makes reproducibility harder,
+or brings in dependencies that are difficult to build on the target machine.
+
+Nested vectors are not the normal representation for scientific arrays in this
+course. They make shape checks and memory layout less explicit than tensor or
+array types designed for numerical work.
+
+## Things to look up
+
+- `ndarray`
+- `ndarray-linalg`
+- BLAS
+- LAPACK
+- Contiguous memory
+- Crate maintenance
+
+## Exercise
+
+Compare the `tenferro`, `ndarray`, and `ndarray-linalg` documentation for one
+array operation, such as creating a small two-dimensional array, checking its
+shape, or performing a matrix-vector product.
+
+For each library, record:
+
+- Where you found the documentation.
+- What shape information the example makes visible.
+- Whether the operation needs optional features or external libraries.
+- One validation check you would add before using the result scientifically.
+
+## Notes for the exercise
+
+- Do not switch libraries only because an AI agent suggests one.
+- Prefer the course default unless the exercise or project has a clear reason
+  to use another library.
+- For BLAS or LAPACK workflows, check both the Rust crate documentation and the
+  system library requirements.

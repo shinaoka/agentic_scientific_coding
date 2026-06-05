@@ -1,26 +1,36 @@
 ---
-title: "9.1 Numerical integration"
+title: "7.3 Numerical integration"
 ---
 
 ## Explanation
 
-Numerical integration approximates an integral by combining function values. A single plausible number is not enough. You should compare with known answers when possible and check how the result changes as the step size changes.
+Numerical integration approximates an integral by combining function values. A
+single plausible number is not enough. Compare with known answers when possible
+and check how the result changes as the step size changes.
 
 For the trapezoidal rule on `[a, b]`:
 
-```julia
-function trapezoidal(f, a, b, n)
-    h = (b - a) / n
-    total = 0.5 * f(a) + 0.5 * f(b)
-    for i in 1:(n - 1)
-        x = a + i * h
-        total += f(x)
-    end
-    return h * total
-end
+```rust
+fn trapezoid<F: Fn(f64) -> f64>(f: F, a: f64, b: f64, n: usize) -> Option<f64> {
+    if n == 0 {
+        return None;
+    }
+
+    let h = (b - a) / n as f64;
+    let mut total = 0.5 * f(a) + 0.5 * f(b);
+
+    for i in 1..n {
+        let x = a + i as f64 * h;
+        total += f(x);
+    }
+
+    Some(h * total)
+}
 ```
 
-This syntax is useful, but the key idea is the formula and the convergence check, not the exact code.
+The important points are the formula, the invalid-input check, and the
+convergence check. A small implementation should be easy to test before it is
+used for a larger experiment.
 
 ## Things to look up
 
@@ -32,15 +42,22 @@ This syntax is useful, but the key idea is the formula and the convergence check
 
 ## Exercise
 
-Use the trapezoidal rule to approximate the integral of `f(x) = x^2` from `0` to `1`. Write the formula, compute a small example by hand, and state what should happen when the step size is halved.
+Implement the trapezoidal rule in Rust using a function with this interface:
+
+```rust
+fn trapezoid<F: Fn(f64) -> f64>(f: F, a: f64, b: f64, n: usize) -> Option<f64>
+```
+
+Add small tests before running any convergence experiment:
+
+- Test a constant function.
+- Test a linear function.
+- Check convergence for `f(x) = x * x` on `[0, 1]` as `n` increases.
 
 ## Notes for the exercise
 
-- Compare with the exact answer.
-- Do not rely on one step size.
-- State how error should change qualitatively.
-- Discuss what could go wrong for a non-smooth function.
-
-## Optional coding check
-
-Implement the trapezoidal rule in Julia and test several step sizes.
+- `n = 0` is invalid. Return `None` or another explicit error instead of
+  dividing by zero.
+- Use small tests before trusting convergence plots.
+- Compare with exact answers when they are available.
+- State how the error changes qualitatively as the step size decreases.

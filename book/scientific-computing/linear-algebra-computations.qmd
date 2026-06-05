@@ -1,24 +1,40 @@
 ---
-title: "9.3 Linear algebra computations"
+title: "7.5 Linear algebra computations"
 ---
 
 ## Explanation
 
 Linear algebra code must track shapes. Matrix-vector products, matrix-matrix
-products, transposes, and factorizations all have shape requirements. Large
-matrix operations also have important complexity costs.
+products, transposes, and factorizations all have shape requirements. A shape
+mismatch is not a small detail; it usually means the mathematical expression is
+not well-defined.
 
-```julia
-A = [1.0 2.0; 3.0 4.0]  # 2 x 2 matrix
-x = [10.0, 20.0]        # length-2 vector
+For one-dimensional vector operations, use slices at function boundaries:
 
-b = A * x               # length-2 vector
-C = A * A               # 2 x 2 matrix
+```rust
+fn dot(x: &[f64], y: &[f64]) -> Option<f64> {
+    if x.len() != y.len() {
+        return None;
+    }
+
+    Some(x.iter().zip(y).map(|(a, b)| a * b).sum())
+}
 ```
 
-The syntax is compact, but you must still know the shapes. A shape mismatch is
-not a small detail; it usually means the mathematical expression is not
-well-defined. The algorithmic cost of matrix multiplication is discussed in
+For two-dimensional matrix or tensor examples, use `tenferro::TypedTensor` by
+default. Because `tenferro` is under active development, inspect the current
+API and the resolved Git revision before writing constructor or indexing code.
+The scientific design should still be clear before the exact API calls are
+chosen:
+
+- State the shape of each input.
+- State the axis meaning.
+- Check shape compatibility before computation.
+- Return an explicit error for incompatible shapes.
+
+`ndarray` and `ndarray-linalg` remain alternatives for established BLAS and
+LAPACK workflows, especially when a project needs routines already exposed by
+that ecosystem. The algorithmic cost of matrix multiplication is discussed in
 [Matrix multiplication as a performance model](../algorithmic-thinking/matrix-multiplication-performance.qmd).
 
 ## Things to look up
@@ -28,21 +44,29 @@ well-defined. The algorithmic cost of matrix multiplication is discussed in
 - Shape mismatch
 - Dense matrix
 - Sparse matrix
+- BLAS
+- LAPACK
 
 ## Exercise
 
-Write pseudocode for matrix-vector multiplication and matrix-matrix
-multiplication. State the input shapes and estimate the complexity for square
-matrices of size `N`.
+Use a small matrix-vector or matrix-matrix example with explicit shape checks.
+
+For example, design a matrix-vector product where the matrix has shape
+`rows x cols` and the vector has length `cols`. Before computing, check that the
+vector length matches the matrix column count. In your answer:
+
+- State the input shapes.
+- State the output shape.
+- State what error is returned for a mismatch.
+- Explain which part would use `&[f64]` and which part would use
+  `tenferro::TypedTensor`.
 
 ## Notes for the exercise
 
-- State all shapes before writing loops.
-- Check index order.
+- Do not use nested vectors as a matrix representation.
+- Check shapes before computation.
+- Keep one-dimensional vector inputs as slices at function boundaries.
+- For two-dimensional data, verify the current `tenferro` API before trusting
+  generated code.
 - Matrix-matrix multiplication is usually `O(N^3)` for the basic algorithm.
 - Mention whether symmetry or sparsity could change the approach.
-
-## Optional coding check
-
-Use Julia to multiply small matrices and vectors. Then intentionally try an
-incompatible shape and inspect the error message.

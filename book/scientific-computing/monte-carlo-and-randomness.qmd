@@ -1,39 +1,26 @@
 ---
-title: "9.4 Monte Carlo and randomness"
+title: "7.6 Monte Carlo and randomness"
 ---
 
 ## Explanation
 
-Monte Carlo methods use randomness to estimate quantities. A Monte Carlo result should include the random seed, sample size, estimated uncertainty, and a check that the result changes sensibly with more samples.
+Monte Carlo methods use randomness to estimate quantities. A Monte Carlo result
+should include the random seed, sample size, estimated uncertainty, and a check
+that the result changes sensibly with more samples.
 
-Computers usually generate pseudorandom numbers, not truly random numbers. A pseudorandom number generator follows a deterministic algorithm. The seed selects the starting point of the sequence. If the seed, algorithm, and code are the same, the same sequence can be reproduced.
+In Rust, use an RNG crate such as `rand`. Computers usually generate
+pseudorandom numbers, not truly random numbers. A pseudorandom number generator
+follows a deterministic algorithm. The seed selects the starting point of the
+sequence. If the seed, algorithm, and code are the same, the same sequence can
+be reproduced.
 
-This is useful for debugging and reproducibility. It does not remove sampling error, and it does not make a Monte Carlo estimate exact.
+The seed policy matters. A fixed seed is useful for debugging and
+reproducibility, but it does not remove sampling error. For a scientific claim,
+report uncertainty instead of trusting one seed.
 
-Put the main sampling work in a function. A function makes the computation easier to test, rerun with different parameters, and separate from printing or plotting.
-
-```julia
-using Random
-
-function estimate_pi(n; seed=1234)
-    rng = MersenneTwister(seed)
-    inside = 0
-
-    for _ in 1:n
-        x = rand(rng)
-        y = rand(rng)
-        if x^2 + y^2 <= 1
-            inside += 1
-        end
-    end
-
-    return 4 * inside / n
-end
-
-pi_estimate = estimate_pi(10_000; seed=1234)
-```
-
-The seed `1234` makes the run reproducible. A different seed gives a different pseudorandom sequence. When making a scientific claim, compare multiple seeds or report an uncertainty estimate instead of trusting one run.
+Put the main sampling work in a function. A function makes the computation
+easier to test, rerun with different parameters, and separate from printing,
+file output, or plotting.
 
 ## Things to look up
 
@@ -43,23 +30,26 @@ The seed `1234` makes the run reproducible. A different seed gives a different p
 - Sampling error
 - Error bar
 - Law of large numbers
+- `rand`
 
 ## Exercise
 
-Describe how to estimate pi by sampling random points in a square. Then write a function-level design for the calculation: inputs, output, internal state, and what should not be handled inside the function.
+Estimate pi in Rust by sampling random points in a square and counting how many
+fall inside the unit circle.
 
-State what data you would save and how you would check whether the estimate is reliable.
+Run two sample sizes, such as `10_000` and `1_000_000`. For each run, record:
+
+- The command you ran.
+- The seed or seed policy.
+- The sample size.
+- The estimate.
+- A simple uncertainty estimate or repeated-seed comparison.
 
 ## Notes for the exercise
 
-- Record the seed.
-- Record the number of samples.
+- Multiple seeds or uncertainty estimates matter for scientific claims.
+- Save the result and metadata before plotting if a plot is made.
 - Put the repeated sampling loop in a function.
-- Keep plotting, printing, and file output outside the core computation when possible.
-- Do not judge from one run only.
-- Include an uncertainty estimate or repeated independent runs.
+- Keep plotting, printing, and file output outside the core computation when
+  possible.
 - Explain how the error should change as the sample size increases.
-
-## Optional coding check
-
-Write a small Julia script for the pi estimate. Run it with two sample sizes and compare the results.
