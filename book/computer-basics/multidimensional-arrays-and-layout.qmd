@@ -18,8 +18,9 @@ buffer when one index changes by one.
 MATLAB and Fortran use column-major layout. C and many C-style arrays use
 row-major layout. Rust itself does not have one built-in multidimensional array
 type. In this course, the standard Rust path for 2D and higher numerical arrays
-is `tenferro::TypedTensor`, unless an exercise explicitly asks for a flat-buffer
-implementation. `ndarray` is also common in the Rust ecosystem.
+is a tenferro typed tensor, currently `tenferro_tensor::TypedTensor`, unless an
+exercise explicitly asks for a flat-buffer implementation. `ndarray` is also
+common in the Rust ecosystem.
 
 Nested vectors such as `Vec<Vec<f64>>` are a poor default for numerical arrays:
 rows may be stored separately, lengths can differ, and the layout is not one
@@ -40,7 +41,7 @@ locality.
 - Column-major layout
 - Tensor metadata
 - Contiguous buffer
-- `tenferro::TypedTensor`
+- `tenferro_tensor::TypedTensor`
 - `ndarray`
 - Fastest-varying index
 - Cache locality
@@ -66,6 +67,6 @@ For a `2 x 3` matrix with entries `a11, a12, a13` on the first row and
 - State what metadata is needed to interpret the buffer.
 - For N-dimensional arrays, say which index is fastest-varying instead of
   relying only on the words row and column.
-- Use `tenferro::TypedTensor` as the default Rust representation for 2D and
+- Use tenferro typed tensors as the default Rust representation for 2D and
   higher numerical arrays in this course.
 - Explain why access order can affect performance.

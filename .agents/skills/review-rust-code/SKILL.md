@@ -40,8 +40,9 @@ work.
 - Are ownership and borrowing choices understandable at function boundaries?
 - For 1D numerical data, does owned storage use `Vec<f64>` and do function
   boundaries use `&[f64]` or `&mut [f64]`?
-- For 2D and higher numerical data, is `tenferro::TypedTensor` used unless the
-  exercise explicitly asks for a flat-buffer implementation?
+- For 2D and higher numerical data, are tenferro typed tensors used unless the
+  exercise explicitly asks for a flat-buffer implementation? In the current
+  crate layout, this means `tenferro_tensor::TypedTensor`.
 - Are nested vectors such as `Vec<Vec<f64>>` avoided for numerical arrays?
 - Are small hand-checkable tests and edge cases included?
 - Was `cargo test` run, or is the missing test run clearly reported?

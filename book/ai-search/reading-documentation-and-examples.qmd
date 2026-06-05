@@ -23,10 +23,11 @@ A useful workflow is:
 5. Ask what can go wrong for your use case.
 ```
 
-For example, if you are using `tenferro::TypedTensor`, check the `tenferro`
-documentation and examples before trusting an AI-generated tensor operation.
-For random numbers, compare the AI answer with the `rand` crate documentation.
-For alternative array ecosystems, check `ndarray` and related crate docs.
+For example, if you are using tenferro typed tensors, check the current
+`tenferro-rs` documentation, crate names, import paths, and examples before
+trusting an AI-generated tensor operation. For random numbers, compare the AI
+answer with the `rand` crate documentation. For alternative array ecosystems,
+check `ndarray` and related crate docs.
 
 ## Things to look up
 

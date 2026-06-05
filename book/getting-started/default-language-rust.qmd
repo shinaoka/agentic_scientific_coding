@@ -22,10 +22,11 @@ For one-dimensional numerical data, owned storage should normally use
 `Vec<f64>`. Function boundaries should normally use slices such as `&[f64]` or
 `&mut [f64]`. This keeps functions flexible without hiding unnecessary copies.
 
-For two-dimensional and higher numerical arrays, use `tenferro::TypedTensor`
-by default unless an exercise explicitly asks for a flat-buffer
-implementation. The goal is to make shape and array meaning explicit, not to
-build large nested vectors.
+For two-dimensional and higher numerical arrays, use tenferro typed tensors by
+default. In the current crate layout, this means
+`tenferro_tensor::TypedTensor` from `tenferro-tensor`, unless an exercise
+explicitly asks for a flat-buffer implementation. The goal is to make shape and
+array meaning explicit, not to build large nested vectors.
 
 The goal is scientific workflow, not memorizing all Rust syntax. Focus on
 inputs, outputs, assumptions, boundary cases, tests, validation, and

@@ -34,7 +34,8 @@ Accept targets such as:
    - hand-written reasoning before coding,
    - Rust as the default language for small checks,
    - slices for 1D numerical data,
-   - `tenferro::TypedTensor` for 2D and higher numerical arrays,
+   - tenferro typed tensors, currently `tenferro_tensor::TypedTensor`, for 2D
+     and higher numerical arrays,
    - no nested vectors such as `Vec<Vec<f64>>` as the normal numerical-array
      representation,
    - no long syntax lists or installation procedures,

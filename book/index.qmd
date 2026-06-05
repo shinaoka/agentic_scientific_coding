@@ -24,9 +24,10 @@ files or Cargo projects, so students can run code and tests with the same tools
 used for larger projects. For one-dimensional numerical data, owned storage uses
 `Vec<f64>` and function boundaries use slices such as `&[f64]` and `&mut [f64]`.
 For two-dimensional and higher numerical arrays, the default representation is
-`tenferro::TypedTensor`. The Rust ecosystem also includes alternatives such as
-`ndarray` and `ndarray-linalg`, which are useful when an exercise or external
-library fits those crates better.
+a tenferro typed tensor. In the current `tenferro-rs` crate layout, that means
+`tenferro_tensor::TypedTensor` from the `tenferro-tensor` crate. The Rust
+ecosystem also includes alternatives such as `ndarray` and `ndarray-linalg`,
+which are useful when an exercise or external library fits those crates better.
 
 Non-goal: this is not a course where students write every line of code by hand
 without AI assistance. Code generation and editing are done together with an AI

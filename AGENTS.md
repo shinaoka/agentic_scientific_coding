@@ -55,9 +55,11 @@ repository and asks for help with exercises, questions, or code review.
 - Review ownership and borrowing choices at function boundaries. For 1D
   numerical data, owned storage should use `Vec<f64>`, and function boundaries
   should use `&[f64]` or `&mut [f64]`.
-- For 2D and higher numerical arrays, use `tenferro::TypedTensor` by default
-  unless an exercise explicitly asks for a flat-buffer implementation. Nested
-  vectors such as `Vec<Vec<f64>>` are not allowed as the normal numerical-array
+- For 2D and higher numerical arrays, use tenferro typed tensors by default.
+  In the current `tenferro-rs` crate layout, this means
+  `tenferro_tensor::TypedTensor` from the `tenferro-tensor` crate, unless an
+  exercise explicitly asks for a flat-buffer implementation. Nested vectors
+  such as `Vec<Vec<f64>>` are not allowed as the normal numerical-array
   representation; they may appear only as an anti-pattern to discuss.
 - Check whether small hand-checkable tests, edge cases, and `cargo test` are
   provided when the answer is a Cargo project.
@@ -99,8 +101,9 @@ exercises, section structure, explanatory text, or handouts.
 - Use Rust as the default language for small examples and exercise checks.
 - For 1D numerical examples, use `Vec<f64>` for owned storage and `&[f64]` or
   `&mut [f64]` at function boundaries.
-- For 2D and higher numerical-array examples, use `tenferro::TypedTensor` by
-  default. Keep `ndarray` and `ndarray-linalg` as alternatives when they fit the
+- For 2D and higher numerical-array examples, use tenferro typed tensors by
+  default, currently `tenferro_tensor::TypedTensor` from `tenferro-tensor`.
+  Keep `ndarray` and `ndarray-linalg` as alternatives when they fit the
   exercise or external ecosystem better.
 - Do not make notebooks mandatory. Prefer examples that can be checked with
   Cargo tests, small binaries, or simple command-line runs.

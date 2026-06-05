@@ -53,10 +53,10 @@ A practical safe route is:
    range.
 4. Measure the result instead of assuming the change helped.
 
-For the library/tensor comparison path, use `tenferro::TypedTensor`, the
-default Rust tensor representation for 2D and higher numerical arrays in this
-course. The comparison should check both correctness and the cost difference
-between a teaching implementation and a tensor or library implementation.
+For the library/tensor comparison path, use tenferro typed tensors, currently
+`tenferro_tensor::TypedTensor` in the `tenferro-rs` crate layout. The
+comparison should check both correctness and the cost difference between a
+teaching implementation and a tensor or library implementation.
 
 ## Things to look up
 
@@ -72,7 +72,7 @@ between a teaching implementation and a tensor or library implementation.
 - Bounds-check elimination
 - FLOPs
 - Memory bandwidth
-- `tenferro::TypedTensor`
+- `tenferro_tensor::TypedTensor`
 - Rust benchmarking
 
 ## Exercise
@@ -87,9 +87,9 @@ In that project:
 2. Test small matrices by hand, including at least one non-square case.
 3. Benchmark a controlled run. Record matrix sizes, build mode, CPU/thread
    assumptions, elapsed time, and an approximate FLOP rate.
-4. Check the current `tenferro` API and resolved Git revision, then compare the
-   result with a `tenferro::TypedTensor` calculation for the same data and
-   shapes.
+4. Check the current `tenferro-rs` API, crate names, import paths, and resolved
+   Git revision, then compare the result with a tenferro typed tensor
+   calculation for the same data and shapes.
 5. Ask the agent to optimize the hand-written implementation using safe Rust.
    Consider shape checks outside the hot loop, row slices, loop order, and
    blocking.
