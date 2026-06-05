@@ -4,43 +4,64 @@ title: "2.2 Reading documentation and examples"
 
 ## Explanation
 
-Documentation and examples are not the same. Documentation describes intended behavior. Examples show common usage. You need both, and you should prefer official documentation when learning core tools.
+Documentation and examples are not the same. Documentation describes intended
+behavior. Examples show common usage. You need both, and you should prefer
+official sources when learning core Rust tools.
 
-For a library or research topic, also look for community discussion spaces and project history. For Julia, [Julia Discourse](https://julialang.org/community/discourse/) is a useful community forum. Forum posts and developer comments can explain practical context, but they are not the same as official documentation.
+For Rust itself, start with the official Rust documentation. For crates, read
+the crate page on `docs.rs`, the crate README, and the repository when it is
+linked. GitHub issues can explain practical context, bugs, and design tradeoffs,
+but they are not the same as the API documentation.
 
-For Julia, a useful workflow is:
+A useful workflow is:
 
 ```text
 1. Find the official documentation page.
 2. Read the short description.
-3. Try a small example in the REPL.
-4. Look for related examples, forum discussions, and package repositories.
+3. Try a small Rust example in a Cargo project or Rust playground.
+4. Look for examples in docs.rs, the crate README, and the repository.
 5. Ask what can go wrong for your use case.
 ```
 
+For example, if you are using `tenferro::TypedTensor`, check the `tenferro`
+documentation and examples before trusting an AI-generated tensor operation.
+For random numbers, compare the AI answer with the `rand` crate documentation.
+For alternative array ecosystems, check `ndarray` and related crate docs.
+
 ## Things to look up
 
+- Official Rust documentation
+- `docs.rs`
 - Official documentation
 - API reference
 - Example code
 - Minimal working example
-- Julia documentation
-- Julia Discourse
+- Crate README
+- GitHub issues
 - Package repository
 - Package maintainer
 
 ## Exercise
 
-Choose one Julia function related to arrays or mathematics. Find its official documentation and one example. Write down what the function does, what inputs it expects, and one possible mistake when using it.
+Choose one Rust item related to arrays, random numbers, or mathematics. Good
+choices include a `tenferro`, `ndarray`, or `rand` function or type. Find its
+official documentation and one example. Write down what it does, what inputs it
+expects, what it returns, and one possible mistake when using it.
 
-Advanced exercise: Choose one Julia library or scientific-computing topic that interests you. Ask an AI agent to find the official documentation, one relevant community forum discussion, the package repository if it exists, and one developer or maintainer connected to the topic. Then open the sources yourself and write what each source is useful for.
+Advanced exercise: Choose one Rust crate or scientific-computing topic that
+interests you. Ask an AI agent to find the official documentation, the
+`docs.rs` page, the crate README, the repository, and one relevant GitHub issue
+if it exists. Then open the sources yourself and write what each source is
+useful for.
 
 ## Notes for the exercise
 
 - Use an official source when possible.
 - Do not copy a long documentation passage.
-- Explain the function in your own words.
+- Explain the item in your own words.
 - Include one concrete input example.
-- Treat forum posts as practical context, not final authority.
-- Check dates, package versions, and whether a developer comment is about the same version or problem you are studying.
-- Distinguish official documentation, community discussion, repository history, and individual opinion.
+- Treat GitHub issues as practical context, not final authority.
+- Check dates, crate versions, and whether a maintainer comment is about the
+  same version or problem you are studying.
+- Distinguish official documentation, examples, repository history, and
+  individual opinion.

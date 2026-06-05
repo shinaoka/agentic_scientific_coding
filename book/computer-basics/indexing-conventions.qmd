@@ -4,15 +4,19 @@ title: "3.2 Indexing conventions: 0-based and 1-based"
 
 ## Explanation
 
-An index specifies the position of an element. Different languages use different conventions. Julia, MATLAB, and Fortran use 1-based indexing. C, C++, Python, and Rust commonly use 0-based indexing.
+An index specifies the position of an element. Different languages use
+different conventions. Rust, C, C++, and Python use 0-based indexing. MATLAB and
+Fortran use 1-based indexing.
 
 ![](../figures/indexing-conventions.svg){fig-alt="The values a, b, c, d have indices 1, 2, 3, 4 in 1-based indexing and 0, 1, 2, 3 in 0-based indexing."}
 
-This is a common source of off-by-one errors. If an AI agent gives a Python example, you must check index conventions before translating it to Julia.
+This is a common source of off-by-one errors. If an AI agent gives a MATLAB or
+Fortran example, you must check index conventions before translating it to
+Rust.
 
-```julia
-xs = [10, 20, 30]
-xs[1]  # 10 in Julia
+```rust
+let xs = [10, 20, 30];
+let first = xs[0]; // 10 in Rust
 ```
 
 ## Things to look up
@@ -21,7 +25,9 @@ xs[1]  # 10 in Julia
 - 1-based indexing
 - Off-by-one error
 - Array slicing
-- Julia array indexing
+- Rust array indexing
+- MATLAB array indexing
+- Fortran array indexing
 
 ## Exercise
 
@@ -29,8 +35,8 @@ For the values `[10, 20, 30, 40, 50]`, answer:
 
 1. In 1-based indexing, what are the indices of `20` and `50`?
 2. In 0-based indexing, what are the indices of `20` and `50`?
-3. In Julia, how would you refer to the first element?
-4. Why can copying loop bounds from Python to Julia be wrong?
+3. In Rust, how would you refer to the first element?
+4. Why can copying loop bounds from MATLAB or Fortran to Rust be wrong?
 
 ## Notes for the exercise
 

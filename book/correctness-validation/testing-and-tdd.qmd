@@ -19,23 +19,37 @@ easy to implement first, run one convenient example, and decide that the code is
 probably correct. TDD forces you to state the expected behavior before the
 implementation exists.
 
-In a small Julia project, start by writing the test file. For example:
+In a small Rust project, start by writing the test file. For example:
 
-`test/runtests.jl`
+`tests/mean.rs`
 
-```julia
-using Test
-include("../src/MeanTools.jl")
+```rust
+use mean_tools::mean_value;
 
-using .MeanTools
+#[test]
+fn mean_of_three_values() {
+    assert_eq!(mean_value(&[2.0, 4.0, 6.0]), Some(4.0));
+}
 
-@testset "mean_value" begin
-    @test mean_value([2.0, 4.0, 6.0]) == 4.0
-    @test mean_value([5.0]) == 5.0
-    @test mean_value([-1.0, 1.0]) == 0.0
-    @test mean_value([3.0, 3.0, 3.0]) == 3.0
-    @test_throws ErrorException mean_value(Float64[])
-end
+#[test]
+fn mean_of_one_value() {
+    assert_eq!(mean_value(&[5.0]), Some(5.0));
+}
+
+#[test]
+fn mean_with_negative_values() {
+    assert_eq!(mean_value(&[-1.0, 1.0]), Some(0.0));
+}
+
+#[test]
+fn mean_of_repeated_values() {
+    assert_eq!(mean_value(&[3.0, 3.0, 3.0]), Some(3.0));
+}
+
+#[test]
+fn empty_input_has_no_mean() {
+    assert_eq!(mean_value(&[]), None);
+}
 ```
 
 Before the source file exists, this test file should fail. That is expected.
@@ -44,22 +58,16 @@ implementation.
 
 Then write the source file:
 
-`src/MeanTools.jl`
+`src/lib.rs`
 
-```julia
-module MeanTools
+```rust
+pub fn mean_value(xs: &[f64]) -> Option<f64> {
+    if xs.is_empty() {
+        return None;
+    }
 
-export mean_value
-
-function mean_value(xs)
-    if isempty(xs)
-        error("mean_value is undefined for empty input")
-    end
-
-    return sum(xs) / length(xs)
-end
-
-end
+    Some(xs.iter().sum::<f64>() / xs.len() as f64)
+}
 ```
 
 The function is easy to test because all data enter through the argument `xs`,
@@ -69,18 +77,23 @@ values, repeated values, and empty input.
 
 Here is a small bad example:
 
-```julia
-data = [1.0, 2.0, 3.0]
+```rust
+fn mean_value_from_file() -> std::io::Result<f64> {
+    let text = std::fs::read_to_string("data.txt")?;
+    let xs: Vec<f64> = text
+        .lines()
+        .filter_map(|line| line.parse::<f64>().ok())
+        .collect();
 
-function mean_value()
-    return sum(data) / length(data)
-end
+    Ok(xs.iter().sum::<f64>() / xs.len() as f64)
+}
 ```
 
-This function depends on the global variable `data`. If some other part of the
-program changes `data`, the same call `mean_value()` can return a different
-answer. That makes the function harder to test and harder to reuse. A better
-design is `mean_value(xs)`, where the input is explicit.
+This function reads from a hidden file path instead of receiving its data as an
+argument. If some other part of the workflow changes `data.txt`, the same call
+can return a different answer. Similar problems appear when functions depend on
+hidden global mutable state. A better design is `mean_value(xs: &[f64])`, where
+the input is explicit.
 
 Tests should be fast. Fast tests make it realistic to run them after every
 change, before handing work to another person, and before trusting code written
@@ -95,8 +108,9 @@ verification data separately from ordinary code changes.
 For floating-point results that are not exactly representable, use approximate
 comparison:
 
-```julia
-@test isapprox(sqrt(2)^2, 2.0)
+```rust
+let value = 2.0_f64.sqrt().powi(2);
+assert!((value - 2.0).abs() < 1e-12);
 ```
 
 A bad test copies the implementation. A good test checks behavior that you can
@@ -106,23 +120,27 @@ For a very small teaching example, it is sometimes useful to put the function
 and the tests in one file so that the implementation and specification can be
 read together:
 
-```julia
-using Test
+```rust
+pub fn mean_value(xs: &[f64]) -> Option<f64> {
+    if xs.is_empty() {
+        return None;
+    }
 
-function mean_value(xs)
-    if isempty(xs)
-        error("mean_value is undefined for empty input")
-    end
+    Some(xs.iter().sum::<f64>() / xs.len() as f64)
+}
 
-    return sum(xs) / length(xs)
-end
+#[cfg(test)]
+mod tests {
+    use super::mean_value;
 
-@testset "mean_value" begin
-    @test mean_value([2.0, 4.0, 6.0]) == 4.0
-    @test mean_value([5.0]) == 5.0
-    @test mean_value([-1.0, 1.0]) == 0.0
-    @test_throws ErrorException mean_value(Float64[])
-end
+    #[test]
+    fn mean_examples() {
+        assert_eq!(mean_value(&[2.0, 4.0, 6.0]), Some(4.0));
+        assert_eq!(mean_value(&[5.0]), Some(5.0));
+        assert_eq!(mean_value(&[-1.0, 1.0]), Some(0.0));
+        assert_eq!(mean_value(&[]), None);
+    }
+}
 ```
 
 Do not treat this inline layout as the recommended structure for real project
@@ -139,51 +157,43 @@ separate test command should run the tests. Project organization is discussed in
 - Test-driven development
 - Modular design
 - Reference implementation
-- Julia `Test` standard library
-- Julia module
-- `@testset`
-- `@test_throws`
-- `isapprox`
+- Rust test harness
+- Cargo
+- `cargo test`
+- `src/lib.rs`
+- `tests/`
+- `Option`
 
 ## Exercise
 
-In `work/chapter_6.1/`, write a small Julia module with a function
-`mean_value(xs)`. Put the source code in `src/MeanTools.jl` and the tests in
-`test/runtests.jl`.
+In `work/chapter_6.1/`, create a small Cargo project with a function
+`mean_value(xs: &[f64]) -> Option<f64>`. Put the source code in `src/lib.rs`
+and the integration tests in `tests/mean.rs`.
 
 Write the tests before writing the implementation. Run the tests once while the
 implementation is still missing or incomplete, and record what failure you saw.
-Then implement the function and run the tests again.
+Then implement the function and run `cargo test` again.
 
 Include at least five tests. For each test, write one sentence explaining what
 property it checks.
 
 ## Notes for the exercise
 
-- The source file should define a module.
-- The test file should use `include` or another explicit project mechanism to
-  load the code being tested.
-- `mean_value(xs)` should receive data through the argument `xs` and return the
-  result.
+- The source file should be `src/lib.rs`.
+- The integration test file should be `tests/mean.rs`.
+- `mean_value(xs: &[f64])` should receive data through the argument `xs` and
+  return the result.
 - Do not make `mean_value` read from or write to a global variable.
-- Include empty input or explain why it is invalid.
+- Use `Option<f64>` so empty input can return `None`.
 - Include a one-element input.
 - Include repeated values.
 - Include negative values.
 - Include a case whose answer is known by hand.
-- Use `isapprox` when exact floating-point equality is not appropriate.
+- Use an explicit tolerance when exact floating-point equality is not
+  appropriate.
 - Tests should check the specification, not copy the implementation.
 - Keep the tests fast enough that you would actually run them after editing.
 - If an AI agent changes the tests, inspect that diff before trusting the
   implementation.
-
-## Optional coding check
-
-Run the test file with Julia:
-
-```bash
-julia test/runtests.jl
-```
-
-If a test fails, read the failure message before changing either the function or
-the test.
+- Run the tests with `cargo test`. If a test fails, read the failure message
+  before changing either the function or the test.

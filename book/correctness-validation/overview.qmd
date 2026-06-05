@@ -4,9 +4,8 @@ title: "Correctness and Validation"
 
 ## Explanation
 
-A numerical program is not validated just because it produces a number once.
-It must be organized so that wrong results can be found, localized, and
-corrected.
+A numerical program is not validated just because it produces a number once. It
+must be organized so that wrong results can be found, localized, and corrected.
 
 The idea is similar to assembling a car. A car has many parts: an engine,
 doors, brakes, wheels, wiring, and many smaller components. If you assemble the
@@ -15,12 +14,12 @@ something is wrong, but not which part caused it.
 
 Real inspection is built in layers. Inspect each part before installing it.
 After combining several parts, inspect that combination by itself. Then test
-the whole car. Software needs the same structure. A long script with hidden
+the whole car. Software needs the same structure. A long program with hidden
 global state is like a car that can only be inspected after final assembly.
 
 This section develops three connected habits:
 
-- design code as small parts that can be tested independently,
+- design code as small Rust functions that can be tested independently,
 - think about edge cases and failure modes before trusting results,
 - save enough information that a result can be inspected and reproduced later.
 
@@ -29,6 +28,19 @@ concrete. Write the expected behavior as tests before writing the
 implementation. This is hard for humans because we naturally want to implement
 first and check casually afterward. TDD makes that shortcut visible.
 
+A Rust/Cargo-first validation loop is:
+
+1. design a small function boundary,
+2. write fast tests in the Cargo project,
+3. run `cargo test`,
+4. run larger validation experiments only after the small tests pass,
+5. save results and metadata so the experiment can be inspected later.
+
+Rust does not prove that a numerical algorithm is scientifically correct, but
+the compiler catches many type, ownership, and interface errors before long
+validation runs start. That makes it easier to keep fast checks in the ordinary
+development loop.
+
 Tests also support handoff. If another person, or an AI agent, changes the
 code, the test suite gives a fast way to check whether the change broke
 existing behavior. Tests should therefore be fast. Small unit tests should run
@@ -36,19 +48,11 @@ in seconds, and even in a large project the ordinary test suite should ideally
 finish in a few minutes or less. Expensive scientific validation can be kept as
 a separate check.
 
-This ideal is not always easy in Julia. In a large Julia project, startup,
-package loading, and precompilation overhead can make test execution much
-longer. This is one practical reason to consider Rust for larger structured
-projects: many type, ownership, and interface errors are caught at compile time
-before a long test or validation run starts. It is discouraging to wait through
-a long calculation and then fail on an error that a compiler could have found
-earlier.
-
 There is one AI-specific risk: an agent may make tests pass by weakening or
 rewriting the tests themselves. That is not validation. Review test changes
-first. For important reference cases, keep independent verification data:
-fixed inputs, expected outputs, tolerances, provenance, and notes stored in a
-place that is reviewed separately from ordinary implementation edits.
+first. For important reference cases, keep independent verification data: fixed
+inputs, expected outputs, tolerances, provenance, and notes stored in a place
+that is reviewed separately from ordinary implementation edits.
 
 One example of this idea is
 [tensor-ad-oracles](https://github.com/tensor4all/tensor-ad-oracles), which
@@ -64,7 +68,8 @@ stores machine-readable oracle data for derivative-correctness checks.
 - Reproducibility
 - Oracle data
 - Provenance
-- Julia precompilation
+- Cargo
+- `cargo test`
 - Compile-time error
 
 ## Exercise
@@ -72,8 +77,10 @@ stores machine-readable oracle data for derivative-correctness checks.
 Choose one computational task, such as computing an average, finding a root, or
 running a small Monte Carlo simulation. Write a short validation plan with:
 
-- the small parts that should be tested independently,
+- the Rust function boundaries that should be tested independently,
 - the edge cases and failure modes to check,
+- the `cargo test` checks that should run quickly,
+- the larger validation runs that may be slower,
 - the information that should be saved with the final result.
 
 Advanced: ask an AI agent to inspect the `tensor-ad-oracles` repository and
@@ -84,6 +91,7 @@ for verification.
 ## Notes for the exercise
 
 - Separate fast tests from expensive validation runs.
+- Use explicit Rust function inputs instead of hidden global mutable state.
 - Include at least one check that would catch a scientifically misleading
   result even if the code runs without an error.
 - Explain how the tests would help another person continue the work.

@@ -4,36 +4,62 @@ title: "4.1 Stack, heap, and references"
 
 ## Explanation
 
-This page belongs to the performance and systems model. On a first pass, you may read Section 3 and then continue to Section 5, returning here when aliasing or memory behavior becomes important.
+This page belongs to the performance and systems model. On a first pass, you
+may read the basic memory-layout material and then continue to validation,
+returning here when aliasing or memory behavior becomes important.
 
-Stack and heap are simplified words for different kinds of memory use. You do not need to memorize implementation details here. The important idea is that small local bindings and call frames are different from large or dynamically created objects such as arrays.
+Stack and heap are simplified words for different kinds of memory use. You do
+not need to memorize implementation details here. The important idea is that
+small local values and call frames are different from large or dynamically
+created objects such as arrays.
 
 ![](../figures/stack-heap.svg){fig-alt="Two local names on the stack point to the same array object on the heap."}
 
-This helps explain aliasing. If two names refer to the same mutable object, changing the object through one name can affect what the other name sees.
+In Rust, a `Vec<f64>` value contains small metadata such as pointer, length, and
+capacity. That metadata is held by the local variable, while the vector's
+element buffer is allocated on the heap. Ownership controls who is responsible
+for that buffer. References such as `&[f64]` and `&mut [f64]` let functions
+borrow data without taking ownership.
 
-```julia
-xs = [1, 2, 3]
-ys = xs
-push!(ys, 4)
-xs  # [1, 2, 3, 4]
+```rust
+fn sum_values(xs: &[f64]) -> f64 {
+    xs.iter().sum()
+}
+
+let xs = vec![1.0, 2.0, 3.0];
+let total = sum_values(&xs);
 ```
+
+This function can read the heap buffer through a shared reference, but it does
+not own the vector and cannot mutate it. A function that needs to modify the
+values should take `&mut [f64]` so the mutation is explicit at the function
+boundary.
 
 ## Things to look up
 
 - Stack memory
 - Heap memory
 - Reference
+- Ownership
+- Borrowing
+- `Vec<f64>`
+- Slice
 - Aliasing
 - Mutable object
 
 ## Exercise
 
-For the Julia code above, draw names and objects. Which names exist? Which object do they refer to? What changes after `push!(ys, 4)`?
+For the Rust code above, draw the local variables and the heap buffer. Which
+data are part of the `Vec<f64>` value, and which data live in the element
+buffer? What does `&xs` allow `sum_values` to do?
+
+Then write a function signature for a function that scales a vector in place.
+Should it take `Vec<f64>`, `&[f64]`, or `&mut [f64]`?
 
 ## Notes for the exercise
 
-- Distinguish changing a name from changing an object.
-- Do not assume assignment always creates a copy.
-- Explain why aliasing can be useful and why it can be dangerous.
-- For scientific code, mention one bug that aliasing could cause.
+- Distinguish ownership from borrowing.
+- Distinguish the `Vec<f64>` metadata from the heap buffer.
+- Use `&[f64]` when a function only reads 1D numerical data.
+- Use `&mut [f64]` when a function modifies 1D numerical data in place.
+- Explain why hidden mutable sharing can make scientific code hard to test.

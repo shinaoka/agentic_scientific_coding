@@ -4,14 +4,22 @@ title: "2.3 Checking AI explanations"
 
 ## Explanation
 
-AI explanations can be useful and still incomplete. Check whether the explanation states assumptions, handles boundary cases, and gives a way to verify the claim.
+AI explanations can be useful and still incomplete. Check whether the
+explanation states assumptions, handles boundary cases, and gives a way to
+verify the claim.
 
-For example, if an AI agent explains an algorithm for the maximum of an array, check whether it mentions:
+For example, if an AI agent explains a Rust function for the maximum of a
+slice, check whether it mentions:
 
 - what happens for empty input,
 - what initial value is used,
 - how repeated maximum values are handled,
 - whether the output is the value, the index, or both.
+
+Do not stop at reading the explanation. If the agent generates Rust code, put
+the code in a small Cargo project, add tests, and run `cargo test`. Then compare
+unclear API claims with the Rust standard library documentation, `docs.rs`, or
+the relevant crate source documentation.
 
 ## Things to look up
 
@@ -20,13 +28,22 @@ For example, if an AI agent explains an algorithm for the maximum of an array, c
 - Assumption
 - Counterexample
 - Sanity check
+- `cargo test`
+- Rust standard library documentation
+- `docs.rs`
 
 ## Exercise
 
-Ask an AI agent to explain a simple algorithm, such as computing the maximum of an array. Then write three checks you would apply to the explanation.
+Ask an AI agent to explain a simple Rust algorithm, such as computing the
+maximum of a `&[f64]`. Then write three checks you would apply to the
+explanation and two tests you would run with `cargo test`.
 
 ## Notes for the exercise
 
 - Check whether empty input is discussed.
 - Check whether the algorithm updates the correct state.
-- Check whether the explanation distinguishes the algorithm from its implementation.
+- Check whether the explanation distinguishes the algorithm from its
+  implementation.
+- Check source documentation when the explanation mentions a Rust API or crate.
+- Treat passing tests as evidence for the tested behavior only, not as proof
+  that every claim in the explanation is correct.

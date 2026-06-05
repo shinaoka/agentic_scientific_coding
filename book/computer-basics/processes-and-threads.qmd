@@ -4,13 +4,27 @@ title: "4.2 Processes and threads"
 
 ## Explanation
 
-This page belongs to the performance and systems model. On a first pass, you may read Section 3 and then continue to Section 5, returning here when parallel execution becomes important.
+This page belongs to the performance and systems model. On a first pass, you
+may read the basic memory-layout material and then continue to validation,
+returning here when parallel execution becomes important.
 
-A process is a running program with its own memory space. A thread is an execution path inside a process. Threads in the same process usually share memory, while different processes usually do not share memory unless data are explicitly exchanged.
+A process is a running program with its own memory space. A thread is an
+execution path inside a process. Threads in the same process usually share
+memory, while different processes usually do not share memory unless data are
+explicitly exchanged.
 
 ![](../figures/process-thread.svg){fig-alt="Two threads in one process share memory; a different process has separate memory."}
 
-This matters for parallel scientific computing. Threads can communicate through shared arrays, but this also means they can accidentally write the same data at the same time. Processes are more isolated, but moving data between them has a cost.
+This matters for parallel scientific computing. Threads can communicate through
+shared arrays, but this also means they can accidentally write the same data at
+the same time. Processes are more isolated, but moving data between them has a
+cost.
+
+When you run `cargo test`, `cargo run`, or a compiled binary, the operating
+system starts a process. A numerical program may also create worker threads to
+split independent simulations, matrix operations, or parameter sweeps. In Rust,
+safe shared mutation across threads must be made explicit through the type
+system and synchronization tools.
 
 ## Things to look up
 
@@ -19,13 +33,16 @@ This matters for parallel scientific computing. Threads can communicate through 
 - Shared memory
 - Race condition
 - Parallel computing
+- `cargo run`
+- `cargo test`
+- Numerical simulation
 
 ## Exercise
 
 Compare two ways to run four independent simulations:
 
-- four processes, each with its own memory,
-- four threads inside one process.
+- four separate commands such as `cargo run --bin simulate -- --seed N`,
+- four threads inside one Rust process.
 
 For each approach, list one advantage and one possible problem.
 
@@ -35,3 +52,5 @@ For each approach, list one advantage and one possible problem.
 - Mention the cost of moving or copying data.
 - Mention race conditions for shared-memory code.
 - Do not assume parallel code is automatically faster or more reproducible.
+- State how you would save each simulation's result so that outputs do not
+  overwrite each other.

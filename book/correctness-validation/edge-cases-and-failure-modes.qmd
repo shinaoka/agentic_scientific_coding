@@ -10,14 +10,14 @@ failure mode is a way the code can give a wrong, misleading, or unusable result.
 
 Consider a small function for relative error:
 
-```julia
-relative_error(approx, reference)
+```rust
+fn relative_error(approx: f64, reference: f64) -> Result<f64, String>
 ```
 
-The intended value is
+The intended value is:
 
-```julia
-abs(approx - reference) / abs(reference)
+```rust
+(approx - reference).abs() / reference.abs()
 ```
 
 This is a useful example because the dangerous cases are simple. A reasonable
@@ -26,19 +26,25 @@ specification is:
 - `approx` and `reference` must be finite real numbers,
 - `reference` must not be zero,
 - valid input returns the relative error,
-- invalid input throws an explicit exception.
+- invalid input returns an explicit `Err`.
 
 With this specification, `relative_error(2.1, 2.0)` is valid, and
-`relative_error(2.0, 2.0)` should return `0.0`. Negative reference values are
-also valid because the denominator uses `abs(reference)`.
+`relative_error(2.0, 2.0)` should return `Ok(0.0)`. Negative reference values
+are also valid because the denominator uses `abs(reference)`.
 
-The invalid cases are more important here. If `reference == 0`, the denominator
-is zero. If either input is `Inf` or `NaN`, the result is not a useful finite
-error. The function should not silently return `Inf` or `NaN` and allow later
-calculations to continue as if nothing happened. It should fail clearly.
+The invalid cases are more important here. If `reference == 0.0`, the
+denominator is zero. If either input is infinity or NaN, the result is not a
+useful finite error. The function should not silently return infinity or NaN and
+allow later calculations to continue as if nothing happened. It should fail
+clearly.
+
+Rust functions should make recoverable failure visible in the type signature.
+Use `Option<T>` when the only failure is absence of a value, such as the mean of
+an empty slice. Use `Result<T, E>` when the caller needs to know why the input
+was invalid or why the computation failed.
 
 This is the main lesson: a test should check not only correct values for valid
-inputs, but also correct failure for invalid inputs. A silent `Inf` or `NaN`
+inputs, but also correct failure for invalid inputs. A silent infinity or NaN
 can be more dangerous than an error, because it may flow into later calculations
 and make the final result misleading.
 
@@ -47,11 +53,15 @@ and make the final result misleading.
 - Edge case
 - Invalid input
 - Failure mode
+- `Option`
+- `Result`
+- Recoverable error
 
 ## Exercise
 
-In `work/chapter_6.2/`, write tests for `relative_error(approx, reference)`.
-Use the specification above.
+In `work/chapter_6.2/`, write tests for
+`relative_error(approx: f64, reference: f64) -> Result<f64, String>`. Use the
+specification above.
 
 Include tests for valid inputs, such as:
 
@@ -59,19 +69,20 @@ Include tests for valid inputs, such as:
 - `relative_error(2.0, 2.0)`,
 - a case with a negative reference value.
 
-Also include tests that invalid inputs throw an explicit exception:
+Also include tests that invalid inputs return an explicit `Err`:
 
-- `reference == 0`,
-- `approx` is `NaN`,
-- `reference` is `Inf`.
+- `reference == 0.0`,
+- `approx` is NaN,
+- `reference` is infinity.
 
 After writing the tests, implement `relative_error` so that the tests pass.
 
 ## Notes for the exercise
 
-- Use `@test_throws` for invalid inputs.
-- Use `isfinite` to detect `Inf` and `NaN`.
-- Do not return `Inf` or `NaN` for invalid input.
+- Use `is_err()` or pattern matching for invalid inputs.
+- Use `is_finite()` to detect infinity and NaN.
+- Do not return infinity or NaN for invalid input.
+- Use `Result` for recoverable invalid input in this exercise.
 - Do not add an arbitrary threshold for small nonzero `reference` in this
   exercise.
 - Keep the tests fast and deterministic.

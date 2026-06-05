@@ -16,22 +16,31 @@ Is this function correct?
 Better:
 
 ```text
-For this function, list the expected input type, output type,
-edge cases, and tests that would catch a wrong implementation.
+For this Rust function, propose a clear signature using &[f64] for
+input data. List the output type, edge cases, and tests that would
+catch a wrong implementation.
 ```
 
 If you do not yet know what to ask, start honestly. Ask the AI agent to suggest
 what should be checked, then use that list to make more specific questions.
 
 ```text
-I do not yet know what to check in this function.
-Suggest a review checklist: inputs, outputs, assumptions,
-edge cases, numerical accuracy, performance, and validation tests.
+I do not yet know what to check in this Rust numerical function.
+Suggest a review checklist: function signature, ownership and borrowing,
+inputs, outputs, assumptions, edge cases, numerical accuracy,
+performance, Cargo tests, and validation checks.
 ```
+
+Useful Rust questions often mention project structure explicitly. Ask where the
+code should live, such as `src/lib.rs`, and where tests should live, such as
+`tests/mean.rs`. Ask how to run the check with `cargo test`.
 
 ## Things to look up
 
 - How to ask coding questions
+- Rust function signature
+- Cargo project
+- `cargo test`
 - Input and output
 - Edge case
 - Failure mode
@@ -46,12 +55,20 @@ array. First, write one prompt asking an AI agent to suggest what should be
 checked. Then write five specific follow-up questions you would ask to
 understand the function.
 
+At least two follow-up questions should be Rust-specific. For example, ask
+whether the function should take `&[f64]`, whether empty input should return
+`Option<f64>` or `Result<f64, Error>`, how to set up a small Cargo project, and
+which tests should go in `tests/`.
+
 ## Notes for the exercise
 
 - It is acceptable to start by asking for possible review criteria.
 - Turn the proposed criteria into specific questions before asking for judgment.
+- Ask for a concrete Rust function signature.
+- Ask where source files and tests should be placed in a Cargo project.
 - Include at least one question about input.
 - Include at least one question about output.
 - Include at least one question about boundary cases.
 - Include at least one question about validation.
+- Include at least one question about how `cargo test` will check the answer.
 - Avoid the phrase "Is it correct?" unless you also specify a criterion.
