@@ -11,10 +11,6 @@ agents. It is intended for science and engineering students who can follow
 elementary mathematics and want to learn how to turn a computational question
 into reviewed, tested, reproducible code.
 
-This is not a complete Rust textbook. It is a concept map for the parts of
-programming, computer systems, numerical computing, and AI-agent workflow that
-students need in order to work safely on scientific code.
-
 The goal is not to copy code produced by an AI agent. The goal is to learn how
 to write a specification, review generated changes, design tests, validate
 numerical results, and keep calculations reproducible. Students should learn to
@@ -39,10 +35,10 @@ the changes, design checks, run tests, judge whether the result is
 scientifically correct, give feedback, and if needed improve the code with the
 AI agent.
 
-This material is not self-contained, and it is not a comprehensive textbook. It
-covers a wide range of ideas, so it is meant to serve as a conceptual roadmap:
-a guide to the concepts, tools, checks, and workflows that students should learn
-to recognize and investigate further. Each subsection gives:
+This material is not a complete Rust textbook. It is a concept map for the parts
+of programming, computer systems, numerical computing, and AI-agent workflow
+that students need in order to work safely on scientific code. Each subsection
+gives:
 
 - a short explanation,
 - concrete syntax or examples when the concept is programming-related,

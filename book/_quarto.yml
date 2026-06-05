@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: dist
+  # Keep the active migration page set explicit so legacy drafts and removed
+  # chapters are not rendered accidentally. Mirror this list in book.chapters.
   render:
     - index.qmd
     - getting-started/download-the-material.qmd

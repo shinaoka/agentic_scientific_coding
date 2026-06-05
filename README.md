@@ -4,7 +4,8 @@ This repository contains teaching material for B4/M1 physics majors and students
 in related fields who are beginning to use programming and AI agents for
 physics-oriented numerical computing.
 
-The course text is a Quarto book. Manuscripts are in [`book/`](book/) as one `.qmd` file per subsection.
+The course text is a Quarto book. Manuscripts are in [`book/`](book/) as one
+`.qmd` file per subsection.
 
 ## Local preview
 
@@ -42,9 +43,14 @@ The repository page is:
 
 - https://github.com/shinaoka/agentic_scientific_coding
 
-Unpack the ZIP file and work inside the top-level folder. If you already know Git, cloning the repository is also fine. You do not need to understand Git or repository management in detail at the beginning, but read [Minimal Git and diff safety](book/getting-started/minimal-git-diff-safety.qmd) before asking an AI agent to edit files.
+Unpack the ZIP file and work inside the top-level folder. If you already know
+Git, cloning the repository is also fine. You do not need to understand Git or
+repository management in detail at the beginning, but read
+[Minimal Git and diff safety](book/getting-started/minimal-git-diff-safety.qmd)
+before asking an AI agent to edit files.
 
-If you use an AI agent, start it from the top-level course folder so it can read the course text, exercise files, and project structure together.
+If you use an AI agent, start it from the top-level course folder so it can read
+the course text, exercise files, and project structure together.
 
 Small examples use Rust by default. Install Rust through `rustup` using the
 official instructions:
