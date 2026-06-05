@@ -1,24 +1,28 @@
 ---
-title: "12.1 Why Rust after Julia"
+title: "12.1 Why Rust for scientific computing"
 ---
 
 ## Explanation
 
-Julia is a great language for learning scientific computing. Arrays, functions,
-numerical types, multiple dispatch, plotting, and interactive exploration are
-easy to inspect. Small numerical kernels can also be very fast when written
-carefully.
+Julia is a great language for learning scientific computing, but you do not
+have to start every project in Julia. Rust can also be the first implementation
+language, especially when an AI agent helps with syntax, Cargo setup, and
+compiler errors.
 
-For larger practical code, the balance can change. One view is that Julia's
-human-friendly writing experience matters most in education and exploratory
-work, while AI agents reduce the cost of writing more verbose code in languages
-such as Rust. In that setting, the human role shifts toward specification,
-review, validation, and feedback. This is a softer version of the viewpoint
-discussed in [On Julia's future (Developer Experience in the Era of Generative
-AI)](https://zenn.dev/h_shinaoka/articles/f8395a2c4f54d0).
+The important question is not "Julia first or Rust first?" The important
+question is whether the project has a clear specification, small tested
+functions, reference data, and a validation workflow. With those in place, Rust
+is a reasonable language even for the first implementation.
 
-Rust is useful to introduce after Julia because it is different in ways that
-matter for scientific software:
+One view is that Julia's human-friendly writing experience matters most in
+education and exploratory work, while AI agents reduce the cost of writing more
+verbose code in languages such as Rust. In that setting, the human role shifts
+toward specification, review, validation, and feedback. This is a softer version
+of the viewpoint discussed in [On Julia's future (Developer Experience in the
+Era of Generative AI)](https://zenn.dev/h_shinaoka/articles/f8395a2c4f54d0).
+
+Rust is useful for scientific software because it is different in ways that
+matter for larger practical code:
 
 - Rust is statically typed. Many errors are caught before the program runs.
 - Rust has a strong package and build system through Cargo.

@@ -1,21 +1,24 @@
 ---
-title: "12.4 Reworking a project in Rust"
+title: "12.4 Developing a project in Rust"
 ---
 
 ## Explanation
 
-After completing a Julia or Python scientific-computing project, redo a small,
-well-defined part of it in Rust with help from an AI agent. Do not begin by
-translating the whole project. Choose a function, kernel, or command whose
-inputs, outputs, tests, and benchmark case are already clear.
+After choosing a scientific-computing project, implement a small, well-defined
+part of it in Rust with help from an AI agent. It is fine to start in Rust. Do
+not begin by asking the agent to generate the whole project. Choose a function,
+kernel, or command whose inputs, outputs, tests, and benchmark case are already
+clear.
 
-This is where TDD pays off. If the original project was developed as small
-tested functions, each tested behavior becomes a natural migration unit. Port
-one function or component, run matching Rust tests, read the Rust code, and only
-then move to the next part. Without tests, you are translating a script and
-guessing whether it still means the same scientific computation.
+This is where TDD pays off. If the project is developed as small tested
+functions, each tested behavior becomes a natural development unit. Write one
+test, implement one function or component, run the Rust tests, read the Rust
+code, and only then move to the next part. If an older Julia or Python
+implementation exists, the same tested units also become migration units.
+Without tests, you are asking the agent to produce code and guessing whether it
+still means the intended scientific computation.
 
-Do not treat generated Rust as a black box. After translating one part, inspect
+Do not treat generated Rust as a black box. After implementing one part, inspect
 the code visually. When you find a line, type, function signature, ownership
 rule, or borrow that you do not understand, ask the AI agent to explain that
 exact point until you can explain the code yourself.
@@ -23,15 +26,16 @@ exact point until you can explain the code yourself.
 The workflow is:
 
 1. Start from the existing specification and saved-data convention.
-2. Choose one tested function or component as the first Rust target.
+2. Choose one function or component as the first Rust target.
 3. Ask the AI agent to summarize the Rust data structures and ownership design.
 4. Ask the agent to create or update a Cargo project.
-5. Port one small component first.
-6. Write unit tests that match the Julia or Python behavior.
+5. Write a unit test for the first behavior.
+6. Implement one small component until `cargo test` passes.
 7. Read the generated Rust code with the agent and resolve unclear parts.
 8. Add a benchmark for a fixed problem size.
-9. Compare output, runtime, and memory behavior with the original implementation.
-10. Move to the next tested function or component only after the first one is clear.
+9. Compare output, runtime, and memory behavior with the specification and
+   reference data.
+10. Move to the next component only after the first one is tested and clear.
 
 For the Ising project, a suitable first target might be the deterministic energy
 and local energy-change functions, then the update loop. For the tight-binding
@@ -58,35 +62,36 @@ successful scientific implementation.
 
 ## Exercise
 
-Choose one completed Julia or Python project and ask an AI agent to implement
-one small Rust component. The prompt should include:
+Choose one scientific-computing project and ask an AI agent to implement one
+small Rust component. The prompt should include:
 
 ```text
 Use the existing project specification.
 Implement only the following component in Rust: ...
 Keep the same inputs, outputs, conventions, and validation checks.
-Add unit tests and one benchmark case.
+Write the unit test first, then implement until cargo test passes.
+Add one benchmark case after the test is meaningful.
 Before editing, summarize the Rust data structures and ownership design.
 After editing, explain every function signature and every mutable borrow.
 Do not proceed to another component until tests pass and I can explain this one.
 ```
 
-After the code is generated, compare it with the Julia or Python version.
-Explain:
+After the code is generated, compare it with the specification and any saved
+reference data. Explain:
 
 - what data structure represents the main array,
 - which functions mutate data,
 - which functions only read data,
 - how ownership or borrowing appears in the function signatures,
-- whether the tests check the same behavior as the original implementation.
+- whether the tests check the required behavior.
 - one line or signature that you did not understand at first, and what the AI
   agent's explanation changed in your understanding.
 
 ## Notes for the exercise
 
-- Do not ask the agent to translate the entire project in one step.
-- TDD makes migration incremental because tested functions and components give
-  natural Rust porting units.
+- Do not ask the agent to generate the entire project in one step.
+- TDD makes Rust development incremental because tested functions and
+  components give natural implementation units.
 - Do not accept generated Rust only because it compiles.
 - Do not benchmark before the tests and validation checks are meaningful.
 - Keep one benchmark case fixed so that later changes are comparable.
