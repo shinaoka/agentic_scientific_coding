@@ -4,144 +4,104 @@ title: "8.2 Search and sort"
 
 ## Explanation
 
-Searching and sorting are basic operations with important assumptions. Search asks "where is the item?" Sorting rearranges data into a specified order so that later operations become easier.
+Searching and sorting are basic operations with important assumptions. Search
+asks where a value appears. Sorting rearranges owned data into an order that
+later operations can use.
 
-A linear search scans items one by one:
+A linear search over a slice checks values one by one:
 
-```julia
-function linear_search(xs, target)
-    for i in eachindex(xs)
-        if xs[i] == target
-            return i
-        end
-    end
-    return nothing
-end
+```rust
+fn find_i32(xs: &[i32], target: i32) -> Option<usize> {
+    for (i, &x) in xs.iter().enumerate() {
+        if x == target {
+            return Some(i);
+        }
+    }
+    None
+}
 ```
 
-For an unsorted array, linear search is the basic model. It may need to inspect every element, so the cost is proportional to `N`.
+For an unsorted slice, linear search is the basic model. It may need to inspect
+every element, so the cost is proportional to `N`.
 
-If the data are already sorted, binary search is possible. Binary search checks the middle element first. If the target is smaller than the middle element, the right half can be ignored. If the target is larger, the left half can be ignored. Repeating this halves the remaining search range at each step.
+The same idea works for floating-point data, but equality on `f64` should be
+used only when exact equality is meaningful for the problem:
 
-For example, to find `7` in:
-
-```text
-[1, 3, 5, 7, 9, 11, 13, 15, 17]
+```rust
+fn find_f64(xs: &[f64], target: f64) -> Option<usize> {
+    xs.iter().position(|&x| x == target)
+}
 ```
 
-one possible sequence is:
+If the data are already sorted, binary search is possible. Binary search checks
+the middle value and discards half of the remaining range. The sorting cost is
+separate: binary search is cheap only after the sorted order is available.
 
-1. Check the middle value `9`.
-2. Since `7 < 9`, discard `[9, 11, 13, 15]`.
-3. The remaining range is `[1, 3, 5, 7]`.
-4. Check the middle value `3`.
-5. Since `7 > 3`, discard `[1, 3]`.
-6. The remaining range is `[5, 7]`.
-7. Check `5`.
-8. Since `7 > 5`, discard `[5]`.
-9. The remaining range is `[7]`.
-10. Check `7` and stop.
+Sorting in Rust usually happens on an owned `Vec<T>`:
 
-Because the search range is repeatedly halved, binary search takes about `log2(N)` steps, so the cost is `O(log N)`. The sorting cost is separate: binary search is cheap only after the sorted order is available.
-
-Sorting creates order:
-
-```julia
-sort([3, 1, 2])       # [1, 2, 3]
-sort(["b", "aa", "c"], by=length)  # ["b", "c", "aa"]
+```rust
+let mut xs = vec![3, 1, 2];
+xs.sort();
+assert_eq!(xs, vec![1, 2, 3]);
 ```
 
-In Julia, `sort(xs)` returns a sorted copy. It does not modify `xs`. The mutating version is `sort!(xs)`.
+Floating-point values need a comparison rule. If the data do not contain `NaN`,
+`total_cmp` gives a total ordering:
 
-```julia
-xs = [3, 1, 2]
-ys = sort(xs)
-
-xs  # [3, 1, 2]
-ys  # [1, 2, 3]
-
-sort!(xs)
-xs  # [1, 2, 3]
+```rust
+let mut xs = vec![3.0, 1.0, 2.0];
+xs.sort_by(|a, b| a.total_cmp(b));
+assert_eq!(xs, vec![1.0, 2.0, 3.0]);
 ```
 
-Sorting requires a comparison rule. For numbers, the usual rule is `<`. For structured data, you must decide what key to sort by. A stable sort preserves the relative order of items that compare equal. This matters when records have multiple fields.
-
-```julia
-records = [("Alice", 2), ("Bob", 1), ("Carol", 2)]
-sort(records, by = x -> x[2])
-```
-
-Several simple sorting algorithms, such as selection sort and insertion sort, are useful for learning because you can run them by hand. Their typical cost is proportional to `N^2`. Production sorting algorithms are more sophisticated; comparison-based sorting is typically about `N log N` for large inputs.
-
-Built-in functions are useful, but you still need to know the assumptions: whether the data are sorted, what comparison rule is used, whether the operation mutates the input, and how duplicates are handled.
-
-For testing your own sorting function, the built-in `sort` is useful as a reference. Use a fixed random seed so that the test input is reproducible:
-
-```julia
-using Random
-using Test
-
-Random.seed!(1234)
-xs = rand(1:100, 20)
-expected = sort(xs)
-
-@test sort(xs) == expected  # later, replace the left side with your function
-```
+Tests should use small examples whose answers are known by hand. For a search
+function, include missing values, first position, last position, and repeated
+values. For a custom sorting exercise, the standard library sort can be used as
+a reference in tests, but it must not be called inside the implementation being
+tested.
 
 ## Things to look up
 
 - Linear search
 - Binary search
 - Pre-sorted data
-- `O(log N)`
-- Sorting algorithm
+- `Option<usize>`
+- Slice `&[T]`
+- `Vec<T>`
+- `Iterator::position`
+- `Vec::sort`
+- `sort_by`
+- `f64::total_cmp`
 - Stable sort
-- Selection sort or insertion sort
-- Comparison function
-- Sorting key
-- `sort` and `sort!` in Julia
-- `N log N`
-- Julia `Random.seed!`
-- Julia `Test`
+- Insertion sort or selection sort
 
 ## Exercise
 
-Write a function that returns a sorted copy of the input array:
+Write a function `my_find` that searches a slice and returns the index of the
+first matching value:
 
-```julia
-function my_sort(xs)
-    # implement insertion sort or selection sort
-end
+```rust
+fn my_find(xs: &[i32], target: i32) -> Option<usize> {
+    todo!()
+}
 ```
 
-Place unit tests immediately after the function. Use Julia's built-in `sort` only in the tests, not inside `my_sort`.
+Add tests for these cases:
 
-```julia
-using Random
-using Test
+1. The target is missing.
+2. The target is the first element.
+3. The target is the last element.
+4. The target appears more than once, and the first index should be returned.
 
-@testset "my_sort" begin
-    @test my_sort([4, 1, 3, 1]) == sort([4, 1, 3, 1])
-    @test my_sort(Int[]) == Int[]
-    @test my_sort([5]) == [5]
-    @test my_sort([-1, 3, 0, -1]) == sort([-1, 3, 0, -1])
-
-    Random.seed!(1234)
-    xs = rand(1:100, 20)
-    @test my_sort(xs) == sort(xs)
-end
-```
+Use small examples where the answer can be checked without running the code.
 
 ## Notes for the exercise
 
-- Do not call `sort` or `sort!` inside `my_sort`.
-- Return a sorted copy. Do not modify the input unless your function name and specification say so.
-- Explain how duplicates are handled.
-- Include empty input, one-element input, duplicate values, negative values, and random input.
-- Use `Random.seed!` so that the random test is reproducible.
-- Use built-in `sort` as a reference in tests, but still understand the algorithm you implemented.
-- Count the number of nested loops and estimate why simple insertion sort or selection sort is `O(N^2)`.
-
-## Optional coding check
-
-Ask an AI agent to review your `my_sort` implementation and tests. It should point out missing edge cases before modifying the code.
+- Use `&[i32]` or `&[f64]` at the function boundary for search.
+- Return `Option<usize>` instead of a sentinel value such as `-1`.
+- Decide what repeated values mean before writing tests.
+- Tests should compare against known small examples.
+- If you later write a custom sort, do not use the standard sort inside the
+  custom implementation. It is fine to use the standard sort only in tests.
+- Count how many elements the search inspects in the best case, worst case, and
+  a repeated-value case.

@@ -4,44 +4,80 @@ title: "8.1 Complexity"
 
 ## Explanation
 
-Complexity estimates how work grows with input size. A calculation that is fast for `N = 100` can become impossible for `N = 10^6` if the algorithm scales poorly.
+Big-O describes how work grows as the input size grows. It hides constant
+factors, but it is useful for asking whether doubling the input roughly doubles
+the work, squares it, or does something worse.
 
-A single loop over an array is usually linear:
+A single loop over a slice is usually linear:
 
-```julia
-total = 0.0
-for x in xs
-    total += x
-end
+```rust
+fn sum(xs: &[f64]) -> f64 {
+    let mut total = 0.0;
+    for &x in xs {
+        total += x;
+    }
+    total
+}
 ```
 
-Two nested loops over `N` elements usually perform about `N^2` iterations:
+The loop body runs once per element, so the number of additions grows like
+`N`. The cost is `O(N)`.
 
-```julia
-count = 0
-for i in 1:N
-    for j in 1:N
-        count += 1
-    end
-end
+A pairwise comparison over all pairs usually grows like `N^2`:
+
+```rust
+fn count_equal_pairs(xs: &[i32]) -> usize {
+    let mut count = 0;
+    for i in 0..xs.len() {
+        for j in 0..xs.len() {
+            if xs[i] == xs[j] {
+                count += 1;
+            }
+        }
+    }
+    count
+}
 ```
 
-Before optimizing code, first count what grows with input size.
+The inner loop runs `N` times for each of `N` outer-loop iterations. The number
+of comparisons grows like `N * N`.
+
+Complexity is not only about arithmetic. Allocating a new `Vec<f64>`, copying
+data, shifting elements, or moving memory through cache can dominate a program
+even when the Big-O label looks acceptable. Count the algorithmic growth first,
+then measure the implementation on the data sizes that matter.
 
 ## Things to look up
 
-- Big O notation
+- Big-O notation
 - Linear time
 - Quadratic time
 - Nested loop
-- Hidden constant
+- Constant factor
+- Allocation
+- Memory movement
+- Cache locality
 
 ## Exercise
 
-Estimate the number of loop iterations for one loop, two nested loops, and three nested loops over an input of size `N`. Then compare what happens for `N = 10^3` and `N = 10^6`.
+For each small Rust-like fragment, count the number of main operations as a
+function of `N = xs.len()`:
+
+1. A sum over `xs: &[f64]`.
+2. A pairwise comparison of all `(i, j)` positions in `xs: &[i32]`.
+3. Three nested loops where the outer loop runs `N` times, the middle loop runs
+   `N` times, and the inner loop runs `10` times.
+
+Then name the Big-O class for each case. Finally, write one sentence about an
+allocation or memory-copy cost that Big-O counting might hide.
 
 ## Notes for the exercise
 
-- Count loops before naming the complexity.
-- Distinguish `O(N)`, `O(N^2)`, and `O(N^3)`.
-- Do not conclude that an algorithm scales well only because it works for a small input.
+- Count operations before naming the complexity.
+- Distinguish `O(N)`, `O(N^2)`, and loops with fixed-size inner work.
+- State which operations you counted: additions, comparisons, assignments, or
+  memory moves.
+- Big-O does not replace measurement. It predicts growth, not the actual time
+  on a particular computer.
+- Do not conclude that an algorithm scales well only because it works for a
+  small input.
