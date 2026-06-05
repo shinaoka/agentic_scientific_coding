@@ -46,11 +46,14 @@ Unpack the ZIP file and work inside the top-level folder. If you already know Gi
 
 If you use an AI agent, start it from the top-level course folder so it can read the course text, exercise files, and project structure together.
 
-Small examples use Julia by default. Install Julia through `juliaup` using the official instructions:
+Small examples use Rust by default. Install Rust through `rustup` using the
+official instructions:
 
-- https://julialang.org/install/
+- https://www.rust-lang.org/tools/install
 
-Jupyter notebooks are optional. The Julia REPL and `.jl` scripts are enough for the basic exercises.
+Confirm the installation with `rustc --version` and `cargo --version`. Jupyter
+notebooks are optional; Cargo projects and ordinary `.rs` files are enough for
+the basic exercises.
 
 ## Current contents
 

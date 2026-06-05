@@ -6,9 +6,9 @@ project:
     - getting-started/download-the-material.qmd
     - getting-started/using-an-ai-agent.qmd
     - getting-started/minimal-git-diff-safety.qmd
-    - getting-started/default-language-julia.qmd
-    - getting-started/installing-julia.qmd
-    - getting-started/running-julia.qmd
+    - getting-started/default-language-rust.qmd
+    - getting-started/installing-rust.qmd
+    - getting-started/running-rust.qmd
     - getting-started/basic-workflow.qmd
     - getting-started/what-not-to-do.qmd
     - ai-search/asking-useful-questions.qmd
@@ -21,36 +21,34 @@ project:
     - computer-basics/stack-heap-and-references.qmd
     - computer-basics/processes-and-threads.qmd
     - computer-basics/cost-model-flops-bandwidth-and-cache.qmd
-    - julia-syntax-basics/variables-and-state.qmd
-    - julia-syntax-basics/types-and-numeric-values.qmd
-    - julia-syntax-basics/conditionals.qmd
-    - julia-syntax-basics/loops.qmd
-    - julia-syntax-basics/functions.qmd
-    - julia-syntax-basics/arrays-and-data-structures.qmd
+    - rust-basics/variables-and-state.qmd
+    - rust-basics/types-and-numeric-values.qmd
+    - rust-basics/conditionals.qmd
+    - rust-basics/loops.qmd
+    - rust-basics/functions.qmd
+    - rust-basics/vec-and-slices.qmd
+    - rust-basics/ownership-and-borrowing.qmd
+    - rust-basics/struct-enum-trait.qmd
+    - rust-basics/modules-and-crates.qmd
     - correctness-validation/overview.qmd
     - correctness-validation/testing-and-tdd.qmd
     - correctness-validation/edge-cases-and-failure-modes.qmd
     - correctness-validation/reproducibility-as-validation.qmd
-    - types-abstraction-interfaces/abstraction-and-interface.qmd
-    - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
-    - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
     - algorithmic-thinking/complexity.qmd
     - algorithmic-thinking/search-and-sort.qmd
     - algorithmic-thinking/matrix-multiplication-performance.qmd
+    - scientific-computing/tenferro-typed-tensor.qmd
+    - scientific-computing/rust-array-ecosystem.qmd
     - scientific-computing/numerical-integration.qmd
     - scientific-computing/root-finding.qmd
     - scientific-computing/linear-algebra-computations.qmd
     - scientific-computing/monte-carlo-and-randomness.qmd
+    - advanced-scientific-topics/automatic-differentiation.qmd
     - reproducible-workflow/git-basics-for-scientific-workflow.qmd
     - reproducible-workflow/project-structure-and-reproducibility.qmd
     - reproducible-workflow/ai-agent-workflow.qmd
     - project-exercises/overview.qmd
     - project-exercises/exercise-format.qmd
-    - rust-practice/rust-for-scientific-computing.qmd
-    - rust-practice/rust-arrays-ownership-mutation.qmd
-    - rust-practice/rust-array-libraries.qmd
-    - rust-practice/ai-assisted-rust-workflow.qmd
-    - rust-practice/verifying-generated-rust-code.qmd
 
 book:
   title: "Agentic Scientific Coding"
@@ -64,9 +62,9 @@ book:
         - getting-started/download-the-material.qmd
         - getting-started/using-an-ai-agent.qmd
         - getting-started/minimal-git-diff-safety.qmd
-        - getting-started/default-language-julia.qmd
-        - getting-started/installing-julia.qmd
-        - getting-started/running-julia.qmd
+        - getting-started/default-language-rust.qmd
+        - getting-started/installing-rust.qmd
+        - getting-started/running-rust.qmd
         - getting-started/basic-workflow.qmd
         - getting-started/what-not-to-do.qmd
     - part: "Section 2: Learning with AI and Web Search"
@@ -80,57 +78,49 @@ book:
         - computer-basics/indexing-conventions.qmd
         - computer-basics/multidimensional-arrays-and-layout.qmd
         - computer-basics/reshape-view-copy-and-transpose.qmd
-    - part: "Section 4: Performance and Systems Model (Optional First Pass)"
-      chapters:
         - computer-basics/stack-heap-and-references.qmd
         - computer-basics/processes-and-threads.qmd
         - computer-basics/cost-model-flops-bandwidth-and-cache.qmd
-    - part: "Section 5: Julia Syntax Basics"
+    - part: "Section 4: Rust Basics for Scientific Code"
       chapters:
-        - julia-syntax-basics/variables-and-state.qmd
-        - julia-syntax-basics/types-and-numeric-values.qmd
-        - julia-syntax-basics/conditionals.qmd
-        - julia-syntax-basics/loops.qmd
-        - julia-syntax-basics/functions.qmd
-        - julia-syntax-basics/arrays-and-data-structures.qmd
-    - part: "Section 6: Correctness and Validation"
+        - rust-basics/variables-and-state.qmd
+        - rust-basics/types-and-numeric-values.qmd
+        - rust-basics/conditionals.qmd
+        - rust-basics/loops.qmd
+        - rust-basics/functions.qmd
+        - rust-basics/vec-and-slices.qmd
+        - rust-basics/ownership-and-borrowing.qmd
+        - rust-basics/struct-enum-trait.qmd
+        - rust-basics/modules-and-crates.qmd
+    - part: "Section 5: Correctness and Validation"
       chapters:
         - correctness-validation/overview.qmd
         - correctness-validation/testing-and-tdd.qmd
         - correctness-validation/edge-cases-and-failure-modes.qmd
         - correctness-validation/reproducibility-as-validation.qmd
-    - part: "Section 7: Types, Abstraction, and Interfaces"
-      chapters:
-        - types-abstraction-interfaces/abstraction-and-interface.qmd
-        - types-abstraction-interfaces/julia-type-hierarchy-and-subtyping.qmd
-        - types-abstraction-interfaces/multiple-dispatch-as-an-interface.qmd
-    - part: "Section 8: Algorithmic Thinking"
+    - part: "Section 6: Algorithmic Thinking"
       chapters:
         - algorithmic-thinking/complexity.qmd
         - algorithmic-thinking/search-and-sort.qmd
         - algorithmic-thinking/matrix-multiplication-performance.qmd
-    - part: "Section 9: Scientific Computing Basics with Julia"
+    - part: "Section 7: Scientific Computing with Rust and tenferro"
       chapters:
+        - scientific-computing/tenferro-typed-tensor.qmd
+        - scientific-computing/rust-array-ecosystem.qmd
         - scientific-computing/numerical-integration.qmd
         - scientific-computing/root-finding.qmd
         - scientific-computing/linear-algebra-computations.qmd
         - scientific-computing/monte-carlo-and-randomness.qmd
-    - part: "Section 10: Reproducible Scientific Workflow"
+    - part: "Section 8: Advanced Scientific Topics"
+      chapters:
+        - advanced-scientific-topics/automatic-differentiation.qmd
+    - part: "Section 9: Reproducible Scientific Workflow and Projects"
       chapters:
         - reproducible-workflow/git-basics-for-scientific-workflow.qmd
         - reproducible-workflow/project-structure-and-reproducibility.qmd
         - reproducible-workflow/ai-agent-workflow.qmd
-    - part: "Section 11: Practical Project Exercises"
-      chapters:
         - project-exercises/overview.qmd
         - project-exercises/exercise-format.qmd
-    - part: "Section 12: Rust Practice with AI Agents"
-      chapters:
-        - rust-practice/rust-for-scientific-computing.qmd
-        - rust-practice/rust-arrays-ownership-mutation.qmd
-        - rust-practice/rust-array-libraries.qmd
-        - rust-practice/ai-assisted-rust-workflow.qmd
-        - rust-practice/verifying-generated-rust-code.qmd
 
 format:
   html:
